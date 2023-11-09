@@ -47,3 +47,60 @@ FontWeight bold = FontWeight.w700;
 FontWeight black = FontWeight.w900;
 
 double defaultMargin = 24;
+
+class AppTheme {
+  static TextButton customTextButton({
+    required String text,
+    required VoidCallback onPressed,
+    IconData? iconData,
+  }) {
+    return TextButton(
+      onPressed: onPressed,
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all<Color>(
+          whiteColor,
+        ), // Ganti warna sesuai kebutuhan
+        padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+          const EdgeInsets.symmetric(
+            horizontal: 30,
+            vertical: 30,
+          ),
+        ),
+        shadowColor: MaterialStateProperty.resolveWith<Color>(
+            (Set<MaterialState> states) {
+          // Set the shadow color for different states
+          if (states.contains(MaterialState.pressed)) {
+            return Colors.grey.withOpacity(0.5); // Shadow color when pressed
+          }
+          return Colors.grey.withOpacity(0.2); // Default shadow color
+        }),
+        elevation: MaterialStateProperty.resolveWith<double>(
+            (Set<MaterialState> states) {
+          // Set the elevation (shadow) for different states
+          if (states.contains(MaterialState.pressed)) {
+            return 10; // Elevation when pressed
+          }
+          return 5; // Default elevation
+        }),
+        shape: MaterialStateProperty.all<OutlinedBorder>(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+        ),
+      ),
+      child: Row(
+        children: [
+          if (iconData != null) Icon(iconData),
+          const SizedBox(width: 8),
+          Text(
+            text,
+            style: subtitleTextStyle.copyWith(
+              fontSize: 13,
+              fontWeight: semiBold,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
