@@ -13,9 +13,10 @@ class Navbar extends StatelessWidget implements PreferredSizeWidget {
       appBar: AppBar(
         backgroundColor: whiteColor,
         elevation: 0,
+        titleSpacing: 80,
         toolbarHeight: 90,
         title: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 40),
+          padding: const EdgeInsets.symmetric(vertical: 40),
           child: Row(
             children: [
               MouseRegion(
@@ -62,6 +63,11 @@ class Navbar extends StatelessWidget implements PreferredSizeWidget {
                     text: 'INQUIRY',
                     onPressed: () {},
                     iconData: Icons.list_alt_rounded,
+                    btnColor: whiteColor,
+                    hvrColor: whiteColor,
+                    txtBtnColor: subtitleColor,
+                    fontWeight: semiBold,
+                    horizontal: 30,
                   ),
                   const SizedBox(
                     width: 20,
@@ -70,6 +76,11 @@ class Navbar extends StatelessWidget implements PreferredSizeWidget {
                     text: 'HELP DESK : +62 2150886205',
                     onPressed: () {},
                     iconData: Icons.phone_sharp,
+                    btnColor: whiteColor,
+                    hvrColor: whiteColor,
+                    txtBtnColor: subtitleColor,
+                    fontWeight: semiBold,
+                    horizontal: 30,
                   ),
                 ],
               )

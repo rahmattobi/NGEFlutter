@@ -11,14 +11,12 @@ class ProductWidgetHome extends StatelessWidget {
   ProductWidgetHome({super.key, this.img, this.judul, this.desc});
   @override
   Widget build(BuildContext context) {
-    double screenHeight = MediaQuery.of(context).size.height;
-
-    return Padding(
+    return Container(
+      width: MediaQuery.of(context).size.width,
       padding: const EdgeInsets.symmetric(horizontal: 60),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: screenHeight * 0.60),
           Image.asset(
             img.toString(),
             height: 100,
@@ -32,10 +30,12 @@ class ProductWidgetHome extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 20),
-          Text(
-            desc.toString(),
-            style: whiteTextStyle.copyWith(
-              fontWeight: FontWeight.normal,
+          Expanded(
+            child: Text(
+              desc.toString(),
+              style: whiteTextStyle.copyWith(
+                fontWeight: FontWeight.normal,
+              ),
             ),
           ),
         ],

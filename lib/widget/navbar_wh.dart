@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:nge/theme.dart';
 
@@ -17,21 +18,23 @@ class _NavbarTitleWidgetState extends State<NavbarTitleWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return MouseRegion(
-      cursor: SystemMouseCursors.click,
-      onEnter: (_) => onHover(true),
-      onExit: (_) => onHover(false),
-      child: GestureDetector(
-        onTap: () {
-          widget.url;
-        },
-        child: Text(
-          widget.title,
-          style: TextStyle(
-            fontSize: 12,
-            fontFamily: 'Montserrat',
-            fontWeight: semiBold,
-            color: isHovered ? titleColor : subtitleColor,
+    return FadeInRight(
+      child: MouseRegion(
+        cursor: SystemMouseCursors.click,
+        onEnter: (_) => onHover(true),
+        onExit: (_) => onHover(false),
+        child: GestureDetector(
+          onTap: () {
+            widget.url;
+          },
+          child: Text(
+            widget.title,
+            style: TextStyle(
+              fontSize: 12,
+              fontFamily: 'Montserrat',
+              fontWeight: semiBold,
+              color: isHovered ? titleColor : subtitleColor,
+            ),
           ),
         ),
       ),
