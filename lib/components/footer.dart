@@ -411,7 +411,7 @@ class _FooterState extends State<Footer> {
           ),
         ),
         SizedBox(
-          height: size.width < 800 ? 15 : 25,
+          height: size.width < 800 ? 20 : 25,
         ),
         const NavbarTitleWidget(title: 'HOME', url: ''),
         SizedBox(

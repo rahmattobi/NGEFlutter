@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:nge/components/menu_nav.dart';
 import 'package:nge/theme.dart';
-import 'package:nge/widget/navbar_wh.dart';
 
 class Navbar extends StatefulWidget {
   const Navbar({Key? key}) : super(key: key);
@@ -30,27 +30,43 @@ class _NavbarState extends State<Navbar> {
           const SizedBox(
             width: 20,
           ),
-          menuNav(),
+          const MenuNav(),
           const SizedBox(
             width: 20,
           ),
           const Spacer(),
-          ElevatedButton.icon(
-            onPressed: () {},
-            icon: Icon(
-              Icons.phone_sharp,
-              color: subtitleColor,
-            ),
-            label: Text(
-              'INQUIRY',
-              style: subtitleTextStyle.copyWith(
-                fontWeight: semiBold,
-                fontSize: 14,
-                color: subtitleColor,
+          ElevatedButton(
+            onPressed: () {
+              // Fungsi yang akan dijalankan saat tombol ditekan
+            },
+            style: ButtonStyle(
+              padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+              ),
+              backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
+              elevation: MaterialStateProperty.resolveWith<double>(
+                (Set<MaterialState> states) {
+                  // Memberikan efek shadow saat tombol di-hover
+                  return states.contains(MaterialState.hovered) ? 8 : 0;
+                },
               ),
             ),
-            style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(
+                  Icons.line_style_outlined,
+                  color: primaryColor,
+                ), // Gantilah dengan ikon yang diinginkan
+                const SizedBox(
+                    width: 10), // Memberikan ruang antara ikon dan teks
+                Text(
+                  'INQUIRY',
+                  style: subtitleTextStyle.copyWith(
+                    fontWeight: semiBold,
+                  ),
+                ),
+              ],
             ),
           ),
         ],
@@ -65,38 +81,6 @@ class _NavbarState extends State<Navbar> {
         'assets/images/natuna2.png',
         width: size.width < 500 ? 150 : 220,
       ),
-    );
-  }
-
-  Row menuNav() {
-    return const Row(
-      children: [
-        NavbarTitleWidget(title: 'HOME', url: ''),
-        SizedBox(
-          width: 20,
-        ),
-        NavbarTitleWidget(title: 'ABOUT', url: ''),
-        SizedBox(
-          width: 20,
-        ),
-        NavbarTitleWidget(title: 'PRODUCTS', url: ''),
-        SizedBox(
-          width: 20,
-        ),
-        NavbarTitleWidget(title: 'CLIENTS', url: ''),
-        SizedBox(
-          width: 20,
-        ),
-        NavbarTitleWidget(title: 'CASE STUDIES', url: ''),
-        SizedBox(
-          width: 20,
-        ),
-        NavbarTitleWidget(title: 'CONTACT', url: ''),
-        SizedBox(
-          width: 20,
-        ),
-        NavbarTitleWidget(title: 'BLOG', url: ''),
-      ],
     );
   }
 

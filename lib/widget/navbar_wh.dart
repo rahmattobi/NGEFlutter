@@ -32,14 +32,14 @@ class _NavbarTitleWidgetState extends State<NavbarTitleWidget> {
           child: Text(
             widget.title,
             style: TextStyle(
-              fontSize: 14,
+              fontSize: size.width < 800 ? 12 : 14,
               fontFamily: 'Montserrat',
               fontWeight: semiBold,
-              color: size.width < 768
+              color: size.width < 1200
                   ? whiteColor
                   : isHovered
                       ? titleColor
-                      : whiteColor,
+                      : subtitleColor,
             ),
           ),
         ),
