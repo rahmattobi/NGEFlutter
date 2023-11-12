@@ -13,20 +13,20 @@ class ProductWidgetHome extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      padding: const EdgeInsets.symmetric(horizontal: 60),
+      padding: const EdgeInsets.symmetric(horizontal: 30),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Image.asset(
             img.toString(),
-            height: 100,
+            height: 80,
           ),
-          const SizedBox(height: 40),
+          const SizedBox(height: 20),
           Text(
             judul.toString(),
             style: whiteTextStyle.copyWith(
               fontWeight: FontWeight.bold,
-              fontSize: 24,
+              fontSize: 20,
             ),
           ),
           const SizedBox(height: 20),

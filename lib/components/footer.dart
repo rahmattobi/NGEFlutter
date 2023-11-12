@@ -1,6 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-import 'package:nge/helper/helperClass.dart';
+import 'package:nge/helper/helper_class.dart';
 import 'package:nge/theme.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -240,7 +240,7 @@ class _FooterState extends State<Footer> {
         FadeInDown(
           child: Image.asset(
             'assets/images/natuna1.png',
-            width: size.width < 768 ? size.width * 0.3 : size.width * 0.15,
+            width: size.width < 800 ? size.width * 0.3 : size.width * 0.15,
           ),
         ),
         SizedBox(
@@ -302,8 +302,8 @@ class _FooterState extends State<Footer> {
                   onEnter: (_) => onHover(true),
                   onExit: (_) => onHover(false),
                   child: Container(
-                    height: size.width < 768 ? 40 : 50,
-                    width: size.width < 768 ? 40 : 50,
+                    height: size.width < 800 ? 40 : 50,
+                    width: size.width < 800 ? 40 : 50,
                     decoration: BoxDecoration(
                       color: isHovered ? Colors.black : Colors.transparent,
                       border: Border.all(
@@ -315,7 +315,7 @@ class _FooterState extends State<Footer> {
                     child: Center(
                       child: Image.asset(
                         'assets/images/twitter.png',
-                        height: size.width < 768 ? 15 : 18,
+                        height: size.width < 800 ? 15 : 18,
                       ),
                     ),
                   ),
@@ -335,8 +335,8 @@ class _FooterState extends State<Footer> {
                   onEnter: (_) => onHover2(true),
                   onExit: (_) => onHover2(false),
                   child: Container(
-                    height: size.width < 768 ? 40 : 50,
-                    width: size.width < 768 ? 40 : 50,
+                    height: size.width < 800 ? 40 : 50,
+                    width: size.width < 800 ? 40 : 50,
                     decoration: BoxDecoration(
                       color: isHovered2 ? Colors.pink : Colors.transparent,
                       border: Border.all(
@@ -348,7 +348,7 @@ class _FooterState extends State<Footer> {
                     child: Center(
                       child: Image.asset(
                         'assets/images/ig.png',
-                        height: size.width < 768 ? 15 : 18,
+                        height: size.width < 800 ? 15 : 18,
                       ),
                     ),
                   ),
@@ -368,8 +368,8 @@ class _FooterState extends State<Footer> {
                   onEnter: (_) => onHover3(true),
                   onExit: (_) => onHover3(false),
                   child: Container(
-                    height: size.width < 768 ? 40 : 50,
-                    width: size.width < 768 ? 40 : 50,
+                    height: size.width < 800 ? 40 : 50,
+                    width: size.width < 800 ? 40 : 50,
                     decoration: BoxDecoration(
                       color: isHovered3 ? titleColor : Colors.transparent,
                       border: Border.all(
@@ -381,7 +381,7 @@ class _FooterState extends State<Footer> {
                     child: Center(
                       child: Image.asset(
                         'assets/images/linkedin.png',
-                        height: size.width < 768 ? 15 : 18,
+                        height: size.width < 800 ? 15 : 18,
                       ),
                     ),
                   ),
@@ -405,37 +405,37 @@ class _FooterState extends State<Footer> {
           child: Text(
             'Useful links',
             style: whiteTextStyle.copyWith(
-              fontSize: size.width < 768 ? 20 : 25,
-              fontWeight: size.width < 768 ? regular : semiBold,
+              fontSize: size.width < 800 ? 20 : 25,
+              fontWeight: size.width < 800 ? regular : semiBold,
             ),
           ),
         ),
         SizedBox(
-          height: size.width < 768 ? 15 : 25,
+          height: size.width < 800 ? 15 : 25,
         ),
         const NavbarTitleWidget(title: 'HOME', url: ''),
-        const SizedBox(
-          height: 15,
+        SizedBox(
+          height: size.width < 800 ? 20 : 15,
         ),
         const NavbarTitleWidget(title: 'ABOUT', url: ''),
-        const SizedBox(
-          height: 15,
+        SizedBox(
+          height: size.width < 800 ? 20 : 15,
         ),
         const NavbarTitleWidget(title: 'PRODUCTS', url: ''),
-        const SizedBox(
-          height: 15,
+        SizedBox(
+          height: size.width < 800 ? 20 : 15,
         ),
         const NavbarTitleWidget(title: 'CLIENTS', url: ''),
-        const SizedBox(
-          height: 15,
+        SizedBox(
+          height: size.width < 800 ? 20 : 15,
         ),
         const NavbarTitleWidget(title: 'CASE STUDIES', url: ''),
-        const SizedBox(
-          height: 15,
+        SizedBox(
+          height: size.width < 800 ? 20 : 15,
         ),
         const NavbarTitleWidget(title: 'CONTACT', url: ''),
-        const SizedBox(
-          height: 15,
+        SizedBox(
+          height: size.width < 800 ? 20 : 15,
         ),
         const NavbarTitleWidget(title: 'BLOG', url: ''),
       ],
@@ -450,13 +450,13 @@ class _FooterState extends State<Footer> {
           child: Text(
             'Contact Info',
             style: whiteTextStyle.copyWith(
-              fontSize: size.width < 768 ? 20 : 25,
-              fontWeight: size.width < 768 ? regular : semiBold,
+              fontSize: size.width < 800 ? 20 : 25,
+              fontWeight: size.width < 800 ? regular : semiBold,
             ),
           ),
         ),
         SizedBox(
-          height: size.width < 768 ? 15 : 25,
+          height: size.width < 800 ? 15 : 25,
         ),
         FadeInLeft(
           child: SelectableText(
@@ -506,9 +506,10 @@ class _FooterState extends State<Footer> {
   Text cpFooter(Size size) {
     return Text(
       '© Copyright ©2020 Natuna Global. All Rights Reserved Copyright',
+      textAlign: TextAlign.center,
       style: whiteTextStyle.copyWith(
-        fontWeight: size.width < 768 ? medium : semiBold,
-        fontSize: size.width < 768 ? 13 : 14,
+        fontWeight: size.width < 800 ? medium : semiBold,
+        fontSize: size.width < 800 ? 13 : 14,
       ),
     );
   }
@@ -517,8 +518,8 @@ class _FooterState extends State<Footer> {
     return Text(
       'Terms and conditions',
       style: subtitleTextStyle.copyWith(
-        fontWeight: size.width < 768 ? medium : semiBold,
-        fontSize: size.width < 768 ? 13 : 14,
+        fontWeight: size.width < 800 ? medium : semiBold,
+        fontSize: size.width < 800 ? 13 : 14,
       ),
     );
   }
@@ -527,7 +528,7 @@ class _FooterState extends State<Footer> {
     return Text(
       'Privacy policy',
       style: subtitleTextStyle.copyWith(
-        fontWeight: size.width < 768 ? medium : semiBold,
+        fontWeight: size.width < 800 ? medium : semiBold,
       ),
     );
   }

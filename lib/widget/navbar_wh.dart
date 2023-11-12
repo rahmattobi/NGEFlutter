@@ -18,6 +18,8 @@ class _NavbarTitleWidgetState extends State<NavbarTitleWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
+
     return FadeInRight(
       child: MouseRegion(
         cursor: SystemMouseCursors.click,
@@ -30,10 +32,14 @@ class _NavbarTitleWidgetState extends State<NavbarTitleWidget> {
           child: Text(
             widget.title,
             style: TextStyle(
-              fontSize: 12,
+              fontSize: 14,
               fontFamily: 'Montserrat',
               fontWeight: semiBold,
-              color: isHovered ? titleColor : subtitleColor,
+              color: size.width < 768
+                  ? whiteColor
+                  : isHovered
+                      ? titleColor
+                      : whiteColor,
             ),
           ),
         ),
