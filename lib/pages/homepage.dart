@@ -1,7 +1,8 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:nge/components/footer.dart';
-import 'package:nge/components/navbar.dart';
+import 'package:nge/components/nav_desktop.dart';
+import 'package:nge/components/nav_tablet.dart';
 import 'package:nge/theme.dart';
 import 'package:nge/widget/product_wh.dart';
 import 'package:typewritertext/typewritertext.dart';
@@ -33,23 +34,28 @@ class _HomePageState extends State<HomePage> {
               preferredSize: Size(size.width, size.height),
               child: const Navbar(),
             )
-          : AppBar(
-              backgroundColor: whiteColor,
-              elevation: 0,
-              iconTheme: IconThemeData(color: primaryColor),
-              title: MouseRegion(
-                cursor: SystemMouseCursors.click,
-                child: Padding(
-                  padding: EdgeInsets.all(
-                      HelperClass.mobileScreen(context) ? 8.0 : 30),
-                  child: Image.asset(
-                    'assets/images/natuna2.png',
-                    width: 150,
+          : HelperClass.ipadScreen(context)
+              ? PreferredSize(
+                  preferredSize: Size(size.width, size.height),
+                  child: const NavTablet(),
+                )
+              : AppBar(
+                  backgroundColor: whiteColor,
+                  elevation: 0,
+                  iconTheme: IconThemeData(color: primaryColor),
+                  title: MouseRegion(
+                    cursor: SystemMouseCursors.click,
+                    child: Padding(
+                      padding: EdgeInsets.all(
+                          HelperClass.mobileScreen(context) ? 8.0 : 30),
+                      child: Image.asset(
+                        'assets/images/natuna2.png',
+                        width: 150,
+                      ),
+                    ),
                   ),
+                  centerTitle: false,
                 ),
-              ),
-              centerTitle: false,
-            ),
       endDrawer: Drawer(
         width: HelperClass.mobileScreen(context)
             ? size.width * 0.7
