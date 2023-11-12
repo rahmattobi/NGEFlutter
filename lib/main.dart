@@ -1,11 +1,8 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
-// import 'package:nge/components/drawer_navbar.dart';
 import 'package:nge/pages/homepage.dart';
 
-// void main() {
-//   runApp(const MyApp());
-// }
+import 'pages/aboutpage.dart';
 
 void main() {
   runApp(
@@ -27,10 +24,13 @@ class MyApp extends StatelessWidget {
       useInheritedMediaQuery: true,
       locale: DevicePreview.locale(context),
       builder: DevicePreview.appBuilder,
-      title: 'Natuna Global Ekapersada',
-      // home: const DrawerNavbar(),
-      home: const HomePage(),
       debugShowCheckedModeBanner: false,
+      title: 'Natuna Global Ekapersada',
+      home: const HomePage(),
+      routes: {
+        '/home': (context) => const HomePage(),
+        '/about': (context) => const AboutPage(),
+      },
     );
   }
 }

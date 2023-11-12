@@ -13,11 +13,11 @@ class MenuNav extends StatelessWidget {
     return HelperClass.desktopScreen(context)
         ? const Row(
             children: [
-              NavbarTitleWidget(title: 'HOME', url: ''),
+              NavbarTitleWidget(title: 'HOME', url: '/home'),
               SizedBox(
                 width: 30,
               ),
-              NavbarTitleWidget(title: 'ABOUT', url: ''),
+              NavbarTitleWidget(title: 'ABOUT', url: '/about'),
               SizedBox(
                 width: 30,
               ),
@@ -43,7 +43,7 @@ class MenuNav extends StatelessWidget {
         : Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const NavbarTitleWidget(title: 'HOME', url: ''),
+              const NavbarTitleWidget(title: 'HOME', url: '/home'),
               const SizedBox(
                 height: 15,
               ),
@@ -61,7 +61,7 @@ class MenuNav extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              const NavbarTitleWidget(title: 'ABOUT', url: ''),
+              const NavbarTitleWidget(title: 'ABOUT', url: '/about'),
               const SizedBox(
                 height: 15,
               ),

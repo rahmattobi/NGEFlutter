@@ -1,12 +1,13 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:nge/components/contact_us.dart';
 import 'package:nge/components/footer.dart';
 import 'package:nge/components/nav_desktop.dart';
-import 'package:nge/components/nav_tablet.dart';
+import 'package:nge/components/sosmed.dart';
 import 'package:nge/theme.dart';
+import 'package:nge/widget/btn_title.dart';
 import 'package:nge/widget/product_wh.dart';
 import 'package:typewritertext/typewritertext.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../components/menu_nav.dart';
 import '../helper/helper_class.dart';
@@ -35,22 +36,95 @@ class _HomePageState extends State<HomePage> {
               child: const Navbar(),
             )
           : HelperClass.ipadScreen(context)
-              ? PreferredSize(
-                  preferredSize: Size(size.width, size.height),
-                  child: const NavTablet(),
+              ? AppBar(
+                  automaticallyImplyLeading: false,
+                  backgroundColor: whiteColor,
+                  elevation: 0,
+                  iconTheme: IconThemeData(color: primaryColor),
+                  title: GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/home');
+                    },
+                    child: MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: Padding(
+                        padding: EdgeInsets.all(
+                            HelperClass.mobileScreen(context) ? 8.0 : 30),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Image.asset(
+                              'assets/images/natuna2.png',
+                              width: 150,
+                            ),
+                            ElevatedButton(
+                              onPressed: () {
+                                // Fungsi yang akan dijalankan saat tombol ditekan
+                              },
+                              style: ButtonStyle(
+                                padding: MaterialStateProperty.all<
+                                    EdgeInsetsGeometry>(
+                                  const EdgeInsets.symmetric(
+                                      horizontal: 30, vertical: 10),
+                                ),
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                        Colors.white),
+                                elevation:
+                                    MaterialStateProperty.resolveWith<double>(
+                                  (Set<MaterialState> states) {
+                                    // Memberikan efek shadow saat tombol di-hover
+                                    return states
+                                            .contains(MaterialState.hovered)
+                                        ? 8
+                                        : 0;
+                                  },
+                                ),
+                              ),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Icon(
+                                    Icons.line_style_outlined,
+                                    color: primaryColor,
+                                  ), // Gantilah dengan ikon yang diinginkan
+                                  const SizedBox(
+                                      width:
+                                          10), // Memberikan ruang antara ikon dan teks
+                                  Text(
+                                    'INQUIRY',
+                                    style: subtitleTextStyle.copyWith(
+                                      fontWeight: semiBold,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  centerTitle: false,
                 )
               : AppBar(
+                  automaticallyImplyLeading: false,
                   backgroundColor: whiteColor,
                   elevation: 0,
                   iconTheme: IconThemeData(color: primaryColor),
                   title: MouseRegion(
                     cursor: SystemMouseCursors.click,
-                    child: Padding(
-                      padding: EdgeInsets.all(
-                          HelperClass.mobileScreen(context) ? 8.0 : 30),
-                      child: Image.asset(
-                        'assets/images/natuna2.png',
-                        width: 150,
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, '/home');
+                      },
+                      child: Padding(
+                        padding: EdgeInsets.all(
+                            HelperClass.mobileScreen(context) ? 8.0 : 30),
+                        child: Image.asset(
+                          'assets/images/natuna2.png',
+                          width: 150,
+                        ),
                       ),
                     ),
                   ),
@@ -91,13 +165,13 @@ class _HomePageState extends State<HomePage> {
                 const SizedBox(
                   height: 40,
                 ),
-                ListTile(
+                const ListTile(
                   contentPadding: EdgeInsets.zero,
-                  title: contactUs(),
+                  title: ContactUs(),
                 ),
-                ListTile(
+                const ListTile(
                   contentPadding: EdgeInsets.zero,
-                  title: sosmed(size),
+                  title: Sosmed(),
                 ),
               ],
             ),
@@ -463,41 +537,12 @@ class _HomePageState extends State<HomePage> {
               ? 50
               : ((size.width >= 800 && size.width < 1200) ? 60 : 30),
         ),
-        FadeInDown(
-          child: TextButton(
-            style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                (Set<MaterialState> states) {
-                  if (states.contains(MaterialState.hovered)) {
-                    return titleDarkColor; // Warna latar belakang saat tombol di-hover
-                  }
-                  return titleColor; // Warna latar belakang saat tidak di-hover
-                },
-              ),
-              shape: MaterialStateProperty.all<OutlinedBorder>(
-                RoundedRectangleBorder(
-                  borderRadius:
-                      BorderRadius.circular(10.0), // Atur border radius ke 20
-                ),
-              ),
-              padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-                EdgeInsets.symmetric(
-                  horizontal: size.width >= 800 ? 60 : 45,
-                  vertical: size.width >= 800 ? 30 : 20,
-                ),
-              ),
-            ),
-            onPressed: () {},
-            child: Text(
-              "ABOUT",
-              style: titleTextStyle.copyWith(
-                fontWeight: semiBold,
-                fontSize: size.width >= 800 ? 16 : 12,
-                letterSpacing: 2,
-                color: whiteColor,
-              ),
-            ),
-          ),
+        BtnTitle(
+          pdHorizontal: size.width >= 800 ? 60 : 45,
+          pdVertical: size.width >= 800 ? 30 : 20,
+          fontSize: size.width >= 800 ? 16 : 12,
+          title: 'ABOUT',
+          url: '/about',
         ),
         const SizedBox(
           height: 30,
@@ -948,253 +993,17 @@ class _HomePageState extends State<HomePage> {
             Align(
               alignment:
                   size.width >= 800 ? Alignment.center : Alignment.centerLeft,
-              child: FadeInDown(
-                child: TextButton(
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                      (Set<MaterialState> states) {
-                        if (states.contains(MaterialState.hovered)) {
-                          return titleDarkColor; // Warna latar belakang saat tombol di-hover
-                        }
-                        return titleColor; // Warna latar belakang saat tidak di-hover
-                      },
-                    ),
-                    shape: MaterialStateProperty.all<OutlinedBorder>(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(
-                            10.0), // Atur border radius ke 20
-                      ),
-                    ),
-                    padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-                      EdgeInsets.symmetric(
-                        horizontal: size.width >= 800 ? 60 : 45,
-                        vertical: size.width >= 800 ? 30 : 20,
-                      ),
-                    ),
-                  ),
-                  onPressed: () {},
-                  child: Text(
-                    "SEE MORE",
-                    style: titleTextStyle.copyWith(
-                      fontWeight: semiBold,
-                      fontSize: size.width >= 800 ? 16 : 12,
-                      letterSpacing: 2,
-                      color: whiteColor,
-                    ),
-                  ),
-                ),
+              child: BtnTitle(
+                pdHorizontal: size.width >= 800 ? 60 : 45,
+                pdVertical: size.width >= 800 ? 30 : 20,
+                fontSize: size.width >= 800 ? 16 : 12,
+                title: 'SEE MORE',
+                url: '/about',
               ),
             )
           ],
         ),
       ),
-    );
-  }
-
-// Mobile Layout
-  Column mobileLayout(Size size) {
-    return Column(
-      children: [
-        const Footer(),
-      ],
-    );
-  }
-
-  Column tabletLayout(Size size) {
-    return Column(
-      children: [
-        Footer(),
-      ],
-    );
-  }
-
-  Column tabletLayout1(Size size) {
-    return Column(
-      children: [
-        Text(
-          "INI Desktop 1",
-          style: primaryTextStyle.copyWith(fontWeight: bold, fontSize: 100),
-        ),
-        const Footer(),
-      ],
-    );
-  }
-
-  Column contactUs() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        FadeInUp(
-          child: Text(
-            'CONTACT US',
-            style: subtitleTextStyle.copyWith(
-              fontSize: 12,
-              fontWeight: semiBold,
-            ),
-          ),
-        ),
-        const SizedBox(
-          height: 20,
-        ),
-        FadeInUp(
-          child: Text(
-            'HEAD OFFICE',
-            style: whiteTextStyle,
-          ),
-        ),
-        const SizedBox(
-          height: 10,
-        ),
-        FadeInDown(
-          child: SelectableText(
-            'EduCenter Building Lt. 2A Unit 22592, Jl. Sekolah Foresta No. 8, BSD City - Banten 15331,\nIndonesia',
-            style: subtitleTextStyle.copyWith(
-              fontSize: 12,
-            ),
-          ),
-        ),
-        const SizedBox(
-          height: 15,
-        ),
-        FadeInUp(
-          child: Text(
-            'CORPORATE OFFICE',
-            style: whiteTextStyle,
-          ),
-        ),
-        const SizedBox(
-          height: 10,
-        ),
-        FadeInDown(
-          child: SelectableText(
-            'Jl. Boulevard Europa No.10 RT.001/RW.009, Panunggangan Barat, Kec. Cibodas, Kota Tangerang,\nBanten 15138 Indonesia',
-            style: subtitleTextStyle.copyWith(
-              fontSize: 12,
-            ),
-          ),
-        ),
-        const SizedBox(
-          height: 30,
-        ),
-        FadeInDown(
-          child: SelectableText(
-            '+62 21 508 862 05',
-            style: subtitleTextStyle.copyWith(
-              fontSize: 12,
-            ),
-          ),
-        ),
-        const SizedBox(
-          height: 05,
-        ),
-        FadeInUp(
-          child: SelectableText(
-            'info@natuna.global',
-            style: subtitleTextStyle.copyWith(
-              fontSize: 12,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Row sosmed(Size size) {
-    return Row(
-      children: [
-        FadeInUp(
-          child: GestureDetector(
-            onTap: () {
-              launch('https://twitter.com/NatunaGlobal');
-            },
-            child: MouseRegion(
-              cursor: SystemMouseCursors.click,
-              child: Container(
-                height: 30,
-                width: 30,
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    width: 1,
-                    color: subtitleColor.withOpacity(0.5),
-                  ),
-                  borderRadius: BorderRadius.circular(100),
-                ),
-                child: Center(
-                  child: Image.asset(
-                    'assets/images/twitter.png',
-                    height: 12,
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ),
-        const SizedBox(
-          width: 15,
-        ),
-        FadeInDown(
-          child: GestureDetector(
-            onTap: () {
-              launch('https://www.instagram.com/natunaglobal/');
-            },
-            child: MouseRegion(
-              cursor: SystemMouseCursors.click,
-              child: Container(
-                height: 30,
-                width: 30,
-                decoration: BoxDecoration(
-                  color: isHovered2 ? Colors.pink : Colors.transparent,
-                  border: Border.all(
-                    width: 1,
-                    color: subtitleColor.withOpacity(0.5),
-                  ),
-                  borderRadius: BorderRadius.circular(100),
-                ),
-                child: Center(
-                  child: Image.asset(
-                    'assets/images/ig.png',
-                    height: 12,
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ),
-        const SizedBox(
-          width: 15,
-        ),
-        FadeInRight(
-          child: GestureDetector(
-            onTap: () {
-              launch('https://www.linkedin.com/company/natunaglobal/');
-            },
-            child: MouseRegion(
-              cursor: SystemMouseCursors.click,
-              child: Container(
-                height: 30,
-                width: 30,
-                decoration: BoxDecoration(
-                  color: isHovered3 ? titleColor : Colors.transparent,
-                  border: Border.all(
-                    width: 1,
-                    color: subtitleColor.withOpacity(0.5),
-                  ),
-                  borderRadius: BorderRadius.circular(100),
-                ),
-                child: Center(
-                  child: Image.asset(
-                    'assets/images/linkedin.png',
-                    height: 12,
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ),
-        const SizedBox(
-          width: 15,
-        ),
-      ],
     );
   }
 }

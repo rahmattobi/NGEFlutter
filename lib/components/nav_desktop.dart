@@ -25,7 +25,12 @@ class _NavbarState extends State<Navbar> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          logoNav(size),
+          GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, '/home');
+            },
+            child: logoNav(size),
+          ),
           const Spacer(),
           const SizedBox(
             width: 20,

@@ -27,7 +27,7 @@ class _NavbarTitleWidgetState extends State<NavbarTitleWidget> {
         onExit: (_) => onHover(false),
         child: GestureDetector(
           onTap: () {
-            widget.url;
+            Navigator.pushNamed(context, widget.url);
           },
           child: Text(
             widget.title,
