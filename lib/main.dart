@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:nge/pages/homepage.dart';
 
 import 'pages/aboutpage.dart';
+import 'pages/productpage.dart';
 
 void main() {
   runApp(
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/home': (context) => const HomePage(),
         '/about': (context) => const AboutPage(),
+        '/product': (context) => const ProductPage(),
       },
     );
   }

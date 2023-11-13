@@ -413,31 +413,31 @@ class _FooterState extends State<Footer> {
         SizedBox(
           height: size.width < 800 ? 20 : 25,
         ),
-        const NavbarTitleWidget(title: 'HOME', url: ''),
+        const NavbarTitleWidget(title: 'HOME', url: '/home'),
         SizedBox(
           height: size.width < 800 ? 20 : 15,
         ),
-        const NavbarTitleWidget(title: 'ABOUT', url: ''),
+        const NavbarTitleWidget(title: 'ABOUT', url: '/about'),
         SizedBox(
           height: size.width < 800 ? 20 : 15,
         ),
-        const NavbarTitleWidget(title: 'PRODUCTS', url: ''),
+        const NavbarTitleWidget(title: 'PRODUCTS', url: '/product'),
         SizedBox(
           height: size.width < 800 ? 20 : 15,
         ),
-        const NavbarTitleWidget(title: 'CLIENTS', url: ''),
+        const NavbarTitleWidget(title: 'CLIENTS', url: '/client'),
         SizedBox(
           height: size.width < 800 ? 20 : 15,
         ),
-        const NavbarTitleWidget(title: 'CASE STUDIES', url: ''),
+        const NavbarTitleWidget(title: 'CASE STUDIES', url: '/cs'),
         SizedBox(
           height: size.width < 800 ? 20 : 15,
         ),
-        const NavbarTitleWidget(title: 'CONTACT', url: ''),
+        const NavbarTitleWidget(title: 'CONTACT', url: '/contact'),
         SizedBox(
           height: size.width < 800 ? 20 : 15,
         ),
-        const NavbarTitleWidget(title: 'BLOG', url: ''),
+        const NavbarTitleWidget(title: 'BLOG', url: '/blog'),
       ],
     );
   }

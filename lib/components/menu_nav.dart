@@ -21,23 +21,23 @@ class MenuNav extends StatelessWidget {
               SizedBox(
                 width: 30,
               ),
-              NavbarTitleWidget(title: 'PRODUCTS', url: ''),
+              NavbarTitleWidget(title: 'PRODUCTS', url: '/product'),
               SizedBox(
                 width: 30,
               ),
-              NavbarTitleWidget(title: 'CLIENTS', url: ''),
+              NavbarTitleWidget(title: 'CLIENTS', url: '/client'),
               SizedBox(
                 width: 30,
               ),
-              NavbarTitleWidget(title: 'CASE STUDIES', url: ''),
+              NavbarTitleWidget(title: 'CASE STUDIES', url: '/cs'),
               SizedBox(
                 width: 30,
               ),
-              NavbarTitleWidget(title: 'CONTACT', url: ''),
+              NavbarTitleWidget(title: 'CONTACT', url: '/contact'),
               SizedBox(
                 width: 30,
               ),
-              NavbarTitleWidget(title: 'BLOG', url: ''),
+              NavbarTitleWidget(title: 'BLOG', url: '/blog'),
             ],
           )
         : Column(
@@ -79,7 +79,7 @@ class MenuNav extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              const NavbarTitleWidget(title: 'PRODUCTS', url: ''),
+              const NavbarTitleWidget(title: 'PRODUCTS', url: '/product'),
               const SizedBox(
                 height: 15,
               ),
@@ -97,7 +97,7 @@ class MenuNav extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              const NavbarTitleWidget(title: 'CLIENTS', url: ''),
+              const NavbarTitleWidget(title: 'CLIENTS', url: '/client'),
               const SizedBox(
                 height: 15,
               ),
@@ -115,7 +115,7 @@ class MenuNav extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              const NavbarTitleWidget(title: 'CASE STUDIES', url: ''),
+              const NavbarTitleWidget(title: 'CASE STUDIES', url: '/cs'),
               const SizedBox(
                 height: 15,
               ),
@@ -133,7 +133,7 @@ class MenuNav extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              const NavbarTitleWidget(title: 'CONTACT', url: ''),
+              const NavbarTitleWidget(title: 'CONTACT', url: '/contact'),
               const SizedBox(
                 height: 15,
               ),
@@ -151,7 +151,7 @@ class MenuNav extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              const NavbarTitleWidget(title: 'BLOG', url: ''),
+              const NavbarTitleWidget(title: 'BLOG', url: '/blog'),
             ],
           );
   }
