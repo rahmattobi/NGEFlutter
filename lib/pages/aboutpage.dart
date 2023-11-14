@@ -293,7 +293,7 @@ class _AboutpageState extends State<AboutPage> {
             pdVertical: size.width > 1200 ? 30 : 30,
             fontSize: size.width < 800 ? 12 : 15,
             title: 'OUR SERVICES & PRODUCTS',
-            url: '/about',
+            url: '/product',
           ),
         )
       ],

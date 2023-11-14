@@ -219,21 +219,58 @@ class _ProductPageState extends State<ProductPage> {
           ),
         ),
         tablet: SingleChildScrollView(
-          child: Column(children: [
-            Padding(
-              padding: EdgeInsets.all(size.width >= 800 ? 40 : 20),
-              child: Column(
-                children: [],
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: EdgeInsets.all(size.width >= 800 ? 40 : 20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    titleProduct(size),
+                    const SizedBox(
+                      height: 60,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        ProductCard(
+                          img: 'assets/images/1wave.png',
+                          type: 'ASSET MONITORING',
+                          judul: '1WAVE',
+                          desc:
+                              'Tracking, monitoring and regulating the inspection process and maintenance procedures of all assets to help businesses keeping track of their valuable assets in real-time.',
+                          url: '',
+                        ),
+                        ProductCard(
+                          img: 'assets/images/1hub.jpg',
+                          type: 'PUBLIC DATA',
+                          judul: '1HUB',
+                          desc:
+                              'Our advance technology and expertise in data collection and analysis ensure that our clients have access to the most up-to-date and accurate information for their needs.',
+                          url: '',
+                        ),
+                        ProductCard(
+                          img: 'assets/images/1things.jpg',
+                          type: 'INTERNET OF THINGS (IOT)',
+                          judul: '1THINGS',
+                          desc:
+                              'We provide cutting-edge Internet of Things (IOT) solutions that are designed to streamline and optimize your business operations.',
+                          url: '',
+                        ),
+                      ],
+                    )
+                  ],
+                ),
               ),
-            ),
-
-            const SizedBox(
-              height: 20,
-            ),
-
-            // FOOTER
-            const Footer(),
-          ]),
+              const SizedBox(
+                height: 100,
+              ),
+              // FOOTER
+              const Footer(),
+            ],
+          ),
         ),
         desktop: SingleChildScrollView(
           child: Column(
@@ -282,8 +319,8 @@ class _ProductPageState extends State<ProductPage> {
                   ],
                 ),
               ),
-              const SizedBox(
-                height: 50,
+              SizedBox(
+                height: size.width > 1200 && size.width < 1300 ? 387 : 50,
               ),
               const Footer(),
             ],

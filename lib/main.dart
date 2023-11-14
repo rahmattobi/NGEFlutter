@@ -1,5 +1,7 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
+import 'package:nge/pages/clientpage.dart';
+import 'package:nge/pages/cspage.dart';
 import 'package:nge/pages/homepage.dart';
 
 import 'pages/aboutpage.dart';
@@ -32,6 +34,8 @@ class MyApp extends StatelessWidget {
         '/home': (context) => const HomePage(),
         '/about': (context) => const AboutPage(),
         '/product': (context) => const ProductPage(),
+        '/client': (context) => const ClientPage(),
+        '/cs': (context) => CaseStudiesPage(),
       },
     );
   }

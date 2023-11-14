@@ -26,7 +26,7 @@ class ProductCard extends StatelessWidget {
     final Size size = MediaQuery.of(context).size;
 
     return SizedBox(
-      width: size.width > 1200 ? size.width * 1 / 3.5 : size.width,
+      width: size.width >= 800 ? size.width * 1 / 3.5 : size.width,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
@@ -34,7 +34,7 @@ class ProductCard extends StatelessWidget {
           FadeInLeft(
             child: Container(
               width: double.infinity,
-              height: 250,
+              height: size.width >= 800 ? 200 : 250,
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage(
