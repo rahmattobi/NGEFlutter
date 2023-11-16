@@ -391,7 +391,7 @@ class CaseStudiesPage extends StatelessWidget {
         SizedBox(
           height: size.width > 1200 ? 25 : 20,
         ),
-        FadeInUp(
+        FadeInRight(
           child: Text(
             'Our innovative solutions have helped businesses succeed. Read our fulfilling study cases and learn how we work among them',
             style: subtitleTextStyle.copyWith(
