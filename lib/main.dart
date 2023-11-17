@@ -1,5 +1,6 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
+import 'package:nge/pages/blogpage.dart';
 import 'package:nge/pages/clientpage.dart';
 import 'package:nge/pages/contactpage.dart';
 import 'package:nge/pages/cspage.dart';
@@ -38,6 +39,7 @@ class MyApp extends StatelessWidget {
         '/client': (context) => const ClientPage(),
         '/cs': (context) => CaseStudiesPage(),
         '/contact': (context) => const ContactPage(),
+        '/blog': (context) => const BlogPage(),
       },
     );
   }

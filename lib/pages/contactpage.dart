@@ -455,7 +455,7 @@ class ContactPage extends StatelessWidget {
             child: Text(
               '+62 21 508 862 05',
               style: subtitleTextStyle.copyWith(
-                fontWeight: semiBold,
+                fontWeight: medium,
               ),
             ),
           ),
@@ -516,7 +516,7 @@ class ContactPage extends StatelessWidget {
             child: Text(
               '08:00 AM - 17:00 PM',
               style: subtitleTextStyle.copyWith(
-                fontWeight: semiBold,
+                fontWeight: medium,
               ),
               textAlign: TextAlign.center,
             ),
