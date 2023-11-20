@@ -7,6 +7,7 @@ import 'package:nge/pages/cspage.dart';
 import 'package:nge/pages/homepage.dart';
 
 import 'pages/aboutpage.dart';
+import 'pages/blogdetailpage.dart';
 import 'pages/productpage.dart';
 
 void main() {
@@ -40,6 +41,7 @@ class MyApp extends StatelessWidget {
         '/cs': (context) => CaseStudiesPage(),
         '/contact': (context) => const ContactPage(),
         '/blog': (context) => const BlogPage(),
+        '/detail': (context) => BlogDetailPage(),
       },
     );
   }
