@@ -30,9 +30,12 @@ class _HomePageState extends State<HomePage> {
   bool isHovered2 = false;
   bool isHovered3 = false;
 
+  List<Blog> blogDataList = [];
+
   @override
   initState() {
     readJsonData();
+    fetchData();
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       double minScroll = scrollController1.position.minScrollExtent;
@@ -403,6 +406,13 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
+  Future<void> fetchData() async {
+    List<Blog> data = await readJsonData();
+    setState(() {
+      blogDataList = data;
+    });
+  }
+
   Container prdHome(Size size) {
     return Container(
       height: size.width > 1200 ? size.height * 0.9 : size.height * 0.6,
@@ -685,8 +695,8 @@ class _HomePageState extends State<HomePage> {
                 ),
                 child: FadeInRight(
                   child: Row(
-                    children: [
-                      Padding(
+                    children: blogDataList.map((data) {
+                      return Padding(
                         padding: const EdgeInsets.only(right: 15),
                         child: Stack(
                           children: [
@@ -704,13 +714,14 @@ class _HomePageState extends State<HomePage> {
                                 children: [
                                   Container(
                                     height: size.width >= 800 ? 280 : 150,
-                                    decoration: const BoxDecoration(
+                                    decoration: BoxDecoration(
                                       image: DecorationImage(
                                         image: AssetImage(
-                                            'assets/images/bann.jpg'),
+                                          data.img.toString(),
+                                        ),
                                         fit: BoxFit.cover,
                                       ),
-                                      borderRadius: BorderRadius.all(
+                                      borderRadius: const BorderRadius.all(
                                         Radius.circular(10),
                                       ),
                                     ),
@@ -741,7 +752,7 @@ class _HomePageState extends State<HomePage> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
-                                        'Unlock the Power of Real-Time Heading and Course Tracking with 1Wave!',
+                                        data.title.toString(),
                                         maxLines: 2,
                                         overflow: TextOverflow.ellipsis,
                                         style: darkTextStyle.copyWith(
@@ -763,7 +774,7 @@ class _HomePageState extends State<HomePage> {
                                             width: size.width >= 800 ? 8 : 2,
                                           ),
                                           Text(
-                                            '11 November 2023',
+                                            data.tgl.toString(),
                                             overflow: TextOverflow.ellipsis,
                                             style: subtitleTextStyle.copyWith(
                                               fontWeight: medium,
@@ -780,293 +791,8 @@ class _HomePageState extends State<HomePage> {
                             )
                           ],
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 15),
-                        child: Stack(
-                          children: [
-                            Container(
-                              width: size.width > 1200
-                                  ? size.width * 0.3
-                                  : ((size.width >= 800 && size.width < 1200)
-                                      ? size.width * 0.5
-                                      : size.width * 0.6),
-                              height: size.width >= 800 ? 350 : 220,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: Column(
-                                children: [
-                                  Container(
-                                    height: size.width >= 800 ? 280 : 150,
-                                    decoration: const BoxDecoration(
-                                      image: DecorationImage(
-                                        image: AssetImage(
-                                            'assets/images/bann.jpg'),
-                                        fit: BoxFit.cover,
-                                      ),
-                                      borderRadius: BorderRadius.all(
-                                        Radius.circular(10),
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                            Positioned(
-                              bottom:
-                                  0, // Mengatur posisi container judul di bagian bawah tumpukan
-                              left: size.width >= 800 ? 20 : 5,
-                              right: size.width >= 800 ? 20 : 5,
-                              child: Container(
-                                width: double.infinity,
-                                height: size.width >= 800 ? 130 : 100,
-                                decoration: BoxDecoration(
-                                  color: whiteColor,
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(10)),
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 20,
-                                  ),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        'Unlock the Power of Real-Time Heading and Course Tracking with 1Wave!',
-                                        maxLines: 2,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: darkTextStyle.copyWith(
-                                          fontWeight: semiBold,
-                                          fontSize: size.width >= 800 ? 18 : 14,
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        height: 10,
-                                      ),
-                                      Row(
-                                        children: [
-                                          Icon(
-                                            Icons.access_time,
-                                            color: subtitleColor,
-                                            size: size.width >= 800 ? 20 : 15,
-                                          ),
-                                          SizedBox(
-                                            width: size.width >= 800 ? 8 : 2,
-                                          ),
-                                          Text(
-                                            '11 November 2023',
-                                            overflow: TextOverflow.ellipsis,
-                                            style: subtitleTextStyle.copyWith(
-                                              fontWeight: medium,
-                                              fontSize:
-                                                  size.width >= 800 ? 15 : 12,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 15),
-                        child: Stack(
-                          children: [
-                            Container(
-                              width: size.width > 1200
-                                  ? size.width * 0.3
-                                  : ((size.width >= 800 && size.width < 1200)
-                                      ? size.width * 0.5
-                                      : size.width * 0.6),
-                              height: size.width >= 800 ? 350 : 220,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: Column(
-                                children: [
-                                  Container(
-                                    height: size.width >= 800 ? 280 : 150,
-                                    decoration: const BoxDecoration(
-                                      image: DecorationImage(
-                                        image: AssetImage(
-                                            'assets/images/bann.jpg'),
-                                        fit: BoxFit.cover,
-                                      ),
-                                      borderRadius: BorderRadius.all(
-                                        Radius.circular(10),
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                            Positioned(
-                              bottom:
-                                  0, // Mengatur posisi container judul di bagian bawah tumpukan
-                              left: size.width >= 800 ? 20 : 5,
-                              right: size.width >= 800 ? 20 : 5,
-                              child: Container(
-                                width: double.infinity,
-                                height: size.width >= 800 ? 130 : 100,
-                                decoration: BoxDecoration(
-                                  color: whiteColor,
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(10)),
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 20,
-                                  ),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        'Unlock the Power of Real-Time Heading and Course Tracking with 1Wave!',
-                                        maxLines: 2,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: darkTextStyle.copyWith(
-                                          fontWeight: semiBold,
-                                          fontSize: size.width >= 800 ? 18 : 14,
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        height: 10,
-                                      ),
-                                      Row(
-                                        children: [
-                                          Icon(
-                                            Icons.access_time,
-                                            color: subtitleColor,
-                                            size: size.width >= 800 ? 20 : 15,
-                                          ),
-                                          SizedBox(
-                                            width: size.width >= 800 ? 8 : 2,
-                                          ),
-                                          Text(
-                                            '11 November 2023',
-                                            overflow: TextOverflow.ellipsis,
-                                            style: subtitleTextStyle.copyWith(
-                                              fontWeight: medium,
-                                              fontSize:
-                                                  size.width >= 800 ? 15 : 12,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 15),
-                        child: Stack(
-                          children: [
-                            Container(
-                              width: size.width > 1200
-                                  ? size.width * 0.3
-                                  : ((size.width >= 800 && size.width < 1200)
-                                      ? size.width * 0.5
-                                      : size.width * 0.6),
-                              height: size.width >= 800 ? 350 : 220,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: Column(
-                                children: [
-                                  Container(
-                                    height: size.width >= 800 ? 280 : 150,
-                                    decoration: const BoxDecoration(
-                                      image: DecorationImage(
-                                        image: AssetImage(
-                                            'assets/images/bann.jpg'),
-                                        fit: BoxFit.cover,
-                                      ),
-                                      borderRadius: BorderRadius.all(
-                                        Radius.circular(10),
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                            Positioned(
-                              bottom:
-                                  0, // Mengatur posisi container judul di bagian bawah tumpukan
-                              left: size.width >= 800 ? 20 : 5,
-                              right: size.width >= 800 ? 20 : 5,
-                              child: Container(
-                                width: double.infinity,
-                                height: size.width >= 800 ? 130 : 100,
-                                decoration: BoxDecoration(
-                                  color: whiteColor,
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(10)),
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 20,
-                                  ),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        'Unlock the Power of Real-Time Heading and Course Tracking with 1Wave!',
-                                        maxLines: 2,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: darkTextStyle.copyWith(
-                                          fontWeight: semiBold,
-                                          fontSize: size.width >= 800 ? 18 : 14,
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        height: 10,
-                                      ),
-                                      Row(
-                                        children: [
-                                          Icon(
-                                            Icons.access_time,
-                                            color: subtitleColor,
-                                            size: size.width >= 800 ? 20 : 15,
-                                          ),
-                                          SizedBox(
-                                            width: size.width >= 800 ? 8 : 2,
-                                          ),
-                                          Text(
-                                            '11 November 2023',
-                                            overflow: TextOverflow.ellipsis,
-                                            style: subtitleTextStyle.copyWith(
-                                              fontWeight: medium,
-                                              fontSize:
-                                                  size.width >= 800 ? 15 : 12,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                    ],
+                      );
+                    }).toList(),
                   ),
                 ),
               ),

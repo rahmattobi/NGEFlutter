@@ -4,7 +4,7 @@
             "img": "assets/images/blog/ime/1.png",
             "title": "Explore Business Opportunities in Indonesia at Indonesia Maritime Expo (IME) 2023",
             "subDesc":"Jakarta, October 19, 2023 - Natuna team embarked on an exciting journey as we explored the Indonesia Maritime Expo (IME) at Jiexpo Jakarta. ndonesia Maritime Expo (IME) is the grand stage for the global maritime community, ...",
-            "tgl": "Jakarta, October 19, 2023",
+            "tgl": "October 19, 2023",
             "galery": [
                 "assets/images/blog/ime/1.png",
                 "assets/images/blog/ime/2.png",
@@ -18,7 +18,7 @@
             "img": "assets/images/blog/DHC/1.png",
             "title": "Unlock the Power of Real-Time Heading and Course Tracking with 1Wave!",
             "subDesc":"Have you ever wondered how to keep a close eye on your vessel's headings and courses in real time? Look no further! With 1Wave, our cutting-edge application empowers you to effortlessly monitor both headings and courses...",
-            "tgl": "Tuesday, October 10, 2023",
+            "tgl": "October 10, 2023",
             "galery": [
                 "assets/images/blog/DHC/1.png",
                 "assets/images/blog/DHC/2.png",
@@ -32,7 +32,7 @@
             "img": "assets/images/blog/trackTrails/1.png",
             "title": "Unlocking the Power of Data with 1Wave's Track Tails Feature",
             "subDesc":"Navigate the Seas with Confidence! Discover 1Wave's Track Tails feature. Unveil the distance traveled, speed, and timestamps, and unlock the power of data-driven decision making for optimized journeys. Set sail towards success with 1Wave! ...",
-            "tgl": "Wednesday, September 27, 2023",
+            "tgl": "September 27, 2023",
             "galery": [
                 "assets/images/blog/trackTrails/1.png",
                 "assets/images/blog/trackTrails/2.png",
@@ -47,7 +47,7 @@
             "img": "assets/images/blog/maritime/1.png",
             "title": "Get Ready for the Ultimate Maritime Adventure with the Arrival of the World's Largest Cruise Ship!",
             "subDesc":"Are you ready to embark on the ultimate maritime adventure? Brace yourself, because the world's biggest cruise ship is coming to join Royal Caribbean International's fleet in...",
-            "tgl": "Tuesday, September 26, 2023",
+            "tgl": "September 26, 2023",
             "galery": [
                 "assets/images/blog/maritime/1.png",
                 "assets/images/blog/maritime/2.png",
@@ -63,7 +63,7 @@
             "img": "assets/images/blog/lostAtSea/1.png",
             "title": "From Lost at Sea to Smooth Sailing Navigating with 1Wave App",
             "subDesc":"Have you ever heard the remarkable story of Minister Sandiaga Uno and his fellow passengers belting out Coldplay's Fix You while stranded at sea without navigational tools? It's a memory that resonates with many, and their ...",
-            "tgl": "Monday, September 25, 2023",
+            "tgl": "September 25, 2023",
             "galery": [
                 "assets/images/blog/lostAtSea/1.png",
                 "assets/images/blog/lostAtSea/2.png",
@@ -73,16 +73,16 @@
         },
         {
             "id": 4,
-            "img": "assets/images/blog/aisUnveiled/1.png",
+            "img": "assets/images/blog/ais1.png",
             "title": "AIS Unveiled: The Tech Behind Safer Sea Travel",
             "subDesc":" Do you ever wonder how maritime professionals effortlessly manage vessel traffic and enhance safety on the open seas? The answer lies in AIS, the Automated Identification System. At Natuna Global, we bring this technology to life through our cutting-edge 1Wave tracking application ...",
-            "tgl": "Sunday, September 24, 2023",
+            "tgl": "September 24, 2023",
             "galery": [
-                "assets/images/blog/aisUnveiled/1.png",
-                "assets/images/blog/aisUnveiled/2.png",
-                "assets/images/blog/aisUnveiled/3.png",
-                "assets/images/blog/aisUnveiled/4.png",
-                "assets/images/blog/aisUnveiled/5.png"
+                "assets/images/blog/ais1.png",
+                "assets/images/blog/ais2.png",
+                "assets/images/blog/ais3.png",
+                "assets/images/blog/ais4.png",
+                "assets/images/blog/ais5.png"
             ],
             "type": "blog"
         },
@@ -91,7 +91,7 @@
             "img": "assets/images/blog/inamarine/3.png",
             "title": "Exploring Maritime Innovation: Natuna Global's Journey at Inamarine 2023",
             "subDesc":"Jakarta, August 24, 2023 — The Natuna Global team embarked on an exciting journey as they attended Inamarine 2023, the largest and most exclusive gathering in the maritime shipping, shipbuilding, and shipyard industry  Held on  ...",
-            "tgl": "Jakarta, August 24, 2023",
+            "tgl": "August 24, 2023",
             "galery": [
                 "assets/images/blog/inamarine/3.png",
                 "assets/images/blog/inamarine/4.png",
@@ -105,7 +105,7 @@
             "img": "assets/images/blog/ujifungsi/1.jpg",
             "title": "Behind the scenes: A week of dedication and innovation!",
             "subDesc":"Jakarta, August 4, 2023 — In a week filled with dedication and innovation, the Natuna Global team embarked on a remarkable 3-day journey that pushed boundaries and empowered maritime safety. Our mission: to conduct a comprehensive function test assistance ...",
-            "tgl": "Jakarta, August 4, 2023",
+            "tgl": "August 4, 2023",
             "galery": [
                 "assets/images/blog/ujifungsi/1.jpg",
                 "assets/images/blog/ujifungsi/2.jpg",
@@ -119,7 +119,7 @@
             "img": "assets/images/blog/app/1.png",
             "title": "Enhancing Maritime Security: Natuna Global's VMS Training for Polairud",
             "subDesc":"Jakarta, July 27, 2023 — With great enthusiasm and a commitment to maritime safety, the Natuna Global team provided comprehensive training on the use of the Vessel Monitoring System (VMS) application for the ...",
-            "tgl": "Jakarta, July 27, 2023",
+            "tgl": "July 27, 2023",
             "galery": [
                 "assets/images/blog/app/1.png",
                 "assets/images/blog/app/2.png",
