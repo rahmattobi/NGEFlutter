@@ -1,9 +1,13 @@
+import 'dart:convert';
+
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:nge/components/contact_us.dart';
 import 'package:nge/components/footer.dart';
 import 'package:nge/components/nav_desktop.dart';
 import 'package:nge/components/sosmed.dart';
+import 'package:nge/helper/blog.dart';
 import 'package:nge/theme.dart';
 import 'package:nge/widget/btn_title.dart';
 import 'package:nge/widget/product_wh.dart';
@@ -25,6 +29,39 @@ class _HomePageState extends State<HomePage> {
   bool isHovered1 = false;
   bool isHovered2 = false;
   bool isHovered3 = false;
+
+  @override
+  initState() {
+    readJsonData();
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      double minScroll = scrollController1.position.minScrollExtent;
+      double maxScroll = scrollController1.position.maxScrollExtent;
+
+      animateToMaxMin(
+        maxScroll,
+        minScroll,
+        maxScroll,
+        30,
+        scrollController1,
+      );
+    });
+  }
+
+  animateToMaxMin(double max, double min, double direction, int seconds,
+      ScrollController scrollController) {
+    scrollController
+        .animateTo(
+          direction,
+          duration: Duration(seconds: seconds),
+          curve: Curves.ease,
+        )
+        .then((value) => {
+              direction = direction == max ? min : max,
+              animateToMaxMin(max, min, direction, seconds, scrollController)
+            });
+  }
+
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
@@ -179,6 +216,39 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       body: HelperClass(
+        // mobile: FutureBuilder<List<Blog>>(
+        //   future: readJsonData(),
+        //   builder: (context, snapshot) {
+        //     if (snapshot.hasError) {
+        //       return Center(
+        //         child: Text('${snapshot.error}'),
+        //       );
+        //     } else if (snapshot.hasData) {
+        //       List<Blog> blogs = snapshot.data!;
+
+        //       return ListView.builder(
+        //         controller: scrollController,
+        //         scrollDirection: Axis.horizontal,
+        //         padding: EdgeInsets.only(
+        //           right: size.width >= 800 ? 60 : 20,
+        //         ),
+        //         itemCount: blogs.length,
+        //         itemBuilder: (context, index) {
+        //           // Blog dataBlog = blogs[index];
+        //           return SizedBox(
+        //             child: Container(
+        //               color: primaryColor,
+        //             ),
+        //           );
+        //         },
+        //       );
+        //     } else {
+        //       return const Center(
+        //         child: CircularProgressIndicator(),
+        //       );
+        //     }
+        //   },
+        // ),
         mobile: SingleChildScrollView(
           child: Column(
             children: [
@@ -317,6 +387,20 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
+  }
+
+  Future<List<Blog>> readJsonData() async {
+    try {
+      final jsonData = await rootBundle.loadString('assets/data/data.json');
+      final List<dynamic> jsonList = json.decode(jsonData) as List<dynamic>;
+
+      return jsonList
+          .map((e) => Blog.fromJson(e as Map<String, dynamic>))
+          .toList();
+    } catch (error) {
+      // print('Error reading JSON data: $error');
+      return []; // Return an empty list or handle the error as needed
+    }
   }
 
   Container prdHome(Size size) {
