@@ -706,7 +706,7 @@ class _HomePageState extends State<HomePage> {
                                   : ((size.width >= 800 && size.width < 1200)
                                       ? size.width * 0.5
                                       : size.width * 0.6),
-                              height: size.width >= 800 ? 350 : 220,
+                              height: size.width >= 800 ? 350 : 230,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
                               ),
@@ -730,8 +730,7 @@ class _HomePageState extends State<HomePage> {
                               ),
                             ),
                             Positioned(
-                              bottom:
-                                  0, // Mengatur posisi container judul di bagian bawah tumpukan
+                              bottom: 0,
                               left: size.width >= 800 ? 20 : 5,
                               right: size.width >= 800 ? 20 : 5,
                               child: Container(
@@ -808,7 +807,7 @@ class _HomePageState extends State<HomePage> {
                 pdVertical: size.width >= 800 ? 30 : 20,
                 fontSize: size.width >= 800 ? 16 : 12,
                 title: 'SEE MORE',
-                url: '/about',
+                url: '/blog',
               ),
             )
           ],

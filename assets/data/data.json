@@ -1,73 +1,73 @@
  [
         {
             "id": 9,
-            "img": "assets/images/blog/ime/1.png",
+            "img": "assets/images/blog/ime1.png",
             "title": "Explore Business Opportunities in Indonesia at Indonesia Maritime Expo (IME) 2023",
             "subDesc":"Jakarta, October 19, 2023 - Natuna team embarked on an exciting journey as we explored the Indonesia Maritime Expo (IME) at Jiexpo Jakarta. ndonesia Maritime Expo (IME) is the grand stage for the global maritime community, ...",
             "tgl": "October 19, 2023",
             "galery": [
-                "assets/images/blog/ime/1.png",
-                "assets/images/blog/ime/2.png",
-                "assets/images/blog/ime/3.png",
-                "assets/images/blog/ime/4.png"
+                "assets/images/blog/ime1.png",
+                "assets/images/blog/ime2.png",
+                "assets/images/blog/ime3.png",
+                "assets/images/blog/ime4.png"
             ],
             "type": "activity"
         },
         {
             "id": 8,
-            "img": "assets/images/blog/DHC/1.png",
+            "img": "assets/images/blog/dhc1.png",
             "title": "Unlock the Power of Real-Time Heading and Course Tracking with 1Wave!",
             "subDesc":"Have you ever wondered how to keep a close eye on your vessel's headings and courses in real time? Look no further! With 1Wave, our cutting-edge application empowers you to effortlessly monitor both headings and courses...",
             "tgl": "October 10, 2023",
             "galery": [
-                "assets/images/blog/DHC/1.png",
-                "assets/images/blog/DHC/2.png",
-                "assets/images/blog/DHC/3.png",
-                "assets/images/blog/DHC/4.png"
+                "assets/images/blog/dhc1.png",
+                "assets/images/blog/dhc2.png",
+                "assets/images/blog/dhc3.png",
+                "assets/images/blog/dhc4.png"
             ],
             "type": "blog"
         },
         {
             "id": 7,
-            "img": "assets/images/blog/trackTrails/1.png",
+            "img": "assets/images/blog/tt1.png",
             "title": "Unlocking the Power of Data with 1Wave's Track Tails Feature",
             "subDesc":"Navigate the Seas with Confidence! Discover 1Wave's Track Tails feature. Unveil the distance traveled, speed, and timestamps, and unlock the power of data-driven decision making for optimized journeys. Set sail towards success with 1Wave! ...",
             "tgl": "September 27, 2023",
             "galery": [
-                "assets/images/blog/trackTrails/1.png",
-                "assets/images/blog/trackTrails/2.png",
-                "assets/images/blog/trackTrails/3.png",
-                "assets/images/blog/trackTrails/4.png",
-                "assets/images/blog/trackTrails/5.png"
+                "assets/images/blog/tt1.png",
+                "assets/images/blog/tt2.png",
+                "assets/images/blog/tt3.png",
+                "assets/images/blog/tt4.png",
+                "assets/images/blog/tt5.png"
             ],
             "type": "blog"
         },
         {
             "id": 6,
-            "img": "assets/images/blog/maritime/1.png",
+            "img": "assets/images/blog/maritime1.png",
             "title": "Get Ready for the Ultimate Maritime Adventure with the Arrival of the World's Largest Cruise Ship!",
             "subDesc":"Are you ready to embark on the ultimate maritime adventure? Brace yourself, because the world's biggest cruise ship is coming to join Royal Caribbean International's fleet in...",
             "tgl": "September 26, 2023",
             "galery": [
-                "assets/images/blog/maritime/1.png",
-                "assets/images/blog/maritime/2.png",
-                "assets/images/blog/maritime/3.png",
-                "assets/images/blog/maritime/4.png",
-                "assets/images/blog/maritime/5.png",
-                "assets/images/blog/maritime/6.png"
+                "assets/images/blog/maritime1.png",
+                "assets/images/blog/maritime2.png",
+                "assets/images/blog/maritime3.png",
+                "assets/images/blog/maritime4.png",
+                "assets/images/blog/maritime5.png",
+                "assets/images/blog/maritime6.png"
             ],
             "type": "blog"
         },
         {
             "id": 5,
-            "img": "assets/images/blog/lostAtSea/1.png",
+            "img": "assets/images/blog/las1.png",
             "title": "From Lost at Sea to Smooth Sailing Navigating with 1Wave App",
             "subDesc":"Have you ever heard the remarkable story of Minister Sandiaga Uno and his fellow passengers belting out Coldplay's Fix You while stranded at sea without navigational tools? It's a memory that resonates with many, and their ...",
             "tgl": "September 25, 2023",
             "galery": [
-                "assets/images/blog/lostAtSea/1.png",
-                "assets/images/blog/lostAtSea/2.png",
-                "assets/images/blog/lostAtSea/3.png"
+                "assets/images/blog/las1.png",
+                "assets/images/blog/las2.png",
+                "assets/images/blog/las3.png"
             ],
             "type": "blog"
         },
@@ -88,43 +88,43 @@
         },
         {
             "id": 3,
-            "img": "assets/images/blog/inamarine/3.png",
+            "img": "assets/images/blog/inamarine1.png",
             "title": "Exploring Maritime Innovation: Natuna Global's Journey at Inamarine 2023",
             "subDesc":"Jakarta, August 24, 2023 — The Natuna Global team embarked on an exciting journey as they attended Inamarine 2023, the largest and most exclusive gathering in the maritime shipping, shipbuilding, and shipyard industry  Held on  ...",
             "tgl": "August 24, 2023",
             "galery": [
-                "assets/images/blog/inamarine/3.png",
-                "assets/images/blog/inamarine/4.png",
-                "assets/images/blog/inamarine/5.png"
+                "assets/images/blog/inamarine1.png",
+                "assets/images/blog/inamarine2.png",
+                "assets/images/blog/inamarine3.png"
             ],
             "type": "activity"
         },
 
         {
             "id": 2,
-            "img": "assets/images/blog/ujifungsi/1.jpg",
+            "img": "assets/images/blog/ujifungsi1.jpg",
             "title": "Behind the scenes: A week of dedication and innovation!",
             "subDesc":"Jakarta, August 4, 2023 — In a week filled with dedication and innovation, the Natuna Global team embarked on a remarkable 3-day journey that pushed boundaries and empowered maritime safety. Our mission: to conduct a comprehensive function test assistance ...",
             "tgl": "August 4, 2023",
             "galery": [
-                "assets/images/blog/ujifungsi/1.jpg",
-                "assets/images/blog/ujifungsi/2.jpg",
-                "assets/images/blog/ujifungsi/3.jpg",
-                "assets/images/blog/ujifungsi/4.jpg"
+                "assets/images/blog/ujifungsi1.jpg",
+                "assets/images/blog/ujifungsi2.jpg",
+                "assets/images/blog/ujifungsi3.jpg",
+                "assets/images/blog/ujifungsi4.jpg"
             ],
             "type": "activity"
         },
         {
             "id": 1,
-            "img": "assets/images/blog/app/1.png",
+            "img": "assets/images/blog/vms1.png",
             "title": "Enhancing Maritime Security: Natuna Global's VMS Training for Polairud",
             "subDesc":"Jakarta, July 27, 2023 — With great enthusiasm and a commitment to maritime safety, the Natuna Global team provided comprehensive training on the use of the Vessel Monitoring System (VMS) application for the ...",
             "tgl": "July 27, 2023",
             "galery": [
-                "assets/images/blog/app/1.png",
-                "assets/images/blog/app/2.png",
-                "assets/images/blog/app/3.png",
-                "assets/images/blog/app/4.png"
+                "assets/images/blog/vms1.png",
+                "assets/images/blog/vms2.png",
+                "assets/images/blog/vms3.png",
+                "assets/images/blog/vms4.png"
             ],
             "type": "activity"
         }
