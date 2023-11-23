@@ -87,7 +87,9 @@ class MobileCard extends StatelessWidget {
           )
         : Container(
             width: size.width,
-            margin: const EdgeInsets.only(bottom: 15),
+            margin: const EdgeInsets.only(
+              top: 20,
+            ),
             height: 120,
             decoration: BoxDecoration(
               color: whiteColor,
@@ -116,7 +118,7 @@ class MobileCard extends StatelessWidget {
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.only(
-                      right: 10,
+                      right: 20,
                       left: 10,
                     ),
                     child: Column(
@@ -128,22 +130,19 @@ class MobileCard extends StatelessWidget {
                             title,
                             style: primaryTextStyle.copyWith(
                               fontWeight: semiBold,
-                              fontSize: 16,
+                              fontSize: 15,
                             ),
-                            textAlign: TextAlign.justify,
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                           ),
                         ),
                         const SizedBox(
-                          height: 10,
+                          height: 5,
                         ),
                         FadeInDown(
                           child: Text(
                             desc,
-                            style: subtitleTextStyle.copyWith(
-                              fontWeight: medium,
-                            ),
+                            style: subtitleTextStyle.copyWith(),
                             maxLines: 3,
                             overflow: TextOverflow.ellipsis,
                           ),

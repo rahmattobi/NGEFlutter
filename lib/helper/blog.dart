@@ -2,7 +2,7 @@ class Blog {
   int? id;
   String? img;
   String? title;
-  String? subDesc;
+  String? desc;
   String? tgl;
   List<String>? galery;
   String? type;
@@ -11,7 +11,7 @@ class Blog {
       {this.id,
       this.img,
       this.title,
-      this.subDesc,
+      this.desc,
       this.tgl,
       this.galery,
       this.type});
@@ -20,7 +20,7 @@ class Blog {
     id = json['id'];
     img = json['img'];
     title = json['title'];
-    subDesc = json['subDesc'];
+    desc = json['desc'];
     tgl = json['tgl'];
     galery = json['galery'].cast<String>();
     type = json['type'];
@@ -31,7 +31,7 @@ class Blog {
     data['id'] = id;
     data['img'] = img;
     data['title'] = title;
-    data['subDesc'] = subDesc;
+    data['desc'] = desc;
     data['tgl'] = tgl;
     data['galery'] = galery;
     data['type'] = type;

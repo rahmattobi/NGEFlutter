@@ -4,29 +4,29 @@ import 'package:flutter/material.dart';
 import 'package:nge/components/footer.dart';
 import 'package:nge/helper/helper_class.dart';
 import 'package:nge/theme.dart';
-import 'package:nge/widget/mobile_card.dart';
+// import 'package:nge/widget/mobile_card.dart';
 
 import '../components/contact_us.dart';
 import '../components/menu_nav.dart';
 import '../components/nav_desktop.dart';
 import '../components/sosmed.dart';
 
+// ignore: must_be_immutable
 class BlogDetailPage extends StatelessWidget {
-  final List<String> imgList = [
-    'assets/images/bann.jpg',
-    'assets/images/jawara.png',
-    'assets/images/kitahoki.png',
-    'assets/images/netra.png',
-    'assets/images/pelindo.png',
-  ];
+  String? title;
+  String? desc;
+  final List<String>? gallery;
 
-  BlogDetailPage({Key? key}) : super(key: key);
+  BlogDetailPage({Key? key, this.title, this.desc, this.gallery})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
+    // Retrieve the selected blog from the route arguments
+    // Blog selectedBlog = ModalRoute.of(context)?.settings.arguments as Blog;
 
-    final List<Widget> imageSliders = imgList
+    final List<Widget> imageSliders = gallery!
         .map(
           (item) => Container(
             margin: const EdgeInsets.all(2.0),
@@ -201,7 +201,7 @@ class BlogDetailPage extends StatelessWidget {
                     FadeInDown(
                       child: titleBlog(
                         size,
-                        'Unlock the Power of Real-Time Heading and Course Tracking with 1Wave!',
+                        title.toString(),
                       ),
                     ),
                     const SizedBox(
@@ -211,7 +211,7 @@ class BlogDetailPage extends StatelessWidget {
                       child: CarouselSlider(
                         options: CarouselOptions(
                           autoPlay: true,
-                          aspectRatio: 2,
+                          aspectRatio: 1.3,
                           enlargeCenterPage: true,
                         ),
                         items: imageSliders,
@@ -223,8 +223,10 @@ class BlogDetailPage extends StatelessWidget {
                     FadeInUp(
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: descBlog(size,
-                            'Have you ever wondered how to keep a close eye on your vessel’s headings and courses in real time? Look no further! With 1Wave, our cutting-edge application empowers you to effortlessly monitor both headings and courses, allowing you to maintain precise control over your vessel’s direction.\n\nWhether you’re navigating the open sea or managing a fleet, having real-time insights into headings and courses is essential for safe and efficient maritime operations. With 1Wave, you can access this critical information with ease.\n\nOur application offers a range of powerful features, including real-time tracking, speed monitoring, travel history, weather forecasts, and geofence alerts, ensuring that you have all the tools you need to make informed decisions while at sea.\n\nDon’t miss out on the opportunity to enhance your maritime experience. Explore the capabilities of 1Wave today and discover how it can revolutionize your vessel tracking and fleet management. Set sail with confidence, knowing that you have the best technology at your fingertips.'),
+                        child: descBlog(
+                          size,
+                          desc.toString(),
+                        ),
                       ),
                     ),
                     const SizedBox(
@@ -240,13 +242,13 @@ class BlogDetailPage extends StatelessWidget {
                     const SizedBox(
                       height: 30,
                     ),
-                    MobileCard(
-                      img: 'assets/images/bann.jpg',
-                      title:
-                          'lorem ipsum Unlock the Power of Real-Time Heading and Course Tracking with 1Wave!',
-                      desc:
-                          'Have you ever wondered how to keep a close eye on your vessel’s headings and courses in real time? Look no further! With 1Wave, our cutting-edge application empowers you to effortlessly monitor both headings and courses, allowing you to maintain precise control over your',
-                    )
+                    // MobileCard(
+                    //   img: 'assets/images/bann.jpg',
+                    //   title:
+                    //       'lorem ipsum Unlock the Power of Real-Time Heading and Course Tracking with 1Wave!',
+                    //   desc:
+                    //       'Have you ever wondered how to keep a close eye on your vessel’s headings and courses in real time? Look no further! With 1Wave, our cutting-edge application empowers you to effortlessly monitor both headings and courses, allowing you to maintain precise control over your',
+                    // )
                   ],
                 ),
               ),

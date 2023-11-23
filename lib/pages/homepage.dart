@@ -219,39 +219,6 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       body: HelperClass(
-        // mobile: FutureBuilder<List<Blog>>(
-        //   future: readJsonData(),
-        //   builder: (context, snapshot) {
-        //     if (snapshot.hasError) {
-        //       return Center(
-        //         child: Text('${snapshot.error}'),
-        //       );
-        //     } else if (snapshot.hasData) {
-        //       List<Blog> blogs = snapshot.data!;
-
-        //       return ListView.builder(
-        //         controller: scrollController,
-        //         scrollDirection: Axis.horizontal,
-        //         padding: EdgeInsets.only(
-        //           right: size.width >= 800 ? 60 : 20,
-        //         ),
-        //         itemCount: blogs.length,
-        //         itemBuilder: (context, index) {
-        //           // Blog dataBlog = blogs[index];
-        //           return SizedBox(
-        //             child: Container(
-        //               color: primaryColor,
-        //             ),
-        //           );
-        //         },
-        //       );
-        //     } else {
-        //       return const Center(
-        //         child: CircularProgressIndicator(),
-        //       );
-        //     }
-        //   },
-        // ),
         mobile: SingleChildScrollView(
           child: Column(
             children: [
@@ -696,99 +663,113 @@ class _HomePageState extends State<HomePage> {
                 child: FadeInRight(
                   child: Row(
                     children: blogDataList.map((data) {
-                      return Padding(
-                        padding: const EdgeInsets.only(right: 15),
-                        child: Stack(
-                          children: [
-                            Container(
-                              width: size.width > 1200
-                                  ? size.width * 0.3
-                                  : ((size.width >= 800 && size.width < 1200)
-                                      ? size.width * 0.5
-                                      : size.width * 0.6),
-                              height: size.width >= 800 ? 350 : 230,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: Column(
-                                children: [
-                                  Container(
-                                    height: size.width >= 800 ? 280 : 150,
-                                    decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                        image: AssetImage(
-                                          data.img.toString(),
-                                        ),
-                                        fit: BoxFit.cover,
-                                      ),
-                                      borderRadius: const BorderRadius.all(
-                                        Radius.circular(10),
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                            Positioned(
-                              bottom: 0,
-                              left: size.width >= 800 ? 20 : 5,
-                              right: size.width >= 800 ? 20 : 5,
-                              child: Container(
-                                width: double.infinity,
-                                height: size.width >= 800 ? 130 : 100,
+                      return MouseRegion(
+                        cursor: SystemMouseCursors.click,
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                            right: 15,
+                            bottom: 10,
+                          ),
+                          child: Stack(
+                            children: [
+                              Container(
+                                width: size.width > 1200
+                                    ? size.width * 0.3
+                                    : ((size.width >= 800 && size.width < 1200)
+                                        ? size.width * 0.5
+                                        : size.width * 0.6),
+                                height: size.width >= 800 ? 350 : 230,
                                 decoration: BoxDecoration(
-                                  color: whiteColor,
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(10)),
+                                  borderRadius: BorderRadius.circular(10),
                                 ),
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 20,
-                                  ),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        data.title.toString(),
-                                        maxLines: 2,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: darkTextStyle.copyWith(
-                                          fontWeight: semiBold,
-                                          fontSize: size.width >= 800 ? 18 : 14,
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      height: size.width >= 800 ? 280 : 150,
+                                      decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                          image: AssetImage(
+                                            data.img.toString(),
+                                          ),
+                                          fit: BoxFit.cover,
+                                        ),
+                                        borderRadius: const BorderRadius.all(
+                                          Radius.circular(10),
                                         ),
                                       ),
-                                      const SizedBox(
-                                        height: 10,
-                                      ),
-                                      Row(
-                                        children: [
-                                          Icon(
-                                            Icons.access_time,
-                                            color: subtitleColor,
-                                            size: size.width >= 800 ? 20 : 15,
-                                          ),
-                                          SizedBox(
-                                            width: size.width >= 800 ? 8 : 2,
-                                          ),
-                                          Text(
-                                            data.tgl.toString(),
-                                            overflow: TextOverflow.ellipsis,
-                                            style: subtitleTextStyle.copyWith(
-                                              fontWeight: medium,
-                                              fontSize:
-                                                  size.width >= 800 ? 15 : 12,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
+                                    )
+                                  ],
                                 ),
                               ),
-                            )
-                          ],
+                              Positioned(
+                                bottom: 0,
+                                left: size.width >= 800 ? 20 : 5,
+                                right: size.width >= 800 ? 20 : 5,
+                                child: Container(
+                                  width: double.infinity,
+                                  height: size.width >= 800 ? 130 : 100,
+                                  decoration: BoxDecoration(
+                                    color: whiteColor,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        blurRadius: 10,
+                                        color: subtitleColor.withOpacity(0.3),
+                                      )
+                                    ],
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(10)),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 20,
+                                    ),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          data.title.toString(),
+                                          maxLines: 2,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: darkTextStyle.copyWith(
+                                            fontWeight: semiBold,
+                                            fontSize:
+                                                size.width >= 800 ? 18 : 14,
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        Row(
+                                          children: [
+                                            Icon(
+                                              Icons.access_time,
+                                              color: subtitleColor,
+                                              size: size.width >= 800 ? 20 : 15,
+                                            ),
+                                            SizedBox(
+                                              width: size.width >= 800 ? 8 : 2,
+                                            ),
+                                            Text(
+                                              data.tgl.toString(),
+                                              overflow: TextOverflow.ellipsis,
+                                              style: subtitleTextStyle.copyWith(
+                                                fontWeight: medium,
+                                                fontSize:
+                                                    size.width >= 800 ? 15 : 12,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
                         ),
                       );
                     }).toList(),
