@@ -409,9 +409,10 @@ class ClientPage extends StatelessWidget {
               : ((size.width >= 800 && size.width < 1200)
                   ? size.width * 1 / 3
                   : size.width * 1 / 5),
-          height: size.width < 1200 ? 150 : 190,
+          height: size.width < 1200 ? 200 : 190,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
+            color: whiteColor,
             boxShadow: [
               BoxShadow(
                 color: Colors.grey.withOpacity(0.5), // Warna bayangan

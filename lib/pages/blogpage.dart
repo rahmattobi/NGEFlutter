@@ -1,8 +1,5 @@
-import 'dart:convert';
-
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:nge/components/footer.dart';
 import 'package:nge/pages/blogdetailpage.dart';
 import 'package:nge/widget/mobile_card.dart';
@@ -12,6 +9,7 @@ import '../components/menu_nav.dart';
 import '../components/nav_desktop.dart';
 import '../components/sosmed.dart';
 import '../helper/blog.dart';
+import '../helper/get_json.dart';
 import '../helper/helper_class.dart';
 import '../theme.dart';
 
@@ -24,6 +22,7 @@ class BlogPage extends StatefulWidget {
 
 class _BlogPageState extends State<BlogPage> {
   List<Blog> blogDataList = [];
+  final BlogService blogService = BlogService();
 
   @override
   Widget build(BuildContext context) {
@@ -184,15 +183,6 @@ class _BlogPageState extends State<BlogPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.only(
-                  top: 20.0,
-                  left: 30,
-                  right: 30,
-                  bottom: 10,
-                ),
-                child: titleBlog(size),
-              ),
               TabBar(
                 labelColor: titleColor,
                 labelStyle: subtitleTextStyle.copyWith(
@@ -207,14 +197,14 @@ class _BlogPageState extends State<BlogPage> {
                   ),
                 ],
               ),
-              Expanded(
+              Flexible(
                 child: TabBarView(
                   children: [
                     // Article Content
-                    buildListView('blog', size),
+                    mobileBlog('blog', size),
 
                     // Activity Content
-                    buildListView('activity', size),
+                    mobileBlog('activity', size),
                   ],
                 ),
               ),
@@ -226,118 +216,11 @@ class _BlogPageState extends State<BlogPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
+              TabBar(
                 padding: const EdgeInsets.only(
-                  top: 20.0,
-                  left: 30,
-                  right: 30,
-                  bottom: 10,
+                  left: 60,
+                  top: 30,
                 ),
-                child: titleBlog(size),
-              ),
-              TabBar(
-                labelColor: titleColor,
-                labelStyle: subtitleTextStyle.copyWith(
-                  fontWeight: bold,
-                ),
-                tabs: const [
-                  Tab(text: 'ARTICLE'),
-                  Tab(text: 'ACTIVITY'),
-                ],
-              ),
-              Expanded(
-                child: TabBarView(
-                  children: [
-                    SingleChildScrollView(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(30.0),
-                            child: GridView.builder(
-                              gridDelegate:
-                                  SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 2,
-                                crossAxisSpacing: 16.0,
-                                mainAxisSpacing: 16.0,
-                                childAspectRatio: (size.width * 0.4) / 320,
-                              ),
-                              itemCount: 4, // Adjust the number of items
-                              shrinkWrap: true,
-                              physics: const NeverScrollableScrollPhysics(),
-                              itemBuilder: (context, index) {
-                                return GestureDetector(
-                                  onTap: () {
-                                    Navigator.pushNamed(context, '/detail');
-                                  },
-                                  child: MobileCard(
-                                    img: 'assets/images/bg2.jpg',
-                                    title:
-                                        'Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem IpsumLorem Ipsum',
-                                    desc:
-                                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Auctor elit sed vulputate mi sit. Arcu cursus vitae congue mauris rhoncus aenean. Eros in cursus turpis massa tincidunt dui ut ornare lectus. ',
-                                  ),
-                                );
-                              },
-                            ),
-                          ),
-                          const Footer(),
-                        ],
-                      ),
-                    ),
-                    // Activity Content
-                    SingleChildScrollView(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(30.0),
-                            child: GridView.builder(
-                              gridDelegate:
-                                  SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 2,
-                                crossAxisSpacing: 16.0,
-                                mainAxisSpacing: 16.0,
-                                childAspectRatio: (size.width * 0.4) / 320,
-                              ),
-                              itemCount: 4, // Adjust the number of items
-                              shrinkWrap: true,
-                              physics: const NeverScrollableScrollPhysics(),
-                              itemBuilder: (context, index) {
-                                return MobileCard(
-                                  img: 'assets/images/bann.jpg',
-                                  title:
-                                      'Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem IpsumLorem Ipsum',
-                                  desc:
-                                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Auctor elit sed vulputate mi sit. Arcu cursus vitae congue mauris rhoncus aenean. Eros in cursus turpis massa tincidunt dui ut ornare lectus. ',
-                                );
-                              },
-                            ),
-                          ),
-                          const Footer(),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-        desktop: DefaultTabController(
-          length: 2,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 60,
-                  vertical: 40,
-                ),
-                child: titleBlog(size),
-              ),
-              TabBar(
-                padding: const EdgeInsets.only(left: 60),
                 isScrollable: true,
                 labelColor: titleColor,
                 labelStyle: subtitleTextStyle.copyWith(
@@ -351,83 +234,41 @@ class _BlogPageState extends State<BlogPage> {
               Expanded(
                 child: TabBarView(
                   children: [
-                    SingleChildScrollView(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 60,
-                              vertical: 30,
-                            ),
-                            child: GridView.builder(
-                              gridDelegate:
-                                  SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 3,
-                                crossAxisSpacing: 20.0,
-                                mainAxisSpacing: 60.0,
-                                childAspectRatio: (size.width * 0.4) / 520,
-                              ),
-                              itemCount: 4, // Adjust the number of items
-                              shrinkWrap: true,
-                              physics: const NeverScrollableScrollPhysics(),
-                              itemBuilder: (context, index) {
-                                return MobileCard(
-                                  img: 'assets/images/bg2.jpg',
-                                  title:
-                                      'Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem IpsumLorem Ipsum',
-                                  desc:
-                                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Auctor elit sed vulputate mi sit. Arcu cursus vitae congue mauris rhoncus aenean. Eros in cursus turpis massa tincidunt dui ut ornare lectus. ',
-                                );
-                              },
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 50,
-                          ),
-                          const Footer(),
-                        ],
-                      ),
-                    ),
                     // Activity Content
-                    SingleChildScrollView(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 60,
-                              vertical: 30,
-                            ),
-                            child: GridView.builder(
-                              gridDelegate:
-                                  SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 3,
-                                crossAxisSpacing: 20.0,
-                                mainAxisSpacing: 60.0,
-                                childAspectRatio: (size.width * 0.4) / 520,
-                              ),
-                              itemCount: 4, // Adjust the number of items
-                              shrinkWrap: true,
-                              physics: const NeverScrollableScrollPhysics(),
-                              itemBuilder: (context, index) {
-                                return MobileCard(
-                                  img: 'assets/images/bg2.jpg',
-                                  title:
-                                      'Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem IpsumLorem Ipsum',
-                                  desc:
-                                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Auctor elit sed vulputate mi sit. Arcu cursus vitae congue mauris rhoncus aenean. Eros in cursus turpis massa tincidunt dui ut ornare lectus. ',
-                                );
-                              },
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 50,
-                          ),
-                          const Footer(),
-                        ],
-                      ),
-                    ),
+                    dtBlog(size, 'blog'),
+                    dtBlog(size, 'activity')
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+        desktop: DefaultTabController(
+          length: 2,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              TabBar(
+                padding: const EdgeInsets.only(
+                  left: 60,
+                  top: 30,
+                ),
+                isScrollable: true,
+                labelColor: titleColor,
+                labelStyle: subtitleTextStyle.copyWith(
+                  fontWeight: bold,
+                ),
+                tabs: const [
+                  Tab(text: 'ARTICLE'),
+                  Tab(text: 'ACTIVITY'),
+                ],
+              ),
+              Expanded(
+                child: TabBarView(
+                  children: [
+                    // Activity Content
+                    dtBlog(size, 'blog'),
+                    dtBlog(size, 'activity')
                   ],
                 ),
               ),
@@ -459,7 +300,7 @@ class _BlogPageState extends State<BlogPage> {
           child: Text(
             'ARTICLE & ACTIVITY',
             style: primaryTextStyle.copyWith(
-              fontWeight: semiBold,
+              fontWeight: size.width > 1200 ? bold : semiBold,
               fontSize: size.width > 1200 ? 45 : 20,
             ),
           ),
@@ -468,104 +309,193 @@ class _BlogPageState extends State<BlogPage> {
     );
   }
 
-  Future<List<Blog>> readJsonData() async {
-    try {
-      final jsonData = await rootBundle.loadString('assets/data/data.json');
-      final List<dynamic> jsonList = json.decode(jsonData) as List<dynamic>;
-
-      return jsonList
-          .map((e) => Blog.fromJson(e as Map<String, dynamic>))
-          .toList();
-    } catch (error) {
-      print('Error reading JSON data: $error');
-      return []; // Return an empty list or handle the error as needed
-    }
-  }
-
-  Future<void> fetchData() async {
-    List<Blog> data = await readJsonData();
-    setState(() {
-      blogDataList = data;
-    });
-  }
-
-  Widget buildListView(String type, Size size) {
-    return FutureBuilder(
-      future: readJsonData(),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        } else if (snapshot.hasError) {
-          return Center(
-            child: Text(
-              'Error: ${snapshot.error}',
-              style: const TextStyle(color: Colors.red),
+  Widget mobileBlog(String type, Size size) {
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(
+              top: 20.0,
+              left: 30,
+              right: 30,
+              bottom: 10,
             ),
-          );
-        } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-          return Center(
-            child: Text(
-              'Data Kosong',
-              style: primaryTextStyle.copyWith(
-                fontSize: 20,
-                fontWeight: bold,
-              ),
-            ),
-          );
-        } else {
-          List<Blog> blogDataList = snapshot.data as List<Blog>;
-
-          return ListView.builder(
-            shrinkWrap: true,
-            itemCount: blogDataList.length + 1,
-            primary: false,
-            itemBuilder: (context, index) {
-              if (index == blogDataList.length) {
-                // Ini adalah bagian untuk footer
-                return const Padding(
-                  padding: EdgeInsets.only(top: 50),
-                  child: Footer(),
+            child: titleBlog(size),
+          ),
+          FutureBuilder(
+            future: blogService.readJsonData(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              } else if (snapshot.hasError) {
+                return Center(
+                  child: Text(
+                    'Error: ${snapshot.error}',
+                    style: const TextStyle(color: Colors.red),
+                  ),
+                );
+              } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                return Center(
+                  child: Text(
+                    'Data Kosong',
+                    style: primaryTextStyle.copyWith(
+                      fontSize: 20,
+                      fontWeight: bold,
+                    ),
+                  ),
                 );
               } else {
-                // Ini adalah bagian untuk item
-                Blog blog = blogDataList[index];
+                List<Blog> blogDataList = snapshot.data as List<Blog>;
 
-                // Filter sesuai dengan tipe ('blog' atau 'activity')
-                if (blog.type == type) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 20.0,
-                    ),
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => BlogDetailPage(
-                            title: blog.title,
-                            desc: blog.desc,
-                            gallery: blog.galery,
-                          ),
-                        ));
-                      },
-                      child: MouseRegion(
-                        cursor: SystemMouseCursors.click,
-                        child: MobileCard(
-                          img: blog.img.toString(),
-                          title: blog.title.toString(),
-                          desc: blog.desc.toString(),
-                        ),
-                      ),
-                    ),
-                  );
-                } else {
-                  return const SizedBox.shrink();
-                }
+                return ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: blogDataList.length,
+                    primary: false,
+                    itemBuilder: (context, index) {
+                      // Ini adalah bagian untuk item
+                      Blog blog = blogDataList[index];
+
+                      // Filter sesuai dengan tipe ('blog' atau 'activity')
+                      if (blog.type == type) {
+                        return Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 20.0,
+                              ),
+                              child: GestureDetector(
+                                onTap: () {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => BlogDetailPage(
+                                      title: blog.title,
+                                      desc: blog.desc,
+                                      gallery: blog.galery,
+                                    ),
+                                  ));
+                                },
+                                child: MouseRegion(
+                                  cursor: SystemMouseCursors.click,
+                                  child: MobileCard(
+                                    img: blog.img.toString(),
+                                    title: blog.title.toString(),
+                                    desc: blog.desc.toString(),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        );
+                      } else {
+                        return const SizedBox.shrink();
+                      }
+                    });
               }
             },
-          );
-        }
-      },
+          ),
+          const SizedBox(
+            height: 50,
+          ),
+          const Footer(),
+        ],
+      ),
+    );
+  }
+
+  Widget dtBlog(Size size, String type) {
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 60,
+              vertical: 40,
+            ),
+            child: titleBlog(size),
+          ),
+          FutureBuilder(
+            future: blogService.readJsonData(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              } else if (snapshot.hasError) {
+                return Center(
+                  child: Text(
+                    'Error: ${snapshot.error}',
+                    style: const TextStyle(color: Colors.red),
+                  ),
+                );
+              } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                return Center(
+                  child: Text(
+                    'Data Kosong',
+                    style: primaryTextStyle.copyWith(
+                      fontSize: 20,
+                      fontWeight: bold,
+                    ),
+                  ),
+                );
+              } else {
+                List<Blog> blogDataList = snapshot.data as List<Blog>;
+                return Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 60,
+                    vertical: 30,
+                  ),
+                  child: GridView.builder(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: size.width < 1200 ? 2 : 3,
+                      crossAxisSpacing: size.width < 1200 ? 16 : 20.0,
+                      mainAxisSpacing: size.width < 1200 ? 16 : 60.0,
+                      childAspectRatio: size.width > 1200
+                          ? (size.width * 0.4) / 650
+                          : (size.width >= 800 && size.width < 1000 ? 0.75 : 1),
+                    ),
+                    itemCount:
+                        blogDataList.where((blog) => blog.type == type).length,
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemBuilder: (context, index) {
+                      Blog blog = blogDataList
+                          .where((blog) => blog.type == type)
+                          .toList()[index];
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => BlogDetailPage(
+                              title: blog.title,
+                              desc: blog.desc,
+                              gallery: blog.galery,
+                            ),
+                          ));
+                        },
+                        child: MouseRegion(
+                          cursor: SystemMouseCursors.click,
+                          child: MobileCard(
+                            img: blog.img.toString(),
+                            title: blog.title.toString(),
+                            desc: blog.desc.toString(),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                );
+              }
+            },
+          ),
+          const SizedBox(
+            height: 50,
+          ),
+          const Footer(),
+        ],
+      ),
     );
   }
 }

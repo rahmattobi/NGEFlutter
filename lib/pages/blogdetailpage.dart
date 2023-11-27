@@ -4,18 +4,21 @@ import 'package:flutter/material.dart';
 import 'package:nge/components/footer.dart';
 import 'package:nge/helper/helper_class.dart';
 import 'package:nge/theme.dart';
-// import 'package:nge/widget/mobile_card.dart';
 
 import '../components/contact_us.dart';
 import '../components/menu_nav.dart';
 import '../components/nav_desktop.dart';
 import '../components/sosmed.dart';
+import '../helper/blog.dart';
+import '../helper/get_json.dart';
+import '../widget/mobile_card.dart';
 
 // ignore: must_be_immutable
 class BlogDetailPage extends StatelessWidget {
   String? title;
   String? desc;
   final List<String>? gallery;
+  final BlogService blogService = BlogService();
 
   BlogDetailPage({Key? key, this.title, this.desc, this.gallery})
       : super(key: key);
@@ -23,25 +26,28 @@ class BlogDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
-    // Retrieve the selected blog from the route arguments
-    // Blog selectedBlog = ModalRoute.of(context)?.settings.arguments as Blog;
 
     final List<Widget> imageSliders = gallery!
         .map(
           (item) => Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10.0),
+              boxShadow: [
+                BoxShadow(
+                    color: subtitleColor.withOpacity(0.5),
+                    blurRadius: 10,
+                    offset: const Offset(0, 3)),
+              ],
+            ),
             margin: const EdgeInsets.all(2.0),
             child: ClipRRect(
               borderRadius: const BorderRadius.all(
-                Radius.circular(5.0),
+                Radius.circular(10.0),
               ),
-              child: Stack(
-                children: <Widget>[
-                  Image.network(
-                    item,
-                    fit: BoxFit.cover,
-                    width: size.width,
-                  ),
-                ],
+              child: Image.network(
+                item,
+                fit: BoxFit.cover,
+                width: size.width,
               ),
             ),
           ),
@@ -56,7 +62,7 @@ class BlogDetailPage extends StatelessWidget {
             )
           : HelperClass.ipadScreen(context)
               ? AppBar(
-                  automaticallyImplyLeading: false,
+                  // automaticallyImplyLeading: false,
                   backgroundColor: whiteColor,
                   elevation: 0,
                   iconTheme: IconThemeData(color: primaryColor),
@@ -218,7 +224,7 @@ class BlogDetailPage extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(
-                      height: 20,
+                      height: 10,
                     ),
                     FadeInUp(
                       child: Padding(
@@ -240,15 +246,71 @@ class BlogDetailPage extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(
-                      height: 30,
+                      height: 10,
                     ),
-                    // MobileCard(
-                    //   img: 'assets/images/bann.jpg',
-                    //   title:
-                    //       'lorem ipsum Unlock the Power of Real-Time Heading and Course Tracking with 1Wave!',
-                    //   desc:
-                    //       'Have you ever wondered how to keep a close eye on your vessel’s headings and courses in real time? Look no further! With 1Wave, our cutting-edge application empowers you to effortlessly monitor both headings and courses, allowing you to maintain precise control over your',
-                    // )
+                    FutureBuilder(
+                      future: blogService.readJsonData(),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        } else if (snapshot.hasError) {
+                          return Center(
+                            child: Text(
+                              'Error: ${snapshot.error}',
+                              style: const TextStyle(color: Colors.red),
+                            ),
+                          );
+                        } else if (!snapshot.hasData ||
+                            snapshot.data!.isEmpty) {
+                          return Center(
+                            child: Text(
+                              'Data Kosong',
+                              style: primaryTextStyle.copyWith(
+                                fontSize: 20,
+                                fontWeight: bold,
+                              ),
+                            ),
+                          );
+                        } else {
+                          List<Blog> blogDataList = snapshot.data as List<Blog>;
+
+                          return ListView.builder(
+                              shrinkWrap: true,
+                              itemCount: 5,
+                              itemBuilder: (context, index) {
+                                Blog blog = blogDataList[index];
+
+                                return Column(
+                                  children: [
+                                    GestureDetector(
+                                      onTap: () {
+                                        Navigator.of(context)
+                                            .push(MaterialPageRoute(
+                                          builder: (context) => BlogDetailPage(
+                                            title: blog.title,
+                                            desc: blog.desc,
+                                            gallery: blog.galery,
+                                          ),
+                                        ));
+                                      },
+                                      child: MouseRegion(
+                                        cursor: SystemMouseCursors.click,
+                                        child: MobileCard(
+                                          img: blog.img.toString(),
+                                          title: blog.title.toString(),
+                                          desc: blog.desc.toString(),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                );
+                              });
+                        }
+                      },
+                    ),
                   ],
                 ),
               ),
@@ -270,30 +332,32 @@ class BlogDetailPage extends StatelessWidget {
                     FadeInDown(
                       child: titleBlog(
                         size,
-                        'Unlock the Power of Real-Time Heading and Course Tracking with 1Wave!',
+                        title.toString(),
                       ),
                     ),
                     const SizedBox(
-                      height: 20,
+                      height: 40,
                     ),
                     FadeInRight(
                       child: CarouselSlider(
                         options: CarouselOptions(
                           autoPlay: true,
-                          aspectRatio: 2,
+                          aspectRatio: 1.3,
                           enlargeCenterPage: true,
                         ),
                         items: imageSliders,
                       ),
                     ),
                     const SizedBox(
-                      height: 20,
+                      height: 30,
                     ),
                     FadeInUp(
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: descBlog(size,
-                            'Have you ever wondered how to keep a close eye on your vessel’s headings and courses in real time? Look no further! With 1Wave, our cutting-edge application empowers you to effortlessly monitor both headings and courses, allowing you to maintain precise control over your vessel’s direction.\n\nWhether you’re navigating the open sea or managing a fleet, having real-time insights into headings and courses is essential for safe and efficient maritime operations. With 1Wave, you can access this critical information with ease.\n\nOur application offers a range of powerful features, including real-time tracking, speed monitoring, travel history, weather forecasts, and geofence alerts, ensuring that you have all the tools you need to make informed decisions while at sea.\n\nDon’t miss out on the opportunity to enhance your maritime experience. Explore the capabilities of 1Wave today and discover how it can revolutionize your vessel tracking and fleet management. Set sail with confidence, knowing that you have the best technology at your fingertips.'),
+                        child: descBlog(
+                          size,
+                          desc.toString(),
+                        ),
                       ),
                     ),
                     const SizedBox(
@@ -307,77 +371,70 @@ class BlogDetailPage extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(
-                      height: 30,
+                      height: 10,
                     ),
-                    Container(
-                      width: size.width,
-                      margin: const EdgeInsets.only(bottom: 15),
-                      height: 150,
-                      decoration: BoxDecoration(
-                        color: whiteColor,
-                        borderRadius: BorderRadius.circular(10),
-                        boxShadow: [
-                          BoxShadow(
-                            blurRadius: 10,
-                            color: subtitleColor.withOpacity(0.3),
-                          )
-                        ],
-                      ),
-                      child: Row(
-                        children: [
-                          FadeInLeft(
-                            child: Container(
-                              width: size.width * 0.3,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                image: const DecorationImage(
-                                  image: AssetImage('assets/images/bann.jpg'),
-                                  fit: BoxFit.cover,
-                                ),
+                    FutureBuilder(
+                      future: blogService.readJsonData(),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        } else if (snapshot.hasError) {
+                          return Center(
+                            child: Text(
+                              'Error: ${snapshot.error}',
+                              style: const TextStyle(color: Colors.red),
+                            ),
+                          );
+                        } else if (!snapshot.hasData ||
+                            snapshot.data!.isEmpty) {
+                          return Center(
+                            child: Text(
+                              'Data Kosong',
+                              style: primaryTextStyle.copyWith(
+                                fontSize: 20,
+                                fontWeight: bold,
                               ),
                             ),
-                          ),
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsets.only(
-                                right: 30,
-                                left: 30,
-                              ),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  FadeInUp(
-                                    child: Text(
-                                      'lorem ipsum Unlock the Power of Real-Time Heading and Course Tracking with 1Wave!',
-                                      style: primaryTextStyle.copyWith(
-                                        fontWeight: semiBold,
-                                        fontSize: 16,
+                          );
+                        } else {
+                          List<Blog> blogDataList = snapshot.data as List<Blog>;
+
+                          return ListView.builder(
+                              shrinkWrap: true,
+                              itemCount: 5,
+                              itemBuilder: (context, index) {
+                                Blog blog = blogDataList[index];
+
+                                return Column(
+                                  children: [
+                                    GestureDetector(
+                                      onTap: () {
+                                        Navigator.of(context)
+                                            .push(MaterialPageRoute(
+                                          builder: (context) => BlogDetailPage(
+                                            title: blog.title,
+                                            desc: blog.desc,
+                                            gallery: blog.galery,
+                                          ),
+                                        ));
+                                      },
+                                      child: MouseRegion(
+                                        cursor: SystemMouseCursors.click,
+                                        child: RecentPost(
+                                          img: blog.img.toString(),
+                                          title: blog.title.toString(),
+                                          desc: blog.desc.toString(),
+                                        ),
                                       ),
-                                      textAlign: TextAlign.justify,
-                                      maxLines: 2,
-                                      overflow: TextOverflow.ellipsis,
                                     ),
-                                  ),
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
-                                  FadeInDown(
-                                    child: Text(
-                                      'Have you ever wondered how to keep a close eye on your vessel’s headings and courses in real time? Look no further! With 1Wave, our cutting-edge application empowers you to effortlessly monitor both headings and courses, allowing you to maintain precise control over your',
-                                      style: subtitleTextStyle.copyWith(
-                                        fontWeight: medium,
-                                      ),
-                                      maxLines: 3,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
+                                  ],
+                                );
+                              });
+                        }
+                      },
                     ),
                   ],
                 ),
@@ -394,6 +451,19 @@ class BlogDetailPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
+                padding: const EdgeInsets.only(
+                  top: 60.0,
+                  left: 60,
+                  right: 60.0,
+                ),
+                child: FadeInDown(
+                  child: titleBlog(
+                    size,
+                    title.toString(),
+                  ),
+                ),
+              ),
+              Padding(
                 padding: const EdgeInsets.all(60.0),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -404,15 +474,6 @@ class BlogDetailPage extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          FadeInDown(
-                            child: titleBlog(
-                              size,
-                              'Unlock the Power of Real-Time Heading and Course Tracking with 1Wave!',
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 50,
-                          ),
                           FadeInRight(
                             child: CarouselSlider(
                               options: CarouselOptions(
@@ -424,13 +485,15 @@ class BlogDetailPage extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(
-                            height: 20,
+                            height: 50,
                           ),
                           FadeInUp(
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: descBlog(size,
-                                  'Have you ever wondered how to keep a close eye on your vessel’s headings and courses in real time? Look no further! With 1Wave, our cutting-edge application empowers you to effortlessly monitor both headings and courses, allowing you to maintain precise control over your vessel’s direction.\n\nWhether you’re navigating the open sea or managing a fleet, having real-time insights into headings and courses is essential for safe and efficient maritime operations. With 1Wave, you can access this critical information with ease.\n\nOur application offers a range of powerful features, including real-time tracking, speed monitoring, travel history, weather forecasts, and geofence alerts, ensuring that you have all the tools you need to make informed decisions while at sea.\n\nDon’t miss out on the opportunity to enhance your maritime experience. Explore the capabilities of 1Wave today and discover how it can revolutionize your vessel tracking and fleet management. Set sail with confidence, knowing that you have the best technology at your fingertips.'),
+                              child: descBlog(
+                                size,
+                                desc.toString(),
+                              ),
                             ),
                           ),
                           const SizedBox(
@@ -441,7 +504,6 @@ class BlogDetailPage extends StatelessWidget {
                     ),
                     Expanded(
                       child: Container(
-                        margin: const EdgeInsets.only(top: 100),
                         padding: const EdgeInsets.all(20),
                         decoration: BoxDecoration(
                           border: Border.all(
@@ -456,231 +518,171 @@ class BlogDetailPage extends StatelessWidget {
                             Text(
                               'Recent Post',
                               style: primaryTextStyle.copyWith(
-                                fontSize: 24,
-                                fontWeight: medium,
+                                fontSize: 25,
+                                fontWeight: semiBold,
                               ),
                             ),
                             const SizedBox(
-                              height: 50,
+                              height: 30,
                             ),
-                            Container(
-                              width: size.width,
-                              margin: const EdgeInsets.only(bottom: 15),
-                              height: 120,
-                              decoration: BoxDecoration(
-                                color: whiteColor,
-                                borderRadius: BorderRadius.circular(10),
-                                boxShadow: [
-                                  BoxShadow(
-                                    blurRadius: 10,
-                                    color: subtitleColor.withOpacity(0.3),
-                                  )
-                                ],
-                              ),
-                              child: Row(
-                                children: [
-                                  FadeInLeft(
-                                    child: Container(
-                                      width: 100,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(10),
-                                        image: const DecorationImage(
-                                          image: AssetImage(
-                                              'assets/images/bann.jpg'),
-                                          fit: BoxFit.cover,
-                                        ),
+                            FutureBuilder(
+                              future: blogService.readJsonData(),
+                              builder: (context, snapshot) {
+                                if (snapshot.connectionState ==
+                                    ConnectionState.waiting) {
+                                  return const Center(
+                                    child: CircularProgressIndicator(),
+                                  );
+                                } else if (snapshot.hasError) {
+                                  return Center(
+                                    child: Text(
+                                      'Error: ${snapshot.error}',
+                                      style: const TextStyle(color: Colors.red),
+                                    ),
+                                  );
+                                } else if (!snapshot.hasData ||
+                                    snapshot.data!.isEmpty) {
+                                  return Center(
+                                    child: Text(
+                                      'Data Kosong',
+                                      style: primaryTextStyle.copyWith(
+                                        fontSize: 20,
+                                        fontWeight: bold,
                                       ),
                                     ),
-                                  ),
-                                  Expanded(
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(
-                                        right: 20,
-                                        left: 10,
-                                      ),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          FadeInUp(
-                                            child: Text(
-                                              'lorem ipsum Unlock the Power of Real-Time Heading and Course Tracking with 1Wave!',
-                                              style: primaryTextStyle.copyWith(
-                                                fontWeight: semiBold,
-                                                fontSize: 16,
+                                  );
+                                } else {
+                                  List<Blog> blogDataList =
+                                      snapshot.data as List<Blog>;
+
+                                  return ListView.builder(
+                                      shrinkWrap: true,
+                                      itemCount: 5,
+                                      itemBuilder: (context, index) {
+                                        Blog blog = blogDataList[index];
+
+                                        return Column(
+                                          children: [
+                                            GestureDetector(
+                                              onTap: () {
+                                                Navigator.of(context)
+                                                    .push(MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      BlogDetailPage(
+                                                    title: blog.title,
+                                                    desc: blog.desc,
+                                                    gallery: blog.galery,
+                                                  ),
+                                                ));
+                                              },
+                                              child: MouseRegion(
+                                                cursor:
+                                                    SystemMouseCursors.click,
+                                                child: Container(
+                                                  width: size.width,
+                                                  margin: const EdgeInsets.only(
+                                                    bottom: 30,
+                                                  ),
+                                                  height: 120,
+                                                  decoration: BoxDecoration(
+                                                    color: whiteColor,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10),
+                                                    boxShadow: [
+                                                      BoxShadow(
+                                                        blurRadius: 10,
+                                                        color: subtitleColor
+                                                            .withOpacity(0.3),
+                                                      )
+                                                    ],
+                                                  ),
+                                                  child: Row(
+                                                    children: [
+                                                      FadeInLeft(
+                                                        child: Container(
+                                                          width: 120,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        10),
+                                                            image:
+                                                                DecorationImage(
+                                                              image: AssetImage(
+                                                                blog.img
+                                                                    .toString(),
+                                                              ),
+                                                              fit: BoxFit.cover,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Expanded(
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .only(
+                                                            right: 20,
+                                                            left: 10,
+                                                          ),
+                                                          child: Column(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .center,
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .start,
+                                                            children: [
+                                                              FadeInUp(
+                                                                child: Text(
+                                                                  blog.title
+                                                                      .toString(),
+                                                                  style: primaryTextStyle
+                                                                      .copyWith(
+                                                                    fontWeight:
+                                                                        semiBold,
+                                                                    fontSize:
+                                                                        16,
+                                                                  ),
+                                                                  maxLines: 2,
+                                                                  overflow:
+                                                                      TextOverflow
+                                                                          .ellipsis,
+                                                                ),
+                                                              ),
+                                                              const SizedBox(
+                                                                height: 5,
+                                                              ),
+                                                              FadeInDown(
+                                                                child: Text(
+                                                                  desc.toString(),
+                                                                  style: subtitleTextStyle
+                                                                      .copyWith(
+                                                                    fontWeight:
+                                                                        medium,
+                                                                  ),
+                                                                  maxLines: 2,
+                                                                  overflow:
+                                                                      TextOverflow
+                                                                          .ellipsis,
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      )
+                                                    ],
+                                                  ),
+                                                ),
                                               ),
-                                              textAlign: TextAlign.justify,
-                                              maxLines: 2,
-                                              overflow: TextOverflow.ellipsis,
                                             ),
-                                          ),
-                                          const SizedBox(
-                                            height: 10,
-                                          ),
-                                          FadeInDown(
-                                            child: Text(
-                                              'Have you ever wondered how to keep a close eye on your vessel’s headings and courses in real time? Look no further! With 1Wave, our cutting-edge application empowers you to effortlessly monitor both headings and courses, allowing you to maintain precise control over your',
-                                              style: subtitleTextStyle.copyWith(
-                                                fontWeight: medium,
-                                              ),
-                                              maxLines: 2,
-                                              overflow: TextOverflow.ellipsis,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                            Container(
-                              width: size.width,
-                              margin: const EdgeInsets.only(bottom: 15),
-                              height: 120,
-                              decoration: BoxDecoration(
-                                color: whiteColor,
-                                borderRadius: BorderRadius.circular(10),
-                                boxShadow: [
-                                  BoxShadow(
-                                    blurRadius: 10,
-                                    color: subtitleColor.withOpacity(0.3),
-                                  )
-                                ],
-                              ),
-                              child: Row(
-                                children: [
-                                  FadeInLeft(
-                                    child: Container(
-                                      width: 100,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(10),
-                                        image: const DecorationImage(
-                                          image: AssetImage(
-                                              'assets/images/bann.jpg'),
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(
-                                        right: 20,
-                                        left: 10,
-                                      ),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          FadeInUp(
-                                            child: Text(
-                                              'lorem ipsum Unlock the Power of Real-Time Heading and Course Tracking with 1Wave!',
-                                              style: primaryTextStyle.copyWith(
-                                                fontWeight: semiBold,
-                                                fontSize: 16,
-                                              ),
-                                              textAlign: TextAlign.justify,
-                                              maxLines: 2,
-                                              overflow: TextOverflow.ellipsis,
-                                            ),
-                                          ),
-                                          const SizedBox(
-                                            height: 10,
-                                          ),
-                                          FadeInDown(
-                                            child: Text(
-                                              'Have you ever wondered how to keep a close eye on your vessel’s headings and courses in real time? Look no further! With 1Wave, our cutting-edge application empowers you to effortlessly monitor both headings and courses, allowing you to maintain precise control over your',
-                                              style: subtitleTextStyle.copyWith(
-                                                fontWeight: medium,
-                                              ),
-                                              maxLines: 2,
-                                              overflow: TextOverflow.ellipsis,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                            Container(
-                              width: size.width,
-                              margin: const EdgeInsets.only(bottom: 15),
-                              height: 120,
-                              decoration: BoxDecoration(
-                                color: whiteColor,
-                                borderRadius: BorderRadius.circular(10),
-                                boxShadow: [
-                                  BoxShadow(
-                                    blurRadius: 10,
-                                    color: subtitleColor.withOpacity(0.3),
-                                  )
-                                ],
-                              ),
-                              child: Row(
-                                children: [
-                                  FadeInLeft(
-                                    child: Container(
-                                      width: 100,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(10),
-                                        image: const DecorationImage(
-                                          image: AssetImage(
-                                              'assets/images/bann.jpg'),
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(
-                                        right: 20,
-                                        left: 10,
-                                      ),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          FadeInUp(
-                                            child: Text(
-                                              'lorem ipsum Unlock the Power of Real-Time Heading and Course Tracking with 1Wave!',
-                                              style: primaryTextStyle.copyWith(
-                                                fontWeight: semiBold,
-                                                fontSize: 16,
-                                              ),
-                                              textAlign: TextAlign.justify,
-                                              maxLines: 2,
-                                              overflow: TextOverflow.ellipsis,
-                                            ),
-                                          ),
-                                          const SizedBox(
-                                            height: 10,
-                                          ),
-                                          FadeInDown(
-                                            child: Text(
-                                              'Have you ever wondered how to keep a close eye on your vessel’s headings and courses in real time? Look no further! With 1Wave, our cutting-edge application empowers you to effortlessly monitor both headings and courses, allowing you to maintain precise control over your',
-                                              style: subtitleTextStyle.copyWith(
-                                                fontWeight: medium,
-                                              ),
-                                              maxLines: 2,
-                                              overflow: TextOverflow.ellipsis,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              ),
+                                          ],
+                                        );
+                                      });
+                                }
+                              },
                             ),
                           ],
                         ),
@@ -705,7 +707,9 @@ class BlogDetailPage extends StatelessWidget {
       title,
       style: primaryTextStyle.copyWith(
         fontWeight: semiBold,
-        fontSize: 24,
+        fontSize: size.width > 1200
+            ? 35
+            : (size.width > 800 && size.width < 1200 ? 32 : 24),
       ),
     );
   }
@@ -715,7 +719,7 @@ class BlogDetailPage extends StatelessWidget {
       desc,
       style: subtitleTextStyle.copyWith(
         fontWeight: medium,
-        fontSize: 15,
+        fontSize: size.width > 800 ? 20 : 15,
       ),
     );
   }

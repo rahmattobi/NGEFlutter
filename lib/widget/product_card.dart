@@ -34,7 +34,7 @@ class ProductCard extends StatelessWidget {
           FadeInLeft(
             child: Container(
               width: double.infinity,
-              height: size.width >= 800 ? 200 : 250,
+              height: 250,
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage(

@@ -8,6 +8,7 @@ import 'package:nge/components/footer.dart';
 import 'package:nge/components/nav_desktop.dart';
 import 'package:nge/components/sosmed.dart';
 import 'package:nge/helper/blog.dart';
+import 'package:nge/pages/blogdetailpage.dart';
 import 'package:nge/theme.dart';
 import 'package:nge/widget/btn_title.dart';
 import 'package:nge/widget/product_wh.dart';
@@ -45,7 +46,7 @@ class _HomePageState extends State<HomePage> {
         maxScroll,
         minScroll,
         maxScroll,
-        30,
+        20,
         scrollController1,
       );
     });
@@ -409,139 +410,141 @@ class _HomePageState extends State<HomePage> {
               scrollController1.offset - (details.delta.dx * 2);
           scrollController1.jumpTo(newScrollOff);
         },
-        child: SingleChildScrollView(
-          controller: scrollController1,
-          scrollDirection: Axis.horizontal,
-          child: Row(
-            children: [
-              MouseRegion(
-                onEnter: (_) {
-                  setState(() {
-                    isHovered1 = true;
-                  });
-                },
-                onExit: (_) {
-                  setState(() {
-                    isHovered1 = false;
-                  });
-                },
-                child: Container(
-                  width: size.width > 1200
-                      ? size.width * 1 / 3
-                      : ((size.width >= 800 && size.width < 1200)
-                          ? size.width * 1 / 2
-                          : size.width),
-                  decoration: BoxDecoration(
-                    color: isHovered1
-                        ? titleColor.withOpacity(0.7)
-                        : Colors.transparent,
-                    border: const Border(
-                      right: BorderSide(
-                        color: Colors.white, // Warna border putih
-                        width: 0.3, // Lebar border sesuai kebutuhan
+        child: Expanded(
+          child: SingleChildScrollView(
+            controller: scrollController1,
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: [
+                MouseRegion(
+                  onEnter: (_) {
+                    setState(() {
+                      isHovered1 = true;
+                    });
+                  },
+                  onExit: (_) {
+                    setState(() {
+                      isHovered1 = false;
+                    });
+                  },
+                  child: Container(
+                    width: size.width > 1200
+                        ? size.width * 1 / 3
+                        : ((size.width >= 800 && size.width < 1200)
+                            ? size.width * 1 / 2
+                            : size.width),
+                    decoration: BoxDecoration(
+                      color: isHovered1
+                          ? titleColor.withOpacity(0.7)
+                          : Colors.transparent,
+                      border: const Border(
+                        right: BorderSide(
+                          color: Colors.white, // Warna border putih
+                          width: 0.3, // Lebar border sesuai kebutuhan
+                        ),
                       ),
                     ),
-                  ),
-                  child: FadeInLeft(
-                    child: ProductWidgetHome(
-                      img: 'assets/images/ship-wheel.png',
-                      judul: '1WAVE',
-                      desc:
-                          'Tracking, monitoring and regulating the inspection process and maintenance procedures of all assets to help businesses keeping track of their valuable assets in real-time.',
-                      alignment: Alignment.bottomCenter,
-                    ),
-                  ),
-                ),
-              ),
-              MouseRegion(
-                onEnter: (_) {
-                  setState(() {
-                    isHovered2 = true;
-                  });
-                },
-                onExit: (_) {
-                  setState(() {
-                    isHovered2 = false;
-                  });
-                },
-                child: Container(
-                  width: size.width > 1200
-                      ? size.width * 1 / 3
-                      : ((size.width >= 800 && size.width < 1200)
-                          ? size.width * 1 / 2
-                          : size.width),
-                  decoration: BoxDecoration(
-                    color: isHovered2
-                        ? titleColor.withOpacity(0.7)
-                        : Colors.transparent,
-                    border: const Border(
-                      right: BorderSide(
-                        color: Colors.white, // Warna border putih
-                        width: 0.3, // Lebar border sesuai kebutuhan
-                      ),
-                    ),
-                  ),
-                  child: FadeInDown(
-                    child: Padding(
-                      padding: EdgeInsets.only(
-                        top: size.height * 0.18,
-                      ),
+                    child: FadeInLeft(
                       child: ProductWidgetHome(
-                        img: 'assets/images/server.png',
-                        judul: '1HUB',
+                        img: 'assets/images/ship-wheel.png',
+                        judul: '1WAVE',
                         desc:
-                            'Our advanced technology and expertise in data collection and analysis ensure that our clients have access to the most up-to-date and accurate information for their needs.',
+                            'Tracking, monitoring and regulating the inspection process and maintenance procedures of all assets to help businesses keeping track of their valuable assets in real-time.',
                         alignment: Alignment.bottomCenter,
                       ),
                     ),
                   ),
                 ),
-              ),
-              MouseRegion(
-                onEnter: (_) {
-                  setState(() {
-                    isHovered3 = true;
-                  });
-                },
-                onExit: (_) {
-                  setState(() {
-                    isHovered3 = false;
-                  });
-                },
-                child: Container(
-                  width: size.width > 1200
-                      ? size.width * 1 / 3
-                      : ((size.width >= 800 && size.width < 1200)
-                          ? size.width * 1 / 2
-                          : size.width),
-                  decoration: BoxDecoration(
-                    color: isHovered3
-                        ? titleColor.withOpacity(0.7)
-                        : Colors.transparent,
-                    border: const Border(
-                      right: BorderSide(
-                        color: Colors.white, // Warna border putih
-                        width: 0.3, // Lebar border sesuai kebutuhan
+                MouseRegion(
+                  onEnter: (_) {
+                    setState(() {
+                      isHovered2 = true;
+                    });
+                  },
+                  onExit: (_) {
+                    setState(() {
+                      isHovered2 = false;
+                    });
+                  },
+                  child: Container(
+                    width: size.width > 1200
+                        ? size.width * 1 / 3
+                        : ((size.width >= 800 && size.width < 1200)
+                            ? size.width * 1 / 2
+                            : size.width),
+                    decoration: BoxDecoration(
+                      color: isHovered2
+                          ? titleColor.withOpacity(0.7)
+                          : Colors.transparent,
+                      border: const Border(
+                        right: BorderSide(
+                          color: Colors.white, // Warna border putih
+                          width: 0.3, // Lebar border sesuai kebutuhan
+                        ),
                       ),
                     ),
-                  ),
-                  child: FadeInRight(
-                    child: Padding(
-                      padding: EdgeInsets.only(
-                        top: size.height * 0.18,
-                      ),
-                      child: ProductWidgetHome(
-                        img: 'assets/images/iot.png',
-                        judul: '1THINGS',
-                        desc:
-                            'We provide cutting-edge Internet of Things (IOT) solutions that are designed to streamline and optimize your business operations.',
-                        alignment: Alignment.bottomCenter,
+                    child: FadeInDown(
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                          top: size.height * 0.18,
+                        ),
+                        child: ProductWidgetHome(
+                          img: 'assets/images/server.png',
+                          judul: '1HUB',
+                          desc:
+                              'Our advanced technology and expertise in data collection and analysis ensure that our clients have access to the most up-to-date and accurate information for their needs.',
+                          alignment: Alignment.bottomCenter,
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-            ],
+                MouseRegion(
+                  onEnter: (_) {
+                    setState(() {
+                      isHovered3 = true;
+                    });
+                  },
+                  onExit: (_) {
+                    setState(() {
+                      isHovered3 = false;
+                    });
+                  },
+                  child: Container(
+                    width: size.width > 1200
+                        ? size.width * 1 / 3
+                        : ((size.width >= 800 && size.width < 1200)
+                            ? size.width * 1 / 2
+                            : size.width),
+                    decoration: BoxDecoration(
+                      color: isHovered3
+                          ? titleColor.withOpacity(0.7)
+                          : Colors.transparent,
+                      border: const Border(
+                        right: BorderSide(
+                          color: Colors.white, // Warna border putih
+                          width: 0.3, // Lebar border sesuai kebutuhan
+                        ),
+                      ),
+                    ),
+                    child: FadeInRight(
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                          top: size.height * 0.18,
+                        ),
+                        child: ProductWidgetHome(
+                          img: 'assets/images/iot.png',
+                          judul: '1THINGS',
+                          desc:
+                              'We provide cutting-edge Internet of Things (IOT) solutions that are designed to streamline and optimize your business operations.',
+                          alignment: Alignment.bottomCenter,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -654,125 +657,147 @@ class _HomePageState extends State<HomePage> {
                     scrollController.offset - (details.delta.dx * 2);
                 scrollController.jumpTo(newScrollOffset);
               },
-              child: SingleChildScrollView(
-                controller: scrollController,
-                scrollDirection: Axis.horizontal,
-                padding: EdgeInsets.only(
-                  right: size.width >= 800 ? 60 : 20,
-                ),
-                child: FadeInRight(
-                  child: Row(
-                    children: blogDataList.map((data) {
-                      return MouseRegion(
-                        cursor: SystemMouseCursors.click,
-                        child: Padding(
-                          padding: const EdgeInsets.only(
-                            right: 15,
-                            bottom: 10,
-                          ),
-                          child: Stack(
-                            children: [
-                              Container(
-                                width: size.width > 1200
-                                    ? size.width * 0.3
-                                    : ((size.width >= 800 && size.width < 1200)
-                                        ? size.width * 0.5
-                                        : size.width * 0.6),
-                                height: size.width >= 800 ? 350 : 230,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: Column(
-                                  children: [
-                                    Container(
-                                      height: size.width >= 800 ? 280 : 150,
-                                      decoration: BoxDecoration(
-                                        image: DecorationImage(
-                                          image: AssetImage(
-                                            data.img.toString(),
-                                          ),
-                                          fit: BoxFit.cover,
-                                        ),
-                                        borderRadius: const BorderRadius.all(
-                                          Radius.circular(10),
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                ),
+              child: Expanded(
+                child: SingleChildScrollView(
+                  controller: scrollController,
+                  scrollDirection: Axis.horizontal,
+                  padding: EdgeInsets.only(
+                    right: size.width >= 800 ? 60 : 20,
+                  ),
+                  child: FadeInRight(
+                    child: Row(
+                      children: blogDataList.map((data) {
+                        return GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => BlogDetailPage(
+                                title: data.title,
+                                desc: data.desc,
+                                gallery: data.galery,
                               ),
-                              Positioned(
-                                bottom: 0,
-                                left: size.width >= 800 ? 20 : 5,
-                                right: size.width >= 800 ? 20 : 5,
-                                child: Container(
-                                  width: double.infinity,
-                                  height: size.width >= 800 ? 130 : 100,
-                                  decoration: BoxDecoration(
-                                    color: whiteColor,
-                                    boxShadow: [
-                                      BoxShadow(
-                                        blurRadius: 10,
-                                        color: subtitleColor.withOpacity(0.3),
-                                      )
-                                    ],
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(10)),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 20,
+                            ));
+                          },
+                          child: MouseRegion(
+                            cursor: SystemMouseCursors.click,
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                right: 15,
+                                bottom: 10,
+                              ),
+                              child: Stack(
+                                children: [
+                                  Container(
+                                    width: size.width > 1200
+                                        ? size.width * 0.3
+                                        : ((size.width >= 800 &&
+                                                size.width < 1200)
+                                            ? size.width * 0.5
+                                            : size.width * 0.6),
+                                    height: size.width >= 800 ? 350 : 230,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
                                     ),
                                     child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
                                       children: [
-                                        Text(
-                                          data.title.toString(),
-                                          maxLines: 2,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: darkTextStyle.copyWith(
-                                            fontWeight: semiBold,
-                                            fontSize:
-                                                size.width >= 800 ? 18 : 14,
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          height: 10,
-                                        ),
-                                        Row(
-                                          children: [
-                                            Icon(
-                                              Icons.access_time,
-                                              color: subtitleColor,
-                                              size: size.width >= 800 ? 20 : 15,
-                                            ),
-                                            SizedBox(
-                                              width: size.width >= 800 ? 8 : 2,
-                                            ),
-                                            Text(
-                                              data.tgl.toString(),
-                                              overflow: TextOverflow.ellipsis,
-                                              style: subtitleTextStyle.copyWith(
-                                                fontWeight: medium,
-                                                fontSize:
-                                                    size.width >= 800 ? 15 : 12,
+                                        Container(
+                                          height: size.width >= 800 ? 280 : 150,
+                                          decoration: BoxDecoration(
+                                            image: DecorationImage(
+                                              image: AssetImage(
+                                                data.img.toString(),
                                               ),
+                                              fit: BoxFit.cover,
                                             ),
-                                          ],
-                                        ),
+                                            borderRadius:
+                                                const BorderRadius.all(
+                                              Radius.circular(10),
+                                            ),
+                                          ),
+                                        )
                                       ],
                                     ),
                                   ),
-                                ),
-                              )
-                            ],
+                                  Positioned(
+                                    bottom: 0,
+                                    left: size.width >= 800 ? 20 : 5,
+                                    right: size.width >= 800 ? 20 : 5,
+                                    child: Container(
+                                      width: double.infinity,
+                                      height: size.width >= 800 ? 130 : 100,
+                                      decoration: BoxDecoration(
+                                        color: whiteColor,
+                                        boxShadow: [
+                                          BoxShadow(
+                                            blurRadius: 10,
+                                            color:
+                                                subtitleColor.withOpacity(0.3),
+                                          )
+                                        ],
+                                        borderRadius: const BorderRadius.all(
+                                            Radius.circular(10)),
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 20,
+                                        ),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              data.title.toString(),
+                                              maxLines: 2,
+                                              overflow: TextOverflow.ellipsis,
+                                              style: darkTextStyle.copyWith(
+                                                fontWeight: semiBold,
+                                                fontSize:
+                                                    size.width >= 800 ? 18 : 14,
+                                              ),
+                                            ),
+                                            const SizedBox(
+                                              height: 10,
+                                            ),
+                                            Row(
+                                              children: [
+                                                Icon(
+                                                  Icons.access_time,
+                                                  color: subtitleColor,
+                                                  size: size.width >= 800
+                                                      ? 20
+                                                      : 15,
+                                                ),
+                                                SizedBox(
+                                                  width:
+                                                      size.width >= 800 ? 8 : 2,
+                                                ),
+                                                Text(
+                                                  data.tgl.toString(),
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                  style: subtitleTextStyle
+                                                      .copyWith(
+                                                    fontWeight: medium,
+                                                    fontSize: size.width >= 800
+                                                        ? 15
+                                                        : 12,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
                           ),
-                        ),
-                      );
-                    }).toList(),
+                        );
+                      }).toList(),
+                    ),
                   ),
                 ),
               ),
@@ -795,5 +820,12 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    scrollController.dispose();
+    scrollController1.dispose();
+    super.dispose();
   }
 }
