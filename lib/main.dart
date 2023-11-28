@@ -5,6 +5,7 @@ import 'package:nge/pages/clientpage.dart';
 import 'package:nge/pages/contactpage.dart';
 import 'package:nge/pages/cspage.dart';
 import 'package:nge/pages/homepage.dart';
+import 'package:nge/pages/wave_pricing.dart';
 
 import 'pages/aboutpage.dart';
 import 'pages/blogdetailpage.dart';
@@ -42,6 +43,7 @@ class MyApp extends StatelessWidget {
         '/contact': (context) => const ContactPage(),
         '/blog': (context) => const BlogPage(),
         '/detail': (context) => BlogDetailPage(),
+        '/1wave-pricing': (context) => const WavePricing(),
       },
     );
   }

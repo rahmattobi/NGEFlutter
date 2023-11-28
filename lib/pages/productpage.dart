@@ -181,7 +181,7 @@ class _ProductPageState extends State<ProductPage> {
                       judul: '1WAVE',
                       desc:
                           'Tracking, monitoring and regulating the inspection process and maintenance procedures of all assets to help businesses keeping track of their valuable assets in real-time.',
-                      url: '',
+                      url: '/1wave-pricing',
                     ),
                     const SizedBox(
                       height: 50,
@@ -241,7 +241,7 @@ class _ProductPageState extends State<ProductPage> {
                           judul: '1WAVE',
                           desc:
                               'Tracking, monitoring and regulating the inspection process and maintenance procedures of all assets to help businesses keeping track of their valuable assets in real-time.',
-                          url: '',
+                          url: '/1wave-pricing',
                         ),
                         ProductCard(
                           img: 'assets/images/1hub.jpg',
@@ -296,7 +296,7 @@ class _ProductPageState extends State<ProductPage> {
                           judul: '1WAVE',
                           desc:
                               'Tracking, monitoring and regulating the inspection process and maintenance procedures of all assets to help businesses keeping track of their valuable assets in real-time.',
-                          url: '',
+                          url: '/1wave-pricing',
                         ),
                         ProductCard(
                           img: 'assets/images/1hub.jpg',
