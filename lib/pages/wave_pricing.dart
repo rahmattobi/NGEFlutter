@@ -1,6 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:nge/components/footer.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../components/contact_us.dart';
@@ -159,66 +160,207 @@ class WavePricing extends StatelessWidget {
         ),
       ),
       body: HelperClass(
-          mobile: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(30),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      titleProduct(size),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      YoutubePlayer(
-                        controller: YoutubePlayerController(
-                          initialVideoId:
-                              'onVm-L4BZjs&t=2s&ab_channel=NatunaGlobalEkapersada%2CPT',
-                          flags: const YoutubePlayerFlags(
-                            autoPlay: true,
-                            mute: false,
-                          ),
+        mobile: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(30),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    titleProduct(size),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    YoutubePlayer(
+                      controller: YoutubePlayerController(
+                        initialVideoId:
+                            'onVm-L4BZjs&t=2s&ab_channel=NatunaGlobalEkapersada%2CPT',
+                        flags: const YoutubePlayerFlags(
+                          autoPlay: true,
+                          mute: false,
                         ),
-                        showVideoProgressIndicator: true,
                       ),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      pricePlan(size),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      paket(size, 'FREE TRIAL', '0', ' /montly', 7, titleColor,
-                          '', 'TRY NOW'),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      paket(size, 'BASIC', 'IDR 300K', ' /montly', 15,
-                          dangerColor, '', 'REQUEST DEMO'),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      paket(size, 'ADVANCED', 'To be Discuss', '', 19,
-                          successColor, '', 'REQUEST DEMO'),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      paket(size, 'APP SUITE', 'To be Discuss', '', 23,
-                          darkColor, '', 'REQUEST DEMO'),
-                    ],
-                  ),
+                      showVideoProgressIndicator: true,
+                    ),
+                    const SizedBox(
+                      height: 50,
+                    ),
+                    pricePlan(size),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    paket(size, 'FREE TRIAL', '0', ' /montly', 7, titleColor,
+                        'https://1wave.world/maritime/maps/live', 'TRY NOW'),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    paket(size, 'BASIC', 'IDR 300K', ' /montly', 15,
+                        dangerColor, '#', 'REQUEST DEMO'),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    paket(size, 'ADVANCED', 'To be Discuss', '', 19,
+                        successColor, '#', 'REQUEST DEMO'),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    paket(size, 'APP SUITE', 'To be Discuss', '', 23, darkColor,
+                        '#', 'REQUEST DEMO'),
+                  ],
                 ),
-                const SizedBox(
-                  height: 50,
-                ),
-                const Footer(),
-              ],
-            ),
+              ),
+              const SizedBox(
+                height: 50,
+              ),
+              const Footer(),
+            ],
           ),
-          tablet: const SingleChildScrollView(),
-          desktop: const SingleChildScrollView()),
+        ),
+        tablet: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(30),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    titleProduct(size),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    YoutubePlayer(
+                      controller: YoutubePlayerController(
+                        initialVideoId:
+                            'onVm-L4BZjs&t=2s&ab_channel=NatunaGlobalEkapersada%2CPT',
+                        flags: const YoutubePlayerFlags(
+                          autoPlay: true,
+                          mute: false,
+                        ),
+                      ),
+                      showVideoProgressIndicator: true,
+                    ),
+                    const SizedBox(
+                      height: 80,
+                    ),
+                    pricePlan(size),
+                    const SizedBox(
+                      height: 50,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        paket(
+                            size,
+                            'FREE TRIAL',
+                            '0',
+                            ' /montly',
+                            7,
+                            titleColor,
+                            'https://1wave.world/maritime/maps/live',
+                            'TRY NOW'),
+                        paket(size, 'BASIC', 'IDR 300K', ' /montly', 15,
+                            dangerColor, '#', 'REQUEST DEMO'),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        paket(size, 'ADVANCED', 'To be Discuss', '', 19,
+                            successColor, '#', 'REQUEST DEMO'),
+                        paket(size, 'APP SUITE', 'To be Discuss', '', 23,
+                            darkColor, '#', 'REQUEST DEMO'),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 50,
+              ),
+              const Footer(),
+            ],
+          ),
+        ),
+        desktop: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(60),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    titleProduct(size),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    YoutubePlayer(
+                      controller: YoutubePlayerController(
+                        initialVideoId:
+                            'onVm-L4BZjs&t=2s&ab_channel=NatunaGlobalEkapersada%2CPT',
+                        flags: const YoutubePlayerFlags(
+                          autoPlay: true,
+                          mute: false,
+                        ),
+                      ),
+                      showVideoProgressIndicator: true,
+                    ),
+                    const SizedBox(
+                      height: 80,
+                    ),
+                    pricePlan(size),
+                    const SizedBox(
+                      height: 50,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        paket(
+                            size,
+                            'FREE TRIAL',
+                            '0',
+                            ' /montly',
+                            7,
+                            titleColor,
+                            'https://1wave.world/maritime/maps/live',
+                            'TRY NOW'),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        paket(size, 'BASIC', 'IDR 300K', ' /montly', 15,
+                            dangerColor, '#', 'REQUEST DEMO'),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        paket(size, 'ADVANCED', 'To be Discuss', '', 19,
+                            successColor, '#', 'REQUEST DEMO'),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        paket(size, 'APP SUITE', 'To be Discuss', '', 23,
+                            darkColor, '#', 'REQUEST DEMO'),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 50,
+              ),
+              const Footer(),
+            ],
+          ),
+        ),
+      ),
     );
   }
 
@@ -231,7 +373,7 @@ class WavePricing extends StatelessWidget {
           '__ ASSETS MONITORING',
           style: titleTextStyle.copyWith(
             fontWeight: semiBold,
-            fontSize: size.width > 1200 ? 20 : 14,
+            fontSize: (size.width >= 800 && size.width < 1200) ? 20 : 14,
           ),
         ),
         SizedBox(
@@ -241,7 +383,7 @@ class WavePricing extends StatelessWidget {
           '1WAVE',
           style: primaryTextStyle.copyWith(
             fontWeight: semiBold,
-            fontSize: size.width > 1200 ? 50 : 32,
+            fontSize: (size.width >= 800 && size.width < 1200) ? 50 : 32,
           ),
         ),
       ],
@@ -256,7 +398,7 @@ class WavePricing extends StatelessWidget {
             '___ PRICE & PLAN ___',
             style: titleTextStyle.copyWith(
               fontWeight: semiBold,
-              fontSize: 15,
+              fontSize: (size.width >= 800 && size.width < 1200) ? 20 : 15,
             ),
           ),
           const SizedBox(
@@ -266,7 +408,7 @@ class WavePricing extends StatelessWidget {
             'Choose Your Plan',
             style: primaryTextStyle.copyWith(
               fontWeight: bold,
-              fontSize: 24,
+              fontSize: (size.width >= 800 && size.width < 1200) ? 35 : 24,
             ),
           )
         ],
@@ -311,8 +453,12 @@ class WavePricing extends StatelessWidget {
       'Full Ownership and Control',
     ];
     return Container(
-      width: size.width,
-      height: 1000,
+      width: size.width > 1200
+          ? size.width * 0.2
+          : ((size.width >= 800 && size.width < 1200)
+              ? size.width * 0.45
+              : size.width),
+      height: size.width >= 800 ? 1150 : 900,
       decoration: BoxDecoration(
         border: Border(
           left: BorderSide(
@@ -341,7 +487,7 @@ class WavePricing extends StatelessWidget {
             Text(
               title,
               style: subtitleTextStyle.copyWith(
-                fontSize: 18,
+                fontSize: size.width >= 800 ? 20 : 18,
                 fontWeight: medium,
               ),
             ),
@@ -354,7 +500,7 @@ class WavePricing extends StatelessWidget {
                   TextSpan(
                     text: type,
                     style: primaryTextStyle.copyWith(
-                      fontSize: 24,
+                      fontSize: size.width >= 800 ? 30 : 24,
                       fontWeight: semiBold,
                     ),
                   ),
@@ -362,6 +508,7 @@ class WavePricing extends StatelessWidget {
                     text: type2,
                     style: subtitleTextStyle.copyWith(
                       fontWeight: medium,
+                      fontSize: size.width >= 800 ? 18 : 14,
                     ),
                   ),
                 ],
@@ -374,7 +521,7 @@ class WavePricing extends StatelessWidget {
               title,
               style: titleTextStyle.copyWith(
                 fontWeight: semiBold,
-                fontSize: 15,
+                fontSize: size.width >= 800 ? 17 : 15,
               ),
             ),
             const SizedBox(
@@ -396,6 +543,7 @@ class WavePricing extends StatelessWidget {
                         style: primaryTextStyle.copyWith(
                           fontWeight: semiBold,
                           color: itemColor,
+                          fontSize: size.width >= 800 ? 16 : 14,
                         ),
                       ),
                     );
@@ -407,7 +555,9 @@ class WavePricing extends StatelessWidget {
               height: 10,
             ),
             TextButton.icon(
-              onPressed: () {},
+              onPressed: () {
+                launch(url);
+              },
               label: Text(
                 label,
                 style: whiteTextStyle.copyWith(
@@ -421,10 +571,10 @@ class WavePricing extends StatelessWidget {
               ),
               style: ButtonStyle(
                 backgroundColor: MaterialStatePropertyAll(color),
-                padding: const MaterialStatePropertyAll(
+                padding: MaterialStatePropertyAll(
                   EdgeInsets.symmetric(
-                    vertical: 10,
-                    horizontal: 20,
+                    vertical: size.width >= 800 ? 20 : 10,
+                    horizontal: size.width >= 800 ? 35 : 20,
                   ),
                 ),
               ),
