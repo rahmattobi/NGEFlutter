@@ -236,12 +236,42 @@ class _FormCsState extends State<FormCs> {
             height: 30,
           ),
           ElevatedButton(
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                (Set<MaterialState> states) {
+                  if (states.contains(MaterialState.hovered)) {
+                    return titleDarkColor; // Warna latar belakang saat tombol di-hover
+                  }
+                  return titleColor; // Warna latar belakang saat tidak di-hover
+                },
+              ),
+              shape: MaterialStateProperty.all<OutlinedBorder>(
+                RoundedRectangleBorder(
+                  borderRadius:
+                      BorderRadius.circular(10.0), // Atur border radius ke 20
+                ),
+              ),
+              padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                const EdgeInsets.symmetric(
+                  horizontal: 30,
+                  vertical: 20,
+                ),
+              ),
+            ),
             onPressed: () {
               if (_formKey.currentState?.validate() == true) {
                 postData();
               }
             },
-            child: Text('Send Message'),
+            child: Text(
+              'Send Message',
+              style: titleTextStyle.copyWith(
+                fontWeight: semiBold,
+                fontSize: 16,
+                letterSpacing: 2,
+                color: whiteColor,
+              ),
+            ),
           ),
         ],
       ),
