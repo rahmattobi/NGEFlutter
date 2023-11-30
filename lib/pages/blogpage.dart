@@ -58,6 +58,7 @@ class _BlogPageState extends State<BlogPage> {
                             ),
                             ElevatedButton(
                               onPressed: () {
+                                Navigator.pushNamed(context, '/inquiry');
                                 // Fungsi yang akan dijalankan saat tombol ditekan
                               },
                               style: ButtonStyle(

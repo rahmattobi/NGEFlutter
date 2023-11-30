@@ -1,8 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:nge/components/footer.dart';
-import 'package:nge/widget/btn_title.dart';
-// import 'package:mapbox_gl/mapbox_gl.dart';
+import 'package:nge/widget/form_cs.dart';
 
 import '../components/contact_us.dart';
 import '../components/menu_nav.dart';
@@ -48,6 +47,8 @@ class ContactPage extends StatelessWidget {
                             ),
                             ElevatedButton(
                               onPressed: () {
+                                Navigator.pushNamed(context, '/inquiry');
+
                                 // Fungsi yang akan dijalankan saat tombol ditekan
                               },
                               style: ButtonStyle(
@@ -192,11 +193,10 @@ class ContactPage extends StatelessWidget {
                     const SizedBox(
                       height: 50,
                     ),
-                    form(size),
+                    const FormCs(),
                     const SizedBox(
                       height: 30,
                     ),
-                    // MapboxMap(initialCameraPosition: ),
                   ],
                 ),
               ),
@@ -239,12 +239,10 @@ class ContactPage extends StatelessWidget {
                           width: 30,
                         ),
                         Expanded(
-                          child: form(size),
+                          child: const FormCs(),
                         ),
                       ],
                     ),
-
-                    // MapboxMap(initialCameraPosition: ),
                   ],
                 ),
               ),
@@ -285,7 +283,7 @@ class ContactPage extends StatelessWidget {
                           width: 50,
                         ),
                         Expanded(
-                          child: form(size),
+                          child: const FormCs(),
                         ),
                       ],
                     ),
@@ -519,139 +517,6 @@ class ContactPage extends StatelessWidget {
                 fontWeight: medium,
               ),
               textAlign: TextAlign.center,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  SizedBox form(Size size) {
-    return SizedBox(
-      width: double.infinity,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          FadeInUp(
-            child: Text(
-              'Send us a Massage :',
-              style: primaryTextStyle.copyWith(
-                fontSize: 20,
-                fontWeight: semiBold,
-              ),
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          FadeInLeft(
-            child: TextField(
-              // controller: _textEditingController,
-              decoration: InputDecoration(
-                hintText: 'Your Company',
-                hintStyle: subtitleTextStyle.copyWith(
-                  fontWeight: medium,
-                ),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15.0),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: titleColor),
-                ),
-              ),
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          FadeInUp(
-            child: TextField(
-              // controller: _textEditingController,
-              decoration: InputDecoration(
-                hintText: 'Your Name',
-                hintStyle: subtitleTextStyle.copyWith(
-                  fontWeight: medium,
-                ),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15.0),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: titleColor),
-                ),
-              ),
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          FadeInDown(
-            child: TextField(
-              // controller: _textEditingController,
-              decoration: InputDecoration(
-                hintStyle: subtitleTextStyle.copyWith(
-                  fontWeight: medium,
-                ),
-                hintText: 'Your Phone',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15.0),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: titleColor),
-                ),
-              ),
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          FadeInRight(
-            child: TextField(
-              // controller: _textEditingController,
-              decoration: InputDecoration(
-                hintStyle: subtitleTextStyle.copyWith(
-                  fontWeight: medium,
-                ),
-                hintText: 'Your Mail',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15.0),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: titleColor),
-                ),
-              ),
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          FadeInDown(
-            child: TextField(
-              // controller: _textEditingController,
-              maxLines: 4,
-              decoration: InputDecoration(
-                hintStyle: subtitleTextStyle.copyWith(
-                  fontWeight: medium,
-                ),
-                hintText: 'Type Your Message',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15.0),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: titleColor),
-                ),
-              ),
-            ),
-          ),
-          const SizedBox(
-            height: 30,
-          ),
-          FadeInUp(
-            child: BtnTitle(
-              pdHorizontal: 40,
-              pdVertical: 25,
-              fontSize: 16,
-              title: 'Send Message',
-              url: '',
             ),
           ),
         ],

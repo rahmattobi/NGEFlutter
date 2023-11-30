@@ -10,6 +10,8 @@ class MenuNav extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+
     return HelperClass.desktopScreen(context)
         ? const Row(
             children: [
@@ -152,6 +154,32 @@ class MenuNav extends StatelessWidget {
                 height: 10,
               ),
               const NavbarTitleWidget(title: 'BLOG', url: '/blog'),
+              const SizedBox(
+                height: 15,
+              ),
+              size.width >= 800
+                  ? const SizedBox()
+                  : Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        FadeInRight(
+                          child: Container(
+                            decoration: BoxDecoration(
+                              border: Border(
+                                bottom: BorderSide(
+                                  color: subtitleColor.withOpacity(0.2),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        const NavbarTitleWidget(
+                            title: 'INQUIRY', url: '/inquiry'),
+                      ],
+                    ),
             ],
           );
   }

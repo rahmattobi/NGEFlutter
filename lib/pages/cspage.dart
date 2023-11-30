@@ -49,6 +49,7 @@ class CaseStudiesPage extends StatelessWidget {
                             ),
                             ElevatedButton(
                               onPressed: () {
+                                Navigator.pushNamed(context, '/inquiry');
                                 // Fungsi yang akan dijalankan saat tombol ditekan
                               },
                               style: ButtonStyle(

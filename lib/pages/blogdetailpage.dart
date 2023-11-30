@@ -44,11 +44,13 @@ class BlogDetailPage extends StatelessWidget {
               borderRadius: const BorderRadius.all(
                 Radius.circular(10.0),
               ),
-              child: Image.network(
-                item,
-                fit: BoxFit.cover,
-                width: size.width,
-              ),
+              child: item.isEmpty
+                  ? null
+                  : Image.asset(
+                      item,
+                      fit: BoxFit.cover,
+                      width: size.width,
+                    ),
             ),
           ),
         )
@@ -62,70 +64,79 @@ class BlogDetailPage extends StatelessWidget {
             )
           : HelperClass.ipadScreen(context)
               ? AppBar(
-                  // automaticallyImplyLeading: false,
+                  automaticallyImplyLeading: true,
                   backgroundColor: whiteColor,
                   elevation: 0,
                   iconTheme: IconThemeData(color: primaryColor),
-                  title: MouseRegion(
-                    cursor: SystemMouseCursors.click,
-                    child: Padding(
-                      padding: EdgeInsets.all(
-                          HelperClass.mobileScreen(context) ? 8.0 : 30),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Image.asset(
-                            'assets/images/natuna2.png',
-                            width: 150,
-                          ),
-                          ElevatedButton(
-                            onPressed: () {
-                              // Fungsi yang akan dijalankan saat tombol ditekan
-                            },
-                            style: ButtonStyle(
-                              padding:
-                                  MaterialStateProperty.all<EdgeInsetsGeometry>(
-                                const EdgeInsets.symmetric(
-                                    horizontal: 30, vertical: 10),
-                              ),
-                              backgroundColor: MaterialStateProperty.all<Color>(
-                                  Colors.white),
-                              elevation:
-                                  MaterialStateProperty.resolveWith<double>(
-                                (Set<MaterialState> states) {
-                                  // Memberikan efek shadow saat tombol di-hover
-                                  return states.contains(MaterialState.hovered)
-                                      ? 8
-                                      : 0;
-                                },
-                              ),
+                  title: GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/home');
+                    },
+                    child: MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: Padding(
+                        padding: EdgeInsets.all(
+                            HelperClass.mobileScreen(context) ? 8.0 : 30),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Image.asset(
+                              'assets/images/natuna2.png',
+                              width: 150,
                             ),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Icon(
-                                  Icons.line_style_outlined,
-                                  color: primaryColor,
-                                ), // Gantilah dengan ikon yang diinginkan
-                                const SizedBox(
-                                    width:
-                                        10), // Memberikan ruang antara ikon dan teks
-                                Text(
-                                  'INQUIRY',
-                                  style: subtitleTextStyle.copyWith(
-                                    fontWeight: semiBold,
-                                  ),
+                            ElevatedButton(
+                              onPressed: () {
+                                Navigator.pushNamed(context, '/inquiry');
+                                // Fungsi yang akan dijalankan saat tombol ditekan
+                              },
+                              style: ButtonStyle(
+                                padding: MaterialStateProperty.all<
+                                    EdgeInsetsGeometry>(
+                                  const EdgeInsets.symmetric(
+                                      horizontal: 30, vertical: 10),
                                 ),
-                              ],
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                        Colors.white),
+                                elevation:
+                                    MaterialStateProperty.resolveWith<double>(
+                                  (Set<MaterialState> states) {
+                                    // Memberikan efek shadow saat tombol di-hover
+                                    return states
+                                            .contains(MaterialState.hovered)
+                                        ? 8
+                                        : 0;
+                                  },
+                                ),
+                              ),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Icon(
+                                    Icons.line_style_outlined,
+                                    color: primaryColor,
+                                  ), // Gantilah dengan ikon yang diinginkan
+                                  const SizedBox(
+                                      width:
+                                          10), // Memberikan ruang antara ikon dan teks
+                                  Text(
+                                    'INQUIRY',
+                                    style: subtitleTextStyle.copyWith(
+                                      fontWeight: semiBold,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),
                   centerTitle: false,
                 )
               : AppBar(
+                  automaticallyImplyLeading: true,
                   backgroundColor: whiteColor,
                   elevation: 0,
                   iconTheme: IconThemeData(color: primaryColor),

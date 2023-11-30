@@ -28,60 +28,68 @@ class ClientPage extends StatelessWidget {
                   backgroundColor: whiteColor,
                   elevation: 0,
                   iconTheme: IconThemeData(color: primaryColor),
-                  title: MouseRegion(
-                    cursor: SystemMouseCursors.click,
-                    child: Padding(
-                      padding: EdgeInsets.all(
-                          HelperClass.mobileScreen(context) ? 8.0 : 30),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Image.asset(
-                            'assets/images/natuna2.png',
-                            width: 150,
-                          ),
-                          ElevatedButton(
-                            onPressed: () {
-                              // Fungsi yang akan dijalankan saat tombol ditekan
-                            },
-                            style: ButtonStyle(
-                              padding:
-                                  MaterialStateProperty.all<EdgeInsetsGeometry>(
-                                const EdgeInsets.symmetric(
-                                    horizontal: 30, vertical: 10),
-                              ),
-                              backgroundColor: MaterialStateProperty.all<Color>(
-                                  Colors.white),
-                              elevation:
-                                  MaterialStateProperty.resolveWith<double>(
-                                (Set<MaterialState> states) {
-                                  // Memberikan efek shadow saat tombol di-hover
-                                  return states.contains(MaterialState.hovered)
-                                      ? 8
-                                      : 0;
-                                },
-                              ),
+                  title: GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/home');
+                    },
+                    child: MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: Padding(
+                        padding: EdgeInsets.all(
+                            HelperClass.mobileScreen(context) ? 8.0 : 30),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Image.asset(
+                              'assets/images/natuna2.png',
+                              width: 150,
                             ),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Icon(
-                                  Icons.line_style_outlined,
-                                  color: primaryColor,
-                                ), // Gantilah dengan ikon yang diinginkan
-                                const SizedBox(
-                                    width:
-                                        10), // Memberikan ruang antara ikon dan teks
-                                Text(
-                                  'INQUIRY',
-                                  style: subtitleTextStyle.copyWith(
-                                    fontWeight: semiBold,
-                                  ),
+                            ElevatedButton(
+                              onPressed: () {
+                                // Fungsi yang akan dijalankan saat tombol ditekan
+                                Navigator.pushNamed(context, '/inquiry');
+                              },
+                              style: ButtonStyle(
+                                padding: MaterialStateProperty.all<
+                                    EdgeInsetsGeometry>(
+                                  const EdgeInsets.symmetric(
+                                      horizontal: 30, vertical: 10),
                                 ),
-                              ],
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                        Colors.white),
+                                elevation:
+                                    MaterialStateProperty.resolveWith<double>(
+                                  (Set<MaterialState> states) {
+                                    // Memberikan efek shadow saat tombol di-hover
+                                    return states
+                                            .contains(MaterialState.hovered)
+                                        ? 8
+                                        : 0;
+                                  },
+                                ),
+                              ),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Icon(
+                                    Icons.line_style_outlined,
+                                    color: primaryColor,
+                                  ), // Gantilah dengan ikon yang diinginkan
+                                  const SizedBox(
+                                      width:
+                                          10), // Memberikan ruang antara ikon dan teks
+                                  Text(
+                                    'INQUIRY',
+                                    style: subtitleTextStyle.copyWith(
+                                      fontWeight: semiBold,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -94,12 +102,17 @@ class ClientPage extends StatelessWidget {
                   iconTheme: IconThemeData(color: primaryColor),
                   title: MouseRegion(
                     cursor: SystemMouseCursors.click,
-                    child: Padding(
-                      padding: EdgeInsets.all(
-                          HelperClass.mobileScreen(context) ? 8.0 : 30),
-                      child: Image.asset(
-                        'assets/images/natuna2.png',
-                        width: 150,
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, '/home');
+                      },
+                      child: Padding(
+                        padding: EdgeInsets.all(
+                            HelperClass.mobileScreen(context) ? 8.0 : 30),
+                        child: Image.asset(
+                          'assets/images/natuna2.png',
+                          width: 150,
+                        ),
                       ),
                     ),
                   ),
@@ -210,7 +223,7 @@ class ClientPage extends StatelessWidget {
                       height: 30,
                     ),
                     cpCard(
-                      'assets/images/Jawara.png',
+                      'assets/images/jawara.png',
                       'PT Jawara Arkatama Wisesa',
                       size,
                     ),
@@ -290,7 +303,7 @@ class ClientPage extends StatelessWidget {
                           width: 20,
                         ),
                         cpCard(
-                          'assets/images/Jawara.png',
+                          'assets/images/jawara.png',
                           'PT Jawara Arkatama Wisesa',
                           size,
                         ),
@@ -370,7 +383,7 @@ class ClientPage extends StatelessWidget {
                           width: 20,
                         ),
                         cpCard(
-                          'assets/images/Jawara.png',
+                          'assets/images/jawara.png',
                           'PT Jawara Arkatama Wisesa',
                           size,
                         ),
@@ -421,7 +434,12 @@ class ClientPage extends StatelessWidget {
                 offset: const Offset(0, 3), // Posisi bayangan (x, y)
               ),
             ],
-            image: DecorationImage(image: AssetImage(img), fit: BoxFit.cover),
+            image: DecorationImage(
+              image: AssetImage(
+                img.toString(),
+              ),
+              fit: BoxFit.cover,
+            ),
           ),
         ),
         const SizedBox(

@@ -34,60 +34,67 @@ class _AboutpageState extends State<AboutPage> {
                   backgroundColor: whiteColor,
                   elevation: 0,
                   iconTheme: IconThemeData(color: primaryColor),
-                  title: MouseRegion(
-                    cursor: SystemMouseCursors.click,
-                    child: Padding(
-                      padding: EdgeInsets.all(
-                          HelperClass.mobileScreen(context) ? 8.0 : 30),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Image.asset(
-                            'assets/images/natuna2.png',
-                            width: 150,
-                          ),
-                          ElevatedButton(
-                            onPressed: () {
-                              // Fungsi yang akan dijalankan saat tombol ditekan
-                            },
-                            style: ButtonStyle(
-                              padding:
-                                  MaterialStateProperty.all<EdgeInsetsGeometry>(
-                                const EdgeInsets.symmetric(
-                                    horizontal: 30, vertical: 10),
-                              ),
-                              backgroundColor: MaterialStateProperty.all<Color>(
-                                  Colors.white),
-                              elevation:
-                                  MaterialStateProperty.resolveWith<double>(
-                                (Set<MaterialState> states) {
-                                  // Memberikan efek shadow saat tombol di-hover
-                                  return states.contains(MaterialState.hovered)
-                                      ? 8
-                                      : 0;
-                                },
-                              ),
+                  title: GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/home');
+                    },
+                    child: MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: Padding(
+                        padding: EdgeInsets.all(
+                            HelperClass.mobileScreen(context) ? 8.0 : 30),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Image.asset(
+                              'assets/images/natuna2.png',
+                              width: 150,
                             ),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Icon(
-                                  Icons.line_style_outlined,
-                                  color: primaryColor,
-                                ), // Gantilah dengan ikon yang diinginkan
-                                const SizedBox(
-                                    width:
-                                        10), // Memberikan ruang antara ikon dan teks
-                                Text(
-                                  'INQUIRY',
-                                  style: subtitleTextStyle.copyWith(
-                                    fontWeight: semiBold,
-                                  ),
+                            ElevatedButton(
+                              onPressed: () {
+                                Navigator.pushNamed(context, '/inquiry');
+                              },
+                              style: ButtonStyle(
+                                padding: MaterialStateProperty.all<
+                                    EdgeInsetsGeometry>(
+                                  const EdgeInsets.symmetric(
+                                      horizontal: 30, vertical: 10),
                                 ),
-                              ],
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                        Colors.white),
+                                elevation:
+                                    MaterialStateProperty.resolveWith<double>(
+                                  (Set<MaterialState> states) {
+                                    // Memberikan efek shadow saat tombol di-hover
+                                    return states
+                                            .contains(MaterialState.hovered)
+                                        ? 8
+                                        : 0;
+                                  },
+                                ),
+                              ),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Icon(
+                                    Icons.line_style_outlined,
+                                    color: primaryColor,
+                                  ), // Gantilah dengan ikon yang diinginkan
+                                  const SizedBox(
+                                      width:
+                                          10), // Memberikan ruang antara ikon dan teks
+                                  Text(
+                                    'INQUIRY',
+                                    style: subtitleTextStyle.copyWith(
+                                      fontWeight: semiBold,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -100,12 +107,17 @@ class _AboutpageState extends State<AboutPage> {
                   iconTheme: IconThemeData(color: primaryColor),
                   title: MouseRegion(
                     cursor: SystemMouseCursors.click,
-                    child: Padding(
-                      padding: EdgeInsets.all(
-                          HelperClass.mobileScreen(context) ? 8.0 : 30),
-                      child: Image.asset(
-                        'assets/images/natuna2.png',
-                        width: 150,
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, '/home');
+                      },
+                      child: Padding(
+                        padding: EdgeInsets.all(
+                            HelperClass.mobileScreen(context) ? 8.0 : 30),
+                        child: Image.asset(
+                          'assets/images/natuna2.png',
+                          width: 150,
+                        ),
                       ),
                     ),
                   ),
@@ -245,7 +257,7 @@ class _AboutpageState extends State<AboutPage> {
                 : size.height * 0.3),
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/bann.jpg'),
+            image: AssetImage('assets/images/about-bg.jpg'),
             fit: BoxFit.cover,
           ),
           borderRadius: BorderRadius.all(Radius.circular(10)),

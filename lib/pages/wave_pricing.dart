@@ -26,70 +26,78 @@ class WavePricing extends StatelessWidget {
             )
           : HelperClass.ipadScreen(context)
               ? AppBar(
-                  // automaticallyImplyLeading: false,
+                  automaticallyImplyLeading: true,
                   backgroundColor: whiteColor,
                   elevation: 0,
                   iconTheme: IconThemeData(color: primaryColor),
-                  title: MouseRegion(
-                    cursor: SystemMouseCursors.click,
-                    child: Padding(
-                      padding: EdgeInsets.all(
-                          HelperClass.mobileScreen(context) ? 8.0 : 30),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Image.asset(
-                            'assets/images/natuna2.png',
-                            width: 150,
-                          ),
-                          ElevatedButton(
-                            onPressed: () {
-                              // Fungsi yang akan dijalankan saat tombol ditekan
-                            },
-                            style: ButtonStyle(
-                              padding:
-                                  MaterialStateProperty.all<EdgeInsetsGeometry>(
-                                const EdgeInsets.symmetric(
-                                    horizontal: 30, vertical: 10),
-                              ),
-                              backgroundColor: MaterialStateProperty.all<Color>(
-                                  Colors.white),
-                              elevation:
-                                  MaterialStateProperty.resolveWith<double>(
-                                (Set<MaterialState> states) {
-                                  // Memberikan efek shadow saat tombol di-hover
-                                  return states.contains(MaterialState.hovered)
-                                      ? 8
-                                      : 0;
-                                },
-                              ),
+                  title: GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/home');
+                    },
+                    child: MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: Padding(
+                        padding: EdgeInsets.all(
+                            HelperClass.mobileScreen(context) ? 8.0 : 30),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Image.asset(
+                              'assets/images/natuna2.png',
+                              width: 150,
                             ),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Icon(
-                                  Icons.line_style_outlined,
-                                  color: primaryColor,
-                                ), // Gantilah dengan ikon yang diinginkan
-                                const SizedBox(
-                                    width:
-                                        10), // Memberikan ruang antara ikon dan teks
-                                Text(
-                                  'INQUIRY',
-                                  style: subtitleTextStyle.copyWith(
-                                    fontWeight: semiBold,
-                                  ),
+                            ElevatedButton(
+                              onPressed: () {
+                                Navigator.pushNamed(context, '/inquiry');
+                              },
+                              style: ButtonStyle(
+                                padding: MaterialStateProperty.all<
+                                    EdgeInsetsGeometry>(
+                                  const EdgeInsets.symmetric(
+                                      horizontal: 30, vertical: 10),
                                 ),
-                              ],
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                        Colors.white),
+                                elevation:
+                                    MaterialStateProperty.resolveWith<double>(
+                                  (Set<MaterialState> states) {
+                                    // Memberikan efek shadow saat tombol di-hover
+                                    return states
+                                            .contains(MaterialState.hovered)
+                                        ? 8
+                                        : 0;
+                                  },
+                                ),
+                              ),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Icon(
+                                    Icons.line_style_outlined,
+                                    color: primaryColor,
+                                  ), // Gantilah dengan ikon yang diinginkan
+                                  const SizedBox(
+                                      width:
+                                          10), // Memberikan ruang antara ikon dan teks
+                                  Text(
+                                    'INQUIRY',
+                                    style: subtitleTextStyle.copyWith(
+                                      fontWeight: semiBold,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),
                   centerTitle: false,
                 )
               : AppBar(
+                  automaticallyImplyLeading: true,
                   backgroundColor: whiteColor,
                   elevation: 0,
                   iconTheme: IconThemeData(color: primaryColor),
@@ -175,10 +183,9 @@ class WavePricing extends StatelessWidget {
                     ),
                     YoutubePlayer(
                       controller: YoutubePlayerController(
-                        initialVideoId:
-                            'onVm-L4BZjs&t=2s&ab_channel=NatunaGlobalEkapersada%2CPT',
+                        initialVideoId: 'onVm-L4BZjs',
                         flags: const YoutubePlayerFlags(
-                          autoPlay: true,
+                          autoPlay: false,
                           mute: false,
                         ),
                       ),
@@ -187,7 +194,7 @@ class WavePricing extends StatelessWidget {
                     const SizedBox(
                       height: 50,
                     ),
-                    pricePlan(size),
+                    Center(child: pricePlan(size)),
                     const SizedBox(
                       height: 30,
                     ),
@@ -390,29 +397,29 @@ class WavePricing extends StatelessWidget {
     );
   }
 
-  Center pricePlan(Size size) {
-    return Center(
-      child: Column(
-        children: [
-          Text(
-            '___ PRICE & PLAN ___',
-            style: titleTextStyle.copyWith(
-              fontWeight: semiBold,
-              fontSize: (size.width >= 800 && size.width < 1200) ? 20 : 15,
-            ),
+  Column pricePlan(Size size) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Text(
+          '___ PRICE & PLAN ___',
+          style: titleTextStyle.copyWith(
+            fontWeight: semiBold,
+            fontSize: (size.width >= 800 && size.width < 1200) ? 20 : 15,
           ),
-          const SizedBox(
-            height: 20,
+        ),
+        const SizedBox(
+          height: 20,
+        ),
+        Text(
+          'Choose Your Plan',
+          style: primaryTextStyle.copyWith(
+            fontWeight: bold,
+            fontSize: (size.width >= 800 && size.width < 1200) ? 35 : 24,
           ),
-          Text(
-            'Choose Your Plan',
-            style: primaryTextStyle.copyWith(
-              fontWeight: bold,
-              fontSize: (size.width >= 800 && size.width < 1200) ? 35 : 24,
-            ),
-          )
-        ],
-      ),
+        )
+      ],
     );
   }
 

@@ -5,6 +5,7 @@ import 'package:nge/pages/clientpage.dart';
 import 'package:nge/pages/contactpage.dart';
 import 'package:nge/pages/cspage.dart';
 import 'package:nge/pages/homepage.dart';
+import 'package:nge/pages/inquirypage.dart';
 import 'package:nge/pages/wave_pricing.dart';
 
 import 'pages/aboutpage.dart';
@@ -18,6 +19,7 @@ void main() {
       builder: (context) => const MyApp(),
     ),
   );
+  // runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -44,6 +46,7 @@ class MyApp extends StatelessWidget {
         '/blog': (context) => const BlogPage(),
         '/detail': (context) => BlogDetailPage(),
         '/1wave-pricing': (context) => const WavePricing(),
+        '/inquiry': (context) => const InquiryPage(),
       },
     );
   }

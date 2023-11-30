@@ -66,7 +66,9 @@ class _CsCardState extends State<CsCard> {
                 height: size.width >= 800 ? 280 : 150,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage(widget.img.toString()),
+                    image: AssetImage(
+                      widget.img.toString(),
+                    ),
                   ),
                   borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(10),
