@@ -34,7 +34,9 @@ dependencies:
   device_preview: ^1.1.0
   flutter:
     sdk: flutter
+  http: 1.1.0
   typewritertext: ^2.3.0
+  awesome_dialog: ^3.1.0
   url_launcher: ^6.2.1
   youtube_player_flutter: ^8.1.2
 
