@@ -42,7 +42,7 @@ class _NavbarState extends State<Navbar> {
           const Spacer(),
           ElevatedButton(
             onPressed: () {
-              // Fungsi yang akan dijalankan saat tombol ditekan
+              Navigator.pushNamed(context, '/inquiry');
             },
             style: ButtonStyle(
               padding: MaterialStateProperty.all<EdgeInsetsGeometry>(

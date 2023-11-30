@@ -167,36 +167,113 @@ class InquiryPage extends StatelessWidget {
         ),
       ),
       body: HelperClass(
-          mobile: SingleChildScrollView(
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(30),
-                  child: Column(
-                    children: [
-                      FadeInDown(
-                        child: ClipRRect(
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(20)),
-                          child: Image.asset('assets/images/cs.jpg'),
+        mobile: SingleChildScrollView(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(30),
+                child: Column(
+                  children: [
+                    FadeInDown(
+                      child: ClipRRect(
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(20)),
+                        child: Image.asset('assets/images/cs.jpg'),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    const FormCs(),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 50,
+              ),
+              const Footer(),
+            ],
+          ),
+        ),
+        tablet: SingleChildScrollView(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(40.0),
+                child: Row(
+                  children: [
+                    FadeInLeft(
+                      duration: const Duration(seconds: 2),
+                      child: Container(
+                        width: size.width * 0.5,
+                        height: size.height * 0.8,
+                        decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(20)),
+                          image: DecorationImage(
+                            image: AssetImage('assets/images/cs.jpg'),
+                            fit: BoxFit.fitHeight,
+                          ),
                         ),
                       ),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      const FormCs(),
-                    ],
-                  ),
+                    ),
+                    const SizedBox(
+                      width: 50,
+                    ),
+                    Expanded(
+                      child: FadeInRight(
+                          duration: const Duration(seconds: 2),
+                          child: const FormCs()),
+                    ),
+                  ],
                 ),
-                const SizedBox(
-                  height: 50,
-                ),
-                const Footer(),
-              ],
-            ),
+              ),
+              const SizedBox(
+                height: 50,
+              ),
+              const Footer(),
+            ],
           ),
-          tablet: SingleChildScrollView(),
-          desktop: SingleChildScrollView()),
+        ),
+        desktop: SingleChildScrollView(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(40.0),
+                child: Row(
+                  children: [
+                    FadeInLeft(
+                      duration: const Duration(seconds: 2),
+                      child: Container(
+                        width: size.width * 0.5,
+                        height: size.height * 0.8,
+                        decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(20)),
+                          image: DecorationImage(
+                            image: AssetImage('assets/images/cs.jpg'),
+                            fit: BoxFit.fitHeight,
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 50,
+                    ),
+                    Expanded(
+                      child: FadeInRight(
+                          duration: const Duration(seconds: 2),
+                          child: const FormCs()),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 50,
+              ),
+              const Footer(),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
