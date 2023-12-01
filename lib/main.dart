@@ -13,13 +13,13 @@ import 'pages/blogdetailpage.dart';
 import 'pages/productpage.dart';
 
 void main() {
-  runApp(
-    DevicePreview(
-      enabled: true,
-      builder: (context) => const MyApp(),
-    ),
-  );
-  // runApp(const MyApp());
+  // runApp(
+  //   DevicePreview(
+  //     enabled: true,
+  //     builder: (context) => const MyApp(),
+  //   ),
+  // );
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
