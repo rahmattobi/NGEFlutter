@@ -198,23 +198,31 @@ class WavePricing extends StatelessWidget {
                     const SizedBox(
                       height: 30,
                     ),
-                    paket(size, 'FREE TRIAL', '0', ' /montly', 7, titleColor,
-                        'https://1wave.world/maritime/maps/live', 'TRY NOW'),
+                    paket(
+                        context,
+                        'FREE TRIAL',
+                        '0',
+                        ' /montly',
+                        7,
+                        titleColor,
+                        'https://1wave.world/maritime/maps/live',
+                        'TRY NOW',
+                        'external'),
                     const SizedBox(
                       height: 20,
                     ),
-                    paket(size, 'BASIC', 'IDR 300K', ' /montly', 15,
-                        dangerColor, '/#/inquiry', 'REQUEST DEMO'),
+                    paket(context, 'BASIC', 'IDR 300K', ' /montly', 15,
+                        dangerColor, '/inquiry', 'REQUEST DEMO', 'internal'),
                     const SizedBox(
                       height: 20,
                     ),
-                    paket(size, 'ADVANCED', 'To be Discuss', '', 19,
-                        successColor, '/#/inquiry', 'REQUEST DEMO'),
+                    paket(context, 'ADVANCED', 'To be Discuss', '', 19,
+                        successColor, '/inquiry', 'REQUEST DEMO', 'internal'),
                     const SizedBox(
                       height: 20,
                     ),
-                    paket(size, 'APP SUITE', 'To be Discuss', '', 23, darkColor,
-                        '/#/inquiry', 'REQUEST DEMO'),
+                    paket(context, 'APP SUITE', 'To be Discuss', '', 23,
+                        darkColor, '/inquiry', 'REQUEST DEMO', 'internal'),
                   ],
                 ),
               ),
@@ -260,16 +268,25 @@ class WavePricing extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         paket(
-                            size,
+                            context,
                             'FREE TRIAL',
                             '0',
                             ' /montly',
                             7,
                             titleColor,
                             'https://1wave.world/maritime/maps/live',
-                            'TRY NOW'),
-                        paket(size, 'BASIC', 'IDR 300K', ' /montly', 15,
-                            dangerColor, '/#/inquiry', 'REQUEST DEMO'),
+                            'TRY NOW',
+                            'external'),
+                        paket(
+                            context,
+                            'BASIC',
+                            'IDR 300K',
+                            ' /montly',
+                            15,
+                            dangerColor,
+                            '/inquiry',
+                            'REQUEST DEMO',
+                            'internal'),
                       ],
                     ),
                     const SizedBox(
@@ -278,10 +295,18 @@ class WavePricing extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        paket(size, 'ADVANCED', 'To be Discuss', '', 19,
-                            successColor, '/#/inquiry', 'REQUEST DEMO'),
-                        paket(size, 'APP SUITE', 'To be Discuss', '', 23,
-                            darkColor, '/#/inquiry', 'REQUEST DEMO'),
+                        paket(
+                            context,
+                            'ADVANCED',
+                            'To be Discuss',
+                            '',
+                            19,
+                            successColor,
+                            '/inquiry',
+                            'REQUEST DEMO',
+                            'internal'),
+                        paket(context, 'APP SUITE', 'To be Discuss', '', 23,
+                            darkColor, '/inquiry', 'REQUEST DEMO', 'internal'),
                       ],
                     ),
                   ],
@@ -329,29 +354,46 @@ class WavePricing extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         paket(
-                            size,
+                            context,
                             'FREE TRIAL',
                             '0',
                             ' /montly',
                             7,
                             titleColor,
                             'https://1wave.world/maritime/maps/live',
-                            'TRY NOW'),
+                            'TRY NOW',
+                            'external'),
                         const SizedBox(
                           width: 10,
                         ),
-                        paket(size, 'BASIC', 'IDR 300K', ' /montly', 15,
-                            dangerColor, '/#/inquiry', 'REQUEST DEMO'),
+                        paket(
+                            context,
+                            'BASIC',
+                            'IDR 300K',
+                            ' /montly',
+                            15,
+                            dangerColor,
+                            '/inquiry',
+                            'REQUEST DEMO',
+                            'internal'),
                         const SizedBox(
                           width: 10,
                         ),
-                        paket(size, 'ADVANCED', 'To be Discuss', '', 19,
-                            successColor, '/#/inquiry', 'REQUEST DEMO'),
+                        paket(
+                            context,
+                            'ADVANCED',
+                            'To be Discuss',
+                            '',
+                            19,
+                            successColor,
+                            '/inquiry',
+                            'REQUEST DEMO',
+                            'internal'),
                         const SizedBox(
                           width: 10,
                         ),
-                        paket(size, 'APP SUITE', 'To be Discuss', '', 23,
-                            darkColor, '/#/inquiry', 'REQUEST DEMO'),
+                        paket(context, 'APP SUITE', 'To be Discuss', '', 23,
+                            darkColor, '/inquiry', 'REQUEST DEMO', 'internal'),
                         const SizedBox(
                           width: 10,
                         ),
@@ -424,7 +466,7 @@ class WavePricing extends StatelessWidget {
   }
 
   Container paket(
-    Size size,
+    BuildContext context,
     String title,
     String type,
     String type2,
@@ -432,6 +474,7 @@ class WavePricing extends StatelessWidget {
     Color color,
     String url,
     String label,
+    String jenis,
   ) {
     List<String> features = [
       'Real-time Ship Tracking',
@@ -459,6 +502,8 @@ class WavePricing extends StatelessWidget {
       'Customize Feature',
       'Full Ownership and Control',
     ];
+    final Size size = MediaQuery.of(context).size;
+
     return Container(
       width: size.width > 1200
           ? size.width * 0.2
@@ -563,7 +608,9 @@ class WavePricing extends StatelessWidget {
             ),
             TextButton.icon(
               onPressed: () {
-                launch(url);
+                jenis == 'external'
+                    ? launch(url)
+                    : Navigator.pushNamed(context, url);
               },
               label: Text(
                 label,
