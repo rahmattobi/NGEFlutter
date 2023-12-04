@@ -43,7 +43,6 @@ class MobileCard extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                       image: DecorationImage(
                         image: AssetImage(img.toString()),
-                        fit: BoxFit.scaleDown,
                       ),
                     ),
                   ),
@@ -110,7 +109,6 @@ class MobileCard extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                       image: DecorationImage(
                         image: AssetImage(img.toString()),
-                        fit: BoxFit.cover,
                       ),
                     ),
                   ),
@@ -194,12 +192,12 @@ class RecentPost extends StatelessWidget {
         children: [
           FadeInLeft(
             child: Container(
-              width: size.width * 0.3,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 image: DecorationImage(
-                  image: AssetImage(img.toString()),
-                  fit: BoxFit.cover,
+                  image: AssetImage(
+                    img.toString(),
+                  ),
                 ),
               ),
             ),

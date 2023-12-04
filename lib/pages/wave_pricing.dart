@@ -2,7 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:nge/components/footer.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
 import '../components/contact_us.dart';
 import '../components/menu_nav.dart';
@@ -11,8 +11,25 @@ import '../components/sosmed.dart';
 import '../helper/helper_class.dart';
 import '../theme.dart';
 
-class WavePricing extends StatelessWidget {
+class WavePricing extends StatefulWidget {
   const WavePricing({super.key});
+
+  @override
+  State<WavePricing> createState() => _WavePricingState();
+}
+
+class _WavePricingState extends State<WavePricing> {
+  late YoutubePlayerController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = YoutubePlayerController.fromVideoId(
+      videoId: 'onVm-L4BZjs',
+      autoPlay: false,
+      params: const YoutubePlayerParams(showFullscreenButton: true),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -181,20 +198,22 @@ class WavePricing extends StatelessWidget {
                     const SizedBox(
                       height: 30,
                     ),
-                    YoutubePlayer(
-                      controller: YoutubePlayerController(
-                        initialVideoId: 'onVm-L4BZjs',
-                        flags: const YoutubePlayerFlags(
-                          autoPlay: false,
-                          mute: false,
+                    Center(
+                      child: Container(
+                        margin: const EdgeInsets.only(top: 30),
+                        width: size.width,
+                        child: YoutubePlayer(
+                          controller: _controller,
+                          aspectRatio: 16 / 9,
                         ),
                       ),
-                      showVideoProgressIndicator: true,
                     ),
                     const SizedBox(
                       height: 50,
                     ),
-                    Center(child: pricePlan(size)),
+                    Center(
+                      child: pricePlan(size),
+                    ),
                     const SizedBox(
                       height: 30,
                     ),
@@ -246,21 +265,20 @@ class WavePricing extends StatelessWidget {
                     const SizedBox(
                       height: 30,
                     ),
-                    YoutubePlayer(
-                      controller: YoutubePlayerController(
-                        initialVideoId:
-                            'onVm-L4BZjs&t=2s&ab_channel=NatunaGlobalEkapersada%2CPT',
-                        flags: const YoutubePlayerFlags(
-                          autoPlay: true,
-                          mute: false,
+                    Center(
+                      child: Container(
+                        margin: const EdgeInsets.only(top: 30),
+                        width: size.width * 0.8,
+                        child: YoutubePlayer(
+                          controller: _controller,
+                          aspectRatio: 16 / 9,
                         ),
                       ),
-                      showVideoProgressIndicator: true,
                     ),
                     const SizedBox(
                       height: 80,
                     ),
-                    pricePlan(size),
+                    Center(child: pricePlan(size)),
                     const SizedBox(
                       height: 50,
                     ),
@@ -332,21 +350,20 @@ class WavePricing extends StatelessWidget {
                     const SizedBox(
                       height: 30,
                     ),
-                    YoutubePlayer(
-                      controller: YoutubePlayerController(
-                        initialVideoId:
-                            'onVm-L4BZjs&t=2s&ab_channel=NatunaGlobalEkapersada%2CPT',
-                        flags: const YoutubePlayerFlags(
-                          autoPlay: true,
-                          mute: false,
+                    Center(
+                      child: Container(
+                        margin: const EdgeInsets.only(top: 30),
+                        width: size.width * 0.75,
+                        child: YoutubePlayer(
+                          controller: _controller,
+                          aspectRatio: 16 / 9,
                         ),
                       ),
-                      showVideoProgressIndicator: true,
                     ),
                     const SizedBox(
                       height: 80,
                     ),
-                    pricePlan(size),
+                    Center(child: pricePlan(size)),
                     const SizedBox(
                       height: 50,
                     ),
@@ -422,7 +439,7 @@ class WavePricing extends StatelessWidget {
           '__ ASSETS MONITORING',
           style: titleTextStyle.copyWith(
             fontWeight: semiBold,
-            fontSize: (size.width >= 800 && size.width < 1200) ? 20 : 14,
+            fontSize: size.width >= 800 ? 20 : 14,
           ),
         ),
         SizedBox(
@@ -432,7 +449,7 @@ class WavePricing extends StatelessWidget {
           '1WAVE',
           style: primaryTextStyle.copyWith(
             fontWeight: semiBold,
-            fontSize: (size.width >= 800 && size.width < 1200) ? 50 : 32,
+            fontSize: size.width >= 800 ? 40 : 32,
           ),
         ),
       ],
@@ -448,7 +465,7 @@ class WavePricing extends StatelessWidget {
           '___ PRICE & PLAN ___',
           style: titleTextStyle.copyWith(
             fontWeight: semiBold,
-            fontSize: (size.width >= 800 && size.width < 1200) ? 20 : 15,
+            fontSize: size.width >= 800 ? 20 : 15,
           ),
         ),
         const SizedBox(
@@ -458,7 +475,7 @@ class WavePricing extends StatelessWidget {
           'Choose Your Plan',
           style: primaryTextStyle.copyWith(
             fontWeight: bold,
-            fontSize: (size.width >= 800 && size.width < 1200) ? 35 : 24,
+            fontSize: size.width >= 800 ? 35 : 24,
           ),
         )
       ],

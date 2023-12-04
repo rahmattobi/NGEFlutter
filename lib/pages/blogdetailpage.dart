@@ -31,13 +31,8 @@ class BlogDetailPage extends StatelessWidget {
         .map(
           (item) => Container(
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10.0),
-              boxShadow: [
-                BoxShadow(
-                    color: subtitleColor.withOpacity(0.5),
-                    blurRadius: 10,
-                    offset: const Offset(0, 3)),
-              ],
+              borderRadius: BorderRadius.circular(20.0),
+              color: whiteColor,
             ),
             margin: const EdgeInsets.all(2.0),
             child: ClipRRect(
@@ -48,8 +43,8 @@ class BlogDetailPage extends StatelessWidget {
                   ? null
                   : Image.asset(
                       item,
-                      fit: BoxFit.cover,
                       width: size.width,
+                      fit: size.width < 800 ? BoxFit.cover : BoxFit.contain,
                     ),
             ),
           ),
@@ -474,6 +469,9 @@ class BlogDetailPage extends StatelessWidget {
                   ),
                 ),
               ),
+              const SizedBox(
+                height: 30,
+              ),
               Padding(
                 padding: const EdgeInsets.all(60.0),
                 child: Row(
@@ -489,7 +487,7 @@ class BlogDetailPage extends StatelessWidget {
                             child: CarouselSlider(
                               options: CarouselOptions(
                                 autoPlay: true,
-                                aspectRatio: 2,
+                                aspectRatio: 1.5,
                                 enlargeCenterPage: true,
                               ),
                               items: imageSliders,
@@ -625,7 +623,6 @@ class BlogDetailPage extends StatelessWidget {
                                                                 blog.img
                                                                     .toString(),
                                                               ),
-                                                              fit: BoxFit.cover,
                                                             ),
                                                           ),
                                                         ),
@@ -719,18 +716,18 @@ class BlogDetailPage extends StatelessWidget {
       style: primaryTextStyle.copyWith(
         fontWeight: semiBold,
         fontSize: size.width > 1200
-            ? 35
+            ? 33
             : (size.width > 800 && size.width < 1200 ? 32 : 24),
       ),
     );
   }
 
-  Text descBlog(Size size, String desc) {
-    return Text(
+  SelectableText descBlog(Size size, String desc) {
+    return SelectableText(
       desc,
       style: subtitleTextStyle.copyWith(
         fontWeight: medium,
-        fontSize: size.width > 800 ? 20 : 15,
+        fontSize: size.width > 800 ? 17 : 15,
       ),
     );
   }

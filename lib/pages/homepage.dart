@@ -702,27 +702,24 @@ class _HomePageState extends State<HomePage> {
                             ),
                             child: Stack(
                               children: [
-                                Container(
+                                SizedBox(
                                   width: size.width > 1200
                                       ? size.width * 0.3
                                       : ((size.width >= 800 &&
                                               size.width < 1200)
                                           ? size.width * 0.5
                                           : size.width * 0.6),
-                                  height: size.width >= 800 ? 350 : 230,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
+                                  height: size.width >= 800 ? 400 : 340,
                                   child: Column(
                                     children: [
                                       Container(
-                                        height: size.width >= 800 ? 280 : 150,
+                                        height: size.width >= 800 ? 280 : 250,
                                         decoration: BoxDecoration(
+                                          color: whiteColor,
                                           image: DecorationImage(
                                             image: AssetImage(
                                               data.img.toString(),
                                             ),
-                                            fit: BoxFit.cover,
                                           ),
                                           borderRadius: const BorderRadius.all(
                                             Radius.circular(10),
@@ -734,8 +731,8 @@ class _HomePageState extends State<HomePage> {
                                 ),
                                 Positioned(
                                   bottom: 0,
-                                  left: size.width >= 800 ? 20 : 5,
-                                  right: size.width >= 800 ? 20 : 5,
+                                  left: 0,
+                                  right: 0,
                                   child: Container(
                                     width: double.infinity,
                                     height: size.width >= 800 ? 130 : 100,
