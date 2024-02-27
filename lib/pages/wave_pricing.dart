@@ -1,10 +1,10 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-import 'package:nge/components/footer.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
 import '../components/contact_us.dart';
+import '../components/footer.dart';
 import '../components/menu_nav.dart';
 import '../components/nav_desktop.dart';
 import '../components/sosmed.dart';
@@ -24,11 +24,24 @@ class _WavePricingState extends State<WavePricing> {
   @override
   void initState() {
     super.initState();
+
     _controller = YoutubePlayerController.fromVideoId(
       videoId: 'onVm-L4BZjs',
       autoPlay: false,
-      params: const YoutubePlayerParams(showFullscreenButton: true),
+      params: const YoutubePlayerParams(
+        showControls: true,
+        mute: false,
+        showFullscreenButton: true,
+        loop: false,
+        enableJavaScript: true,
+      ),
     );
+  }
+
+  @override
+  void dispose() {
+    _controller.close();
+    super.dispose();
   }
 
   @override

@@ -1,7 +1,8 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-import 'package:nge/components/footer.dart';
-import 'package:nge/widget/form_cs.dart';
+import 'package:maplibre_gl/mapbox_gl.dart';
+import '../components/footer.dart';
+import '../widget/form_cs.dart';
 
 import '../components/contact_us.dart';
 import '../components/menu_nav.dart';
@@ -197,6 +198,13 @@ class ContactPage extends StatelessWidget {
                     const SizedBox(
                       height: 30,
                     ),
+                    MaplibreMap(
+                      styleString: 'maplibre://styles/mapbox/streets-v11',
+                      initialCameraPosition: CameraPosition(
+                        target: LatLng(0, 0),
+                        zoom: 2,
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -238,8 +246,8 @@ class ContactPage extends StatelessWidget {
                         const SizedBox(
                           width: 30,
                         ),
-                        Expanded(
-                          child: const FormCs(),
+                        const Expanded(
+                          child: FormCs(),
                         ),
                       ],
                     ),
@@ -283,7 +291,17 @@ class ContactPage extends StatelessWidget {
                           width: 50,
                         ),
                         Expanded(
-                          child: const FormCs(),
+                          child: Column(
+                            children: [
+                              const FormCs(),
+                              MaplibreMap(
+                                initialCameraPosition: const CameraPosition(
+                                  target: LatLng(0, 0),
+                                  zoom: 2,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ),
@@ -406,7 +424,7 @@ class ContactPage extends StatelessWidget {
           ),
           FadeInDown(
             child: Text(
-              'Jl. Boulevard Europa No.10 RT.001/RW.009, Panunggangan Barat, Kec. Cibodas, Kota Tangerang, Banten 15138 Indonesia',
+              'Jl. Boulevard Europa No.10 RT.001/RW.009, Panunggangan Barat, Kec. Cibodas, Kota Tanatunarang, Banten 15138 Indonesia',
               style: subtitleTextStyle.copyWith(fontSize: 12),
               textAlign: TextAlign.center,
             ),

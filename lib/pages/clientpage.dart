@@ -1,6 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-import 'package:nge/components/footer.dart';
+import '../components/footer.dart';
 
 import '../components/contact_us.dart';
 import '../components/menu_nav.dart';

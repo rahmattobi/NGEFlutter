@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:nge/components/menu_nav.dart';
-import 'package:nge/theme.dart';
+import '../components/menu_nav.dart';
+import '../theme.dart';
 
 class Navbar extends StatefulWidget {
   const Navbar({Key? key}) : super(key: key);

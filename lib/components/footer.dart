@@ -1,9 +1,9 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-import 'package:nge/helper/helper_class.dart';
-import 'package:nge/theme.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../helper/helper_class.dart';
+import '../theme.dart';
 import '../widget/navbar_wh.dart';
 
 class Footer extends StatefulWidget {

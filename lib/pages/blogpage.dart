@@ -1,8 +1,8 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-import 'package:nge/components/footer.dart';
-import 'package:nge/pages/blogdetailpage.dart';
-import 'package:nge/widget/mobile_card.dart';
+import '../components/footer.dart';
+import '../pages/blogdetailpage.dart';
+import '../widget/mobile_card.dart';
 
 import '../components/contact_us.dart';
 import '../components/menu_nav.dart';

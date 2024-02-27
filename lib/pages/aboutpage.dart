@@ -1,9 +1,9 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-import 'package:nge/components/contact_us.dart';
-import 'package:nge/components/sosmed.dart';
-import 'package:nge/theme.dart';
-import 'package:nge/widget/btn_title.dart';
+import 'package:natuna/components/contact_us.dart';
+import 'package:natuna/components/sosmed.dart';
+import 'package:natuna/theme.dart';
+import 'package:natuna/widget/btn_title.dart';
 
 import '../components/footer.dart';
 import '../components/menu_nav.dart';

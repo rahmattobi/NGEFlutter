@@ -1,9 +1,9 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-import 'package:nge/components/contact_us.dart';
-import 'package:nge/components/sosmed.dart';
-import 'package:nge/theme.dart';
-import 'package:nge/widget/product_card.dart';
+import '../components/contact_us.dart';
+import '../components/sosmed.dart';
+import '../theme.dart';
+import '../widget/product_card.dart';
 
 import '../components/footer.dart';
 import '../components/menu_nav.dart';

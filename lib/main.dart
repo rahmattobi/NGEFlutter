@@ -1,12 +1,12 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
-import 'package:nge/pages/blogpage.dart';
-import 'package:nge/pages/clientpage.dart';
-import 'package:nge/pages/contactpage.dart';
-import 'package:nge/pages/cspage.dart';
-import 'package:nge/pages/homepage.dart';
-import 'package:nge/pages/inquirypage.dart';
-import 'package:nge/pages/wave_pricing.dart';
+import '../pages/blogpage.dart';
+import '../pages/clientpage.dart';
+import '../pages/contactpage.dart';
+import '../pages/cspage.dart';
+import '../pages/homepage.dart';
+import '../pages/inquirypage.dart';
+import '../pages/wave_pricing.dart';
 
 import 'pages/aboutpage.dart';
 import 'pages/blogdetailpage.dart';
