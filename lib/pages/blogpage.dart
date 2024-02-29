@@ -1,5 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../components/footer.dart';
 import '../pages/blogdetailpage.dart';
 import '../widget/mobile_card.dart';
@@ -21,8 +22,8 @@ class BlogPage extends StatefulWidget {
 }
 
 class _BlogPageState extends State<BlogPage> {
-  List<Blog> blogDataList = [];
-  final BlogService blogService = BlogService();
+  // List<Blog> blogDataList = [];
+  // final BlogService blogService = BlogService();
 
   @override
   Widget build(BuildContext context) {
@@ -325,8 +326,81 @@ class _BlogPageState extends State<BlogPage> {
             ),
             child: titleBlog(size),
           ),
+          // FutureBuilder(
+          //   future: blogService.readJsonData(),
+          //   builder: (context, snapshot) {
+          //     if (snapshot.connectionState == ConnectionState.waiting) {
+          //       return const Center(
+          //         child: CircularProgressIndicator(),
+          //       );
+          //     } else if (snapshot.hasError) {
+          //       return Center(
+          //         child: Text(
+          //           'Error: ${snapshot.error}',
+          //           style: const TextStyle(color: Colors.red),
+          //         ),
+          //       );
+          //     } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+          //       return Center(
+          //         child: Text(
+          //           'Data Kosong',
+          //           style: primaryTextStyle.copyWith(
+          //             fontSize: 20,
+          //             fontWeight: bold,
+          //           ),
+          //         ),
+          //       );
+          //     } else {
+          //       List<Blog> blogDataList = snapshot.data as List<Blog>;
+
+          //       return ListView.builder(
+          //           shrinkWrap: true,
+          //           itemCount: blogDataList.length,
+          //           primary: false,
+          //           itemBuilder: (context, index) {
+          //             // Ini adalah bagian untuk item
+          //             Blog blog = blogDataList[index];
+
+          //             // Filter sesuai dengan tipe ('blog' atau 'activity')
+          //             if (blog.type == type) {
+          //               return Column(
+          //                 children: [
+          //                   Padding(
+          //                     padding: const EdgeInsets.symmetric(
+          //                       horizontal: 20.0,
+          //                     ),
+          //                     child: GestureDetector(
+          //                       onTap: () {
+          //                         Navigator.of(context).push(MaterialPageRoute(
+          //                           builder: (context) => BlogDetailPage(
+          //                             title: blog.title,
+          //                             desc: blog.desc,
+          //                             gallery: blog.galery,
+          //                           ),
+          //                         ));
+          //                       },
+          //                       child: MouseRegion(
+          //                         cursor: SystemMouseCursors.click,
+          //                         child: MobileCard(
+          //                           img: blog.img.toString(),
+          //                           title: blog.title.toString(),
+          //                           desc: blog.desc.toString(),
+          //                         ),
+          //                       ),
+          //                     ),
+          //                   ),
+          //                 ],
+          //               );
+          //             } else {
+          //               return const SizedBox.shrink();
+          //             }
+          //           });
+          //     }
+          //   },
+          // ),
           FutureBuilder(
-            future: blogService.readJsonData(),
+            future: Provider.of<BlogProvider>(context, listen: false)
+                .readJsonData(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return const Center(
@@ -339,26 +413,16 @@ class _BlogPageState extends State<BlogPage> {
                     style: const TextStyle(color: Colors.red),
                   ),
                 );
-              } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                return Center(
-                  child: Text(
-                    'Data Kosong',
-                    style: primaryTextStyle.copyWith(
-                      fontSize: 20,
-                      fontWeight: bold,
-                    ),
-                  ),
-                );
               } else {
-                List<Blog> blogDataList = snapshot.data as List<Blog>;
-
+                final blogProvider = Provider.of<BlogProvider>(context);
+                final blogList = blogProvider.blogs;
                 return ListView.builder(
                     shrinkWrap: true,
-                    itemCount: blogDataList.length,
+                    itemCount: blogList.length,
                     primary: false,
                     itemBuilder: (context, index) {
                       // Ini adalah bagian untuk item
-                      Blog blog = blogDataList[index];
+                      Blog blog = blogList[index];
 
                       // Filter sesuai dengan tipe ('blog' atau 'activity')
                       if (blog.type == type) {
@@ -419,7 +483,8 @@ class _BlogPageState extends State<BlogPage> {
             child: titleBlog(size),
           ),
           FutureBuilder(
-            future: blogService.readJsonData(),
+            future: Provider.of<BlogProvider>(context, listen: false)
+                .readJsonData(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return const Center(
@@ -432,18 +497,9 @@ class _BlogPageState extends State<BlogPage> {
                     style: const TextStyle(color: Colors.red),
                   ),
                 );
-              } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                return Center(
-                  child: Text(
-                    'Data Kosong',
-                    style: primaryTextStyle.copyWith(
-                      fontSize: 20,
-                      fontWeight: bold,
-                    ),
-                  ),
-                );
               } else {
-                List<Blog> blogDataList = snapshot.data as List<Blog>;
+                final blogProvider = Provider.of<BlogProvider>(context);
+                final blogList = blogProvider.blogs;
                 return Padding(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 60,
@@ -459,11 +515,11 @@ class _BlogPageState extends State<BlogPage> {
                           : (size.width >= 800 && size.width < 1000 ? 0.75 : 1),
                     ),
                     itemCount:
-                        blogDataList.where((blog) => blog.type == type).length,
+                        blogList.where((blog) => blog.type == type).length,
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
                     itemBuilder: (context, index) {
-                      Blog blog = blogDataList
+                      Blog blog = blogList
                           .where((blog) => blog.type == type)
                           .toList()[index];
                       return GestureDetector(

@@ -200,7 +200,7 @@ class ContactPage extends StatelessWidget {
                     ),
                     MaplibreMap(
                       styleString: 'maplibre://styles/mapbox/streets-v11',
-                      initialCameraPosition: CameraPosition(
+                      initialCameraPosition: const CameraPosition(
                         target: LatLng(0, 0),
                         zoom: 2,
                       ),

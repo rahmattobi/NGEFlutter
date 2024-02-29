@@ -1,13 +1,11 @@
-import 'dart:convert';
-
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:natuna/helper/get_json.dart';
+import 'package:provider/provider.dart';
 import '../components/contact_us.dart';
 import '../components/footer.dart';
 import '../components/nav_desktop.dart';
 import '../components/sosmed.dart';
-import '../helper/blog.dart';
 import '../pages/blogdetailpage.dart';
 import '../theme.dart';
 import '../widget/btn_title.dart';
@@ -31,8 +29,6 @@ class _HomePageState extends State<HomePage> {
   bool isHovered2 = false;
   bool isHovered3 = false;
 
-  List<Blog> blogDataList = [];
-
   void animateToMaxMin(double max, double min, double direction, int seconds,
       ScrollController scrollController1) {
     scrollController1
@@ -42,17 +38,13 @@ class _HomePageState extends State<HomePage> {
       curve: Curves.ease,
     )
         .then((value) {
-      // Dalam callback 'then', Anda dapat memperbarui nilai variabel langsung
       direction = direction == max ? min : max;
-
-      // Pastikan bahwa `direction` tidak melebihi batas max atau min
       if (direction > max) {
         direction = max;
       } else if (direction < min) {
         direction = min;
       }
 
-      // Jangan panggil rekursif jika controller tidak terhubung dengan tampilan gulir
       if (scrollController1.hasClients) {
         animateToMaxMin(max, min, direction, seconds, scrollController1);
       }
@@ -60,35 +52,8 @@ class _HomePageState extends State<HomePage> {
   }
 
   @override
-  initState() {
-    super.initState();
-    readJsonData();
-    fetchData();
-    // WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-    //   double minScroll = scrollController1.position.minScrollExtent;
-    //   double maxScroll = scrollController1.position.maxScrollExtent;
-
-    //   animateToMaxMin(
-    //     maxScroll,
-    //     minScroll,
-    //     maxScroll,
-    //     20,
-    //     scrollController1,
-    //   );
-    // });
-  }
-
-  @override
-  void dispose() {
-    // Pastikan untuk melepaskan controller ketika widget dihancurkan
-    scrollController1.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
-
     return Scaffold(
       appBar: HelperClass.desktopScreen(context)
           ? PreferredSize(
@@ -379,26 +344,26 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Future<List<Blog>> readJsonData() async {
-    try {
-      final jsonData = await rootBundle.loadString('assets/data/data.json');
-      final List<dynamic> jsonList = json.decode(jsonData) as List<dynamic>;
+  // Future<List<Blog>> readJsonData() async {
+  //   try {
+  //     final jsonData = await rootBundle.loadString('assets/data/data.json');
+  //     final List<dynamic> jsonList = json.decode(jsonData) as List<dynamic>;
 
-      return jsonList
-          .map((e) => Blog.fromJson(e as Map<String, dynamic>))
-          .toList();
-    } catch (error) {
-      // print('Error reading JSON data: $error');
-      return []; // Return an empty list or handle the error as needed
-    }
-  }
+  //     return jsonList
+  //         .map((e) => Blog.fromJson(e as Map<String, dynamic>))
+  //         .toList();
+  //   } catch (error) {
+  //     // print('Error reading JSON data: $error');
+  //     return []; // Return an empty list or handle the error as needed
+  //   }
+  // }
 
-  Future<void> fetchData() async {
-    List<Blog> data = await readJsonData();
-    setState(() {
-      blogDataList = data;
-    });
-  }
+  // Future<void> fetchData() async {
+  //   List<Blog> data = await readJsonData();
+  //   setState(() {
+  //     blogDataList = data;
+  //   });
+  // }
 
   Container prdHome(Size size) {
     return Container(
@@ -633,6 +598,11 @@ class _HomePageState extends State<HomePage> {
   }
 
   Padding blogHome(Size size) {
+    final blogProvider = Provider.of<BlogProvider>(context);
+    if (blogProvider.blogs.isEmpty) {
+      // Memanggil method readJsonData() untuk memuat data
+      blogProvider.readJsonData();
+    }
     return Padding(
       padding: EdgeInsets.only(
         top: size.width >= 800 ? 60 : 50,
@@ -682,7 +652,7 @@ class _HomePageState extends State<HomePage> {
                 ),
                 child: FadeInRight(
                   child: Row(
-                    children: blogDataList.map((data) {
+                    children: blogProvider.blogs.map((data) {
                       return GestureDetector(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(

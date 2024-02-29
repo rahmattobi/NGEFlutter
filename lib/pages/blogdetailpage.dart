@@ -1,6 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../components/footer.dart';
 import '../helper/helper_class.dart';
 import '../theme.dart';
@@ -18,7 +19,6 @@ class BlogDetailPage extends StatelessWidget {
   String? title;
   String? desc;
   final List<String>? gallery;
-  final BlogService blogService = BlogService();
 
   BlogDetailPage({Key? key, this.title, this.desc, this.gallery})
       : super(key: key);
@@ -255,7 +255,8 @@ class BlogDetailPage extends StatelessWidget {
                       height: 10,
                     ),
                     FutureBuilder(
-                      future: blogService.readJsonData(),
+                      future: Provider.of<BlogProvider>(context, listen: false)
+                          .readJsonData(),
                       builder: (context, snapshot) {
                         if (snapshot.connectionState ==
                             ConnectionState.waiting) {
@@ -269,25 +270,16 @@ class BlogDetailPage extends StatelessWidget {
                               style: const TextStyle(color: Colors.red),
                             ),
                           );
-                        } else if (!snapshot.hasData ||
-                            snapshot.data!.isEmpty) {
-                          return Center(
-                            child: Text(
-                              'Data Kosong',
-                              style: primaryTextStyle.copyWith(
-                                fontSize: 20,
-                                fontWeight: bold,
-                              ),
-                            ),
-                          );
                         } else {
-                          List<Blog> blogDataList = snapshot.data as List<Blog>;
+                          final blogProvider =
+                              Provider.of<BlogProvider>(context);
+                          final blogList = blogProvider.blogs;
 
                           return ListView.builder(
                               shrinkWrap: true,
                               itemCount: 5,
                               itemBuilder: (context, index) {
-                                Blog blog = blogDataList[index];
+                                Blog blog = blogList[index];
 
                                 return Column(
                                   children: [
@@ -380,7 +372,8 @@ class BlogDetailPage extends StatelessWidget {
                       height: 10,
                     ),
                     FutureBuilder(
-                      future: blogService.readJsonData(),
+                      future: Provider.of<BlogProvider>(context, listen: false)
+                          .readJsonData(),
                       builder: (context, snapshot) {
                         if (snapshot.connectionState ==
                             ConnectionState.waiting) {
@@ -394,25 +387,16 @@ class BlogDetailPage extends StatelessWidget {
                               style: const TextStyle(color: Colors.red),
                             ),
                           );
-                        } else if (!snapshot.hasData ||
-                            snapshot.data!.isEmpty) {
-                          return Center(
-                            child: Text(
-                              'Data Kosong',
-                              style: primaryTextStyle.copyWith(
-                                fontSize: 20,
-                                fontWeight: bold,
-                              ),
-                            ),
-                          );
                         } else {
-                          List<Blog> blogDataList = snapshot.data as List<Blog>;
+                          final blogProvider =
+                              Provider.of<BlogProvider>(context);
+                          final blogList = blogProvider.blogs;
 
                           return ListView.builder(
                               shrinkWrap: true,
                               itemCount: 5,
                               itemBuilder: (context, index) {
-                                Blog blog = blogDataList[index];
+                                Blog blog = blogList[index];
 
                                 return Column(
                                   children: [
@@ -535,7 +519,9 @@ class BlogDetailPage extends StatelessWidget {
                               height: 30,
                             ),
                             FutureBuilder(
-                              future: blogService.readJsonData(),
+                              future: Provider.of<BlogProvider>(context,
+                                      listen: false)
+                                  .readJsonData(),
                               builder: (context, snapshot) {
                                 if (snapshot.connectionState ==
                                     ConnectionState.waiting) {
@@ -549,26 +535,16 @@ class BlogDetailPage extends StatelessWidget {
                                       style: const TextStyle(color: Colors.red),
                                     ),
                                   );
-                                } else if (!snapshot.hasData ||
-                                    snapshot.data!.isEmpty) {
-                                  return Center(
-                                    child: Text(
-                                      'Data Kosong',
-                                      style: primaryTextStyle.copyWith(
-                                        fontSize: 20,
-                                        fontWeight: bold,
-                                      ),
-                                    ),
-                                  );
                                 } else {
-                                  List<Blog> blogDataList =
-                                      snapshot.data as List<Blog>;
+                                  final blogProvider =
+                                      Provider.of<BlogProvider>(context);
+                                  final blogList = blogProvider.blogs;
 
                                   return ListView.builder(
                                       shrinkWrap: true,
                                       itemCount: 5,
                                       itemBuilder: (context, index) {
-                                        Blog blog = blogDataList[index];
+                                        Blog blog = blogList[index];
 
                                         return Column(
                                           children: [

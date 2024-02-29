@@ -1,5 +1,7 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
+import 'package:natuna/helper/get_json.dart';
+import 'package:provider/provider.dart';
 import '../pages/blogpage.dart';
 import '../pages/clientpage.dart';
 import '../pages/contactpage.dart';
@@ -13,41 +15,41 @@ import 'pages/blogdetailpage.dart';
 import 'pages/productpage.dart';
 
 void main() {
-  // runApp(
-  //   DevicePreview(
-  //     enabled: true,
-  //     builder: (context) => const MyApp(),
-  //   ),
-  // );
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      // ignore: deprecated_member_use
-      useInheritedMediaQuery: true,
-      locale: DevicePreview.locale(context),
-      builder: DevicePreview.appBuilder,
-      debugShowCheckedModeBanner: false,
-      title: 'Natuna Global Ekapersada',
-      home: const HomePage(),
-      routes: {
-        '/home': (context) => const HomePage(),
-        '/about': (context) => const AboutPage(),
-        '/product': (context) => const ProductPage(),
-        '/client': (context) => const ClientPage(),
-        '/cs': (context) => CaseStudiesPage(),
-        '/contact': (context) => const ContactPage(),
-        '/blog': (context) => const BlogPage(),
-        '/detail': (context) => BlogDetailPage(),
-        '/1wave-pricing': (context) => const WavePricing(),
-        '/inquiry': (context) => const InquiryPage(),
-      },
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => BlogProvider(),
+        ),
+      ],
+      child: MaterialApp(
+        // ignore: deprecated_member_use
+        useInheritedMediaQuery: true,
+        locale: DevicePreview.locale(context),
+        builder: DevicePreview.appBuilder,
+        debugShowCheckedModeBanner: false,
+        title: 'Natuna Global Ekapersada',
+        home: const HomePage(),
+        routes: {
+          '/home': (context) => const HomePage(),
+          '/about': (context) => const AboutPage(),
+          '/product': (context) => const ProductPage(),
+          '/client': (context) => const ClientPage(),
+          '/cs': (context) => CaseStudiesPage(),
+          '/contact': (context) => const ContactPage(),
+          '/blog': (context) => const BlogPage(),
+          '/detail': (context) => BlogDetailPage(),
+          '/1wave-pricing': (context) => const WavePricing(),
+          '/inquiry': (context) => const InquiryPage(),
+        },
+      ),
     );
   }
 }
