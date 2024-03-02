@@ -1,16 +1,46 @@
-# nge
+# NATUNA GLOBAL EKAPERSADA
 
-A new Flutter project.
+Aplikasi Internal Natuna dengan menggunakan flutter berbasis web dan mobile (ios & android) dengan menggunakan state management provider 
 
-## Getting Started
+https://natuna.global/
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![Screenshot 2024-03-02 124103](https://github.com/rahmattobi/NGEFlutter/assets/49316783/5fcdb854-2eb0-4626-bf24-d5fa716e1364)
+![Screenshot 2024-03-02 124055](https://github.com/rahmattobi/NGEFlutter/assets/49316783/e0736ead-a098-4857-b1fb-d4f0a718a6df)
+![Screenshot 2024-03-02 124042](https://github.com/rahmattobi/NGEFlutter/assets/49316783/f6d30561-10a8-48f4-b7fe-a90d8cd0f609)
+![Screenshot 2024-03-02 124028](https://github.com/rahmattobi/NGEFlutter/assets/49316783/236eac6c-3cc7-4a6a-89b6-a271171903d1)
+![Screenshot 2024-03-02 124020](https://github.com/rahmattobi/NGEFlutter/assets/49316783/bc516009-50ee-4ba8-95a5-713654e2f8af)
+![Screenshot 2024-03-02 124009](https://github.com/rahmattobi/NGEFlutter/assets/49316783/9d3e2c7f-586b-4bb5-b7c6-051b0971c23d)
+![Screenshot 2024-03-02 124001](https://github.com/rahmattobi/NGEFlutter/assets/49316783/99cf2ed9-6593-4178-a8c5-ed7deb239447)
+![Screenshot 2024-03-02 123947](https://github.com/rahmattobi/NGEFlutter/assets/49316783/c60c0de6-474c-42f0-8b31-1f417ed2671d)
+![Screenshot 2024-03-02 123940](https://github.com/rahmattobi/NGEFlutter/assets/49316783/6e9cd32c-6644-4b7d-a8fd-f388b9dd17be)
+![Screenshot 2024-03-02 123931](https://github.com/rahmattobi/NGEFlutter/assets/49316783/2543fae0-f2e5-4124-8c1a-06046dd822fe)
+![Screenshot 2024-03-02 123922](https://github.com/rahmattobi/NGEFlutter/assets/49316783/4634a879-0e42-48c4-823a-c098bf91b40a)
+![Screenshot 2024-03-02 123913](https://github.com/rahmattobi/NGEFlutter/assets/49316783/7ca9d226-e662-4e01-98a4-f3dbe3aba44c)
+![Screenshot 2024-03-02 123905](https://github.com/rahmattobi/NGEFlutter/assets/49316783/fb272f92-a372-458a-a114-812a0d0809d7)
+![Screenshot 2024-03-02 123809](https://github.com/rahmattobi/NGEFlutter/assets/49316783/16bb0602-837d-4ceb-818d-3676913ca6f3)
+![Screenshot 2024-03-02 123700](https://github.com/rahmattobi/NGEFlutter/assets/49316783/71fc3dd4-7d81-4e6d-862f-4b2231da311b)
+![Screenshot 2024-03-02 124654](https://github.com/rahmattobi/NGEFlutter/assets/49316783/3b463cea-393f-47bb-b71a-ae99eebf82c4)
+![Screenshot 2024-03-02 124647](https://github.com/rahmattobi/NGEFlutter/assets/49316783/6873fb61-bfcf-482f-a43f-61094565e9ef)
+![Screenshot 2024-03-02 124638](https://github.com/rahmattobi/NGEFlutter/assets/49316783/9e03d612-7bf1-46bc-9e26-a17bd983c941)
+![Screenshot 2024-03-02 124609](https://github.com/rahmattobi/NGEFlutter/assets/49316783/b7a4ed95-4c47-4002-8c34-10d8c820cb70)
+![Screenshot 2024-03-02 124558](https://github.com/rahmattobi/NGEFlutter/assets/49316783/cfe0dc1c-bae6-4b19-b552-f99b07726f73)
+![Screenshot 2024-03-02 124548](https://github.com/rahmattobi/NGEFlutter/assets/49316783/3d905df7-46f7-4372-8c2c-0252eac8974a)
+![Screenshot 2024-03-02 124538](https://github.com/rahmattobi/NGEFlutter/assets/49316783/ae8aed55-5820-437f-b708-93934a7e7698)
+![Screenshot 2024-03-02 124531](https://github.com/rahmattobi/NGEFlutter/assets/49316783/0b32a47a-67ef-4766-8ce8-5e2330c48248)
+![Screenshot 2024-03-02 124523](https://github.com/rahmattobi/NGEFlutter/assets/49316783/04143772-6813-49ba-875b-9fd4d29bcc48)
+![Screenshot 2024-03-02 124517](https://github.com/rahmattobi/NGEFlutter/assets/49316783/d109f6ee-0ea8-44fb-8c37-8618a9e5c444)
+![Screenshot 2024-03-02 124508](https://github.com/rahmattobi/NGEFlutter/assets/49316783/17602e08-13f3-4d32-af40-de17cad01037)
+![Screenshot 2024-03-02 124501](https://github.com/rahmattobi/NGEFlutter/assets/49316783/8d5ab708-1030-4566-9e0e-e428d6ce6f57)
+![Screenshot 2024-03-02 124451](https://github.com/rahmattobi/NGEFlutter/assets/49316783/991f47b2-e251-4798-9068-78daab866717)
+![Screenshot 2024-03-02 124442](https://github.com/rahmattobi/NGEFlutter/assets/49316783/9ace526f-5cd2-4cc2-80fd-1671ab7a64d2)
+![Screenshot 2024-03-02 124413](https://github.com/rahmattobi/NGEFlutter/assets/49316783/07da1886-1390-413b-9b5a-522877a0089a)
+![Screenshot 2024-03-02 124406](https://github.com/rahmattobi/NGEFlutter/assets/49316783/bdfb4915-2f6a-4b1c-b4ba-96b3c3e0ef9e)
+![Screenshot 2024-03-02 124340](https://github.com/rahmattobi/NGEFlutter/assets/49316783/8fe5f6ec-2695-4f02-a008-44284cd3a673)
+![Screenshot 2024-03-02 124326](https://github.com/rahmattobi/NGEFlutter/assets/49316783/8c688da8-37e6-420f-bc12-b88103d50b04)
+![Screenshot 2024-03-02 124319](https://github.com/rahmattobi/NGEFlutter/assets/49316783/b2b20326-0d1d-4feb-8a39-1b4c12ff798e)
+![Screenshot 2024-03-02 124309](https://github.com/rahmattobi/NGEFlutter/assets/49316783/a86ae281-32cc-4f7c-981a-6d1afe1e9e89)
+![Screenshot 2024-03-02 124258](https://github.com/rahmattobi/NGEFlutter/assets/49316783/6bdbbe84-845c-4c12-9136-b51bea4edfa7)
+![Screenshot 2024-03-02 124247](https://github.com/rahmattobi/NGEFlutter/assets/49316783/49306fd2-6367-4667-99da-811ac809b9dd)
+![Screenshot 2024-03-02 124235](https://github.com/rahmattobi/NGEFlutter/assets/49316783/f1e98428-9c84-498f-a32b-2489f6abb45d)
+![Screenshot 2024-03-02 124219](https://github.com/rahmattobi/NGEFlutter/assets/49316783/aeebdf80-96ea-4fa6-86c0-577cae57f253)
+![Screenshot 2024-03-02 124128](https://github.com/rahmattobi/NGEFlutter/assets/49316783/dabf84a8-3e8c-4c9b-8663-a00fad9ddad5)
